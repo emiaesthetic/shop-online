@@ -5,28 +5,6 @@
   column-gap: 30px;
 }
 
-.pagination__button {
-  width: 38px;
-  height: 38px;
-
-  transition-property: color;
-  transition-duration: var(--transition-duration);
-  transition-timing-function: var(--transition-timing-function)
-}
-
-.pagination__button:focus {
-  outline: none;
-}
-
-.pagination__button:hover,
-.pagination__button:focus-within {
-  color: var(--color-blue-accent);
-}
-
-.pagination__button:active {
-  color: var(--color-blue);
-}
-
 .pagination__list {
   display: flex;
   column-gap: 6px;
@@ -82,4 +60,11 @@
 .arrow.disabled {
   color: var(--color-gray);
   pointer-events: none;
+}
+
+.pagination__dotted-line {
+  display: flex;
+  align-items: end;
+  height: 36px;
+  color: var(--color-dark);
 }
