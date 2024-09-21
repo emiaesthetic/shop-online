@@ -55,3 +55,5 @@ export const createTimer = () => {
 
   updateTime();
 };
+
+createTimer();

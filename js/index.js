@@ -1,3 +1,1 @@
-import {createTimer} from './timer/app.js';
-
-createTimer();
+import './timer/app.js';
