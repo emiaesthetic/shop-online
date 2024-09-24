@@ -4,62 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preload" href="fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/OpenSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
   <title>ShopOnline</title>
 
-  <link rel="stylesheet" href="styles/styles.css">
-  <script src="js/index.js" type="module"></script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="header">
     <div class="header__container container">
-      <div class="header__logo">Shop<span class="header__logo-text header__logo-text--color-blue">Online</span></div>
+      <a class="header__logo logo link-reset" href="/">
+        Shop<span class="logo__color-blue">Online</span>
+      </a>
 
-      <button class="header__menu-button button">
-        <svg class="header__menu-icon" width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 12H6V10H0V12ZM0 0V2H18V0H0ZM0 7H12V5H0V7Z" fill="currentColor" />
-        </svg>
-        Меню
-      </button>
+      <button class="header__menu button button-reset">Меню</button>
 
-      <form class="header__search-form">
-        <input class="header__search-input" type="search" placeholder="Я ищу...">
-        <button class="header__search-button button">
-          <svg class="header__search-icon" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19.25 17H18.065L17.645 16.595C19.115 14.885 20 12.665 20 10.25C20 4.865 15.635 0.5 10.25 0.5C4.865 0.5 0.5 4.865 0.5 10.25C0.5 15.635 4.865 20 10.25 20C12.665 20 14.885 19.115 16.595 17.645L17 18.065V19.25L24.5 26.735L26.735 24.5L19.25 17ZM10.25 17C6.515 17 3.5 13.985 3.5 10.25C3.5 6.515 6.515 3.5 10.25 3.5C13.985 3.5 17 6.515 17 10.25C17 13.985 13.985 17 10.25 17Z" fill="currentColor" />
+      <form class="header__search-form search-form">
+        <label class="visually-hidden" for="search">Поиск по сайту</label>
+        <input class="search-form__input" id="search" type="search" placeholder="Я ищу...">
+        <button class="search-form__button button button-reset" aria-label="Поиск">
+          <svg class="search-form-icon" width="27" height="27" aria-hidden="true">
+            <use xlink:href="./img/icons/svgsprite.svg#loupe"></use>
           </svg>
         </button>
       </form>
 
-      <ul class="header__user user">
-        <li class="user__item">
-          <a class="user__link" href="#">
-            <svg class="user__link-icon profile" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 12C15.315 12 18 9.315 18 6C18 2.685 15.315 0 12 0C8.685 0 6 2.685 6 6C6 9.315 8.685 12 12 12ZM12 15C7.995 15 0 17.01 0 21V24H24V21C24 17.01 16.005 15 12 15Z" fill="currentColor" />
+      <ul class="header__actions actions list-reset">
+        <li class="actions__item">
+          <a class="actions__link link-reset" href="#">
+            <svg class="actions__link-icon" width="24" height="24" aria-hidden="true">
+              <use xlink:href="./img/icons/svgsprite.svg#profile"></use>
             </svg>
-            <span class="user__link-text">Профиль</span>
+            <span class="actions__link-text">Профиль</span>
           </a>
         </li>
 
-        <li class="user__item">
-          <a class="user__link" href="#">
-            <svg class="user__link-icon cart" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="cart__icon" d="M10.5 27C8.85 27 7.515 28.35 7.515 30C7.515 31.65 8.85 33 10.5 33C12.15 33 13.5 31.65 13.5 30C13.5 28.35 12.15 27 10.5 27ZM1.5 3V6H4.5L9.9 17.385L7.875 21.06C7.635 21.48 7.5 21.975 7.5 22.5C7.5 24.15 8.85 25.5 10.5 25.5H28.5V22.5H11.13C10.92 22.5 10.755 22.335 10.755 22.125L10.8 21.945L12.15 19.5H23.325C24.45 19.5 25.44 18.885 25.95 17.955L31.32 8.22C31.44 8.01 31.5 7.755 31.5 7.5C31.5 6.675 30.825 6 30 6H7.815L6.405 3H1.5ZM25.5 27C23.85 27 22.515 28.35 22.515 30C22.515 31.65 23.85 33 25.5 33C27.15 33 28.5 31.65 28.5 30C28.5 28.35 27.15 27 25.5 27Z" fill="currentColor"/>
-              <circle class="cart__circle" cx="29" cy="7" r="7" fill="currentColor"/>
-              <path class="cart__counter" d="M31.867 10.39C32.0537 10.39 32.2007 10.4437 32.308 10.551C32.42 10.6537 32.476 10.7913 32.476 10.964V12H25.532V11.426C25.532 11.3093 25.5553 11.188 25.602 11.062C25.6533 10.9313 25.7327 10.8147 25.84 10.712L28.913 7.632C29.1697 7.37067 29.3983 7.121 29.599 6.883C29.8043 6.645 29.9747 6.40933 30.11 6.176C30.2453 5.94267 30.348 5.707 30.418 5.469C30.4927 5.22633 30.53 4.972 30.53 4.706C30.53 4.46333 30.495 4.251 30.425 4.069C30.355 3.88233 30.2547 3.726 30.124 3.6C29.998 3.474 29.844 3.38067 29.662 3.32C29.4847 3.25467 29.284 3.222 29.06 3.222C28.8547 3.222 28.6633 3.25233 28.486 3.313C28.3133 3.369 28.1593 3.45067 28.024 3.558C27.8887 3.66067 27.7743 3.782 27.681 3.922C27.5877 4.062 27.5177 4.216 27.471 4.384C27.3917 4.59867 27.289 4.741 27.163 4.811C27.037 4.881 26.855 4.89733 26.617 4.86L25.707 4.699C25.777 4.21367 25.9123 3.789 26.113 3.425C26.3137 3.05633 26.5633 2.75067 26.862 2.508C27.1653 2.26067 27.5107 2.07633 27.898 1.955C28.29 1.829 28.71 1.766 29.158 1.766C29.6247 1.766 30.0517 1.836 30.439 1.976C30.8263 2.11133 31.1577 2.305 31.433 2.557C31.7083 2.809 31.923 3.11233 32.077 3.467C32.231 3.82167 32.308 4.216 32.308 4.65C32.308 5.02333 32.252 5.36867 32.14 5.686C32.0327 6.00333 31.8857 6.30667 31.699 6.596C31.517 6.88533 31.3023 7.16533 31.055 7.436C30.8077 7.70667 30.5487 7.982 30.278 8.262L27.996 10.593C28.2153 10.5277 28.4323 10.4787 28.647 10.446C28.8663 10.4087 29.074 10.39 29.27 10.39H31.867Z" fill="currentColor"/>
+        <li class="actions__item">
+          <a class="actions__link link-reset" href="#">
+            <svg class="actions__link-icon" width="36" height="36" aria-hidden="true">
+              <use xlink:href="./img/icons/svgsprite.svg#cart"></use>
             </svg>
-            <span class="user__link-text">Корзина</span>
+            <span class="actions__link-text">Корзина</span>
           </a>
         </li>
 
-        <li class="user__item">
-          <a class="user__link" href="#">
-            <svg class="user__link-icon favorites" width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 28.025L12.825 26.045C5.1 19.04 0 14.42 0 8.75C0 4.13 3.63 0.5 8.25 0.5C10.86 0.5 13.365 1.715 15 3.635C16.635 1.715 19.14 0.5 21.75 0.5C26.37 0.5 30 4.13 30 8.75C30 14.42 24.9 19.04 17.175 26.06L15 28.025Z" fill="currentColor" />
+        <li class="actions__item">
+          <a class="actions__link link-reset" href="#">
+            <svg class="actions__link-icon" width="30" height="29" aria-hidden="true">
+              <use xlink:href="./img/icons/svgsprite.svg#favorites"></use>
             </svg>
-            <span class="user__link-text">Избранное</span>
+            <span class="actions__link-text">Избранное</span>
           </a>
         </li>
       </ul>
@@ -67,61 +63,91 @@
   </header>
 
   <main class="main">
-    <section class="banner">
+    <h1 class="visually-hidden">ShopOnline: Скидки на ноутбуки, акции и лучшие товары для вас!</h1>
+    <section class="promo-banner">
       <div class="container">
-        <div class="banner__container">
-          <h1 class="banner__title">-50% на все ноутбуки</h1>
+        <div class="promo-banner__inner">
+          <h2 class="promo-banner__title">-50% на все ноутбуки</h2>
 
-          <div class="banner__timer timer" data-timer-deadline="2024/07/13 22:00">
+          <div class="timer" data-timer-deadline="2024/10/13 22:00">
+            <h3 class="timer__title">До конца акции:</h3>
+            <div class="timer__time">
+              <p class="timer__segment">
+                <span class="timer__number">3</span>
+                <span class="timer__units">дня</span>
+              </p>
+              <p class="timer__segment">
+                <span class="timer__number">8</span>
+                <span class="timer__units">часов</span>
+              </p>
+              <p class="timer__segment">
+                <span class="timer__number">43</span>
+                <span class="timer__units">минуты</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cards">
+    <section class="promo-offers">
+      <h2 class="visually-hidden">Горящие предложения: успей купить со скидкой!</h2>
       <div class="container">
-        <ul class="cards__items">
-          <li class="cards__books card-box">
-            <p class="cards__books-text"><span class="cards__books-accent">Книга</span> – лучший подарок</p>
+        <ul class="promo-offers__list list-reset">
+          <li class="promo-offers__item">
+            <p class="promo-offers__text">
+              <span class="promo-offers__text-md">Книга</span> – лучший подарок
+            </p>
           </li>
 
-          <li class="cards__time card-box">
-            <p class="cards__time-text">Время скидок!</p>
-            <span class="cards__discount cards__discount--right-bottom">-25%</span>
+          <li class="promo-offers__item">
+            <p class="promo-offers__text">Время скидок!</p>
+            <span class="discount discount--rb">-25%</span>
           </li>
 
-          <li class="cards__white-sneakers card-box">
-            <p class="cards__white-sneakers-text">Вторая пара кроссовок <span class="cards__white-sneakers-accent">в подарок!</span></p>
+          <li class="promo-offers__item">
+            <p class="promo-offers__text">
+              <span class="promo-offers__text-md">Вторая пара кроссовок</span>
+              <span class="promo-offers__text-lg">в&nbsp;подарок!</span>
+            </p>
           </li>
 
-          <li class="cards__presents card-box">
-            <p class="cards__presents-text">Идеи новогодних подарков</p>
+          <li class="promo-offers__item">
+            <p class="promo-offers__text">
+              <span class="promo-offers__text-md">Идеи новогодних подарков</span>
+            </p>
           </li>
 
-          <li class="cards__red-sneakers card-box">
-            <span class="cards__discount cards__discount--left-top">-40%</span>
+          <li class="promo-offers__item">
+            <p class="visually-hidden">Кроссовки по выгодной цене</p>
+            <span class="discount discount--lt">-40%</span>
           </li>
 
-          <li class="cards__laptops card-box">
-            <p class="cards__laptops-text">Выгодно в декабре!</p>
-            <span class="cards__discount cards__discount--right-bottom">-15%</span>
+          <li class="promo-offers__item">
+            <p class="promo-offers__text">
+              <span class="promo-offers__text-md">Выгодно в декабре!</span>
+            </p>
+            <span class="discount discount--rb">-15%</span>
           </li>
 
-          <li class="cards__decorations card-box">
-            <p class="cards__decorations-text">Новогодние украшения</p>
+          <li class="promo-offers__item">
+            <p class="promo-offers__text">
+              <span class="promo-offers__text-md">Новогодние украшения</span>
+            </p>
           </li>
 
-          <li class="cards__dresses card-box">
-            <span class="cards__discount cards__discount--right-bottom">-55%</span>
+          <li class="promo-offers__item">
+            <p class="visually-hidden">Платья по выгодной цене</p>
+            <span class="discount discount--rb">-55%</span>
           </li>
 
-          <li class="cards__detergents card-box">
-            <p class="cards__detergents-text">На бытовую химию</p>
-            <span class="cards__discount cards__discount--left-top">-25%</span>
+          <li class="promo-offers__item">
+            <p class="promo-offers__text">На бытовую химию</p>
+            <span class="discount discount--lt">-25%</span>
           </li>
 
-          <li class="cards__christmas-toys card-box">
-            <p class="cards__christmas-toys-text visually-hidden">Новогодние игрушки</p>
+          <li class="promo-offers__item">
+            <p class="visually-hidden">Новогодние игрушки</p>
           </li>
         </ul>
       </div>

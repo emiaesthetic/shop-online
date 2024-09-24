@@ -1,0 +1,63 @@
+.logo {
+  --colorText: var(--color-dark);
+
+  position: relative;
+
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.06em;
+
+  color: var(--colorText);
+
+  transition-property: width;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.logo:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: 0;
+  height: 2px;
+
+  background-color: currentColor;
+  transition-duration: inherit;
+}
+
+.logo__color-blue {
+  color: var(--color-blue);
+}
+
+.logo--dark {
+  --colorText: var(--color-light);
+}
+
+.logo:focus {
+  outline: none;
+}
+
+.logo:focus-visible:after {
+  width: 100%;
+}
+
+@media (hover: hover) {
+  .logo:hover:after {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 18px;
+  }
+}

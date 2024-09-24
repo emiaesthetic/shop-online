@@ -1,0 +1,52 @@
+:root {
+  --container-width: 1770px;
+  --container-padding-x: 20px;
+
+  --color-light: #fff;
+  --color-dark: #2d2d2d;
+  --color-gray: #8f8f8f;
+  --color-dark-blue: #3b65a5;
+  --color-blue: #3670c7;
+  --color-light-blue: #5d92e0;
+  --color-red: #f00f00;
+  --color-yellow: #ffbd13;
+
+  --bg-color: #fff;
+  --bg-color-footer: #2d2d2d;
+  --input-bg-color: #efefef;
+
+  --linear-gradient: linear-gradient(181deg, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0.2) 100%);
+  --linear-gradient-accent: linear-gradient(181deg, rgb(0 0 0 / 0.4) 0%, rgb(0 0 0 / 0.4) 100%);
+
+  --font-family: 'Lato', sans-serif;
+  --second-family: 'Open Sans', sans-serif;
+
+  --border-radius-lg: 30px;
+  --border-radius-md: 20px;
+  --border-radius-sm: 16px;
+  --border-radius-xs: 14px;
+  --border-radius-xxs: 10px;
+
+  --transition-duration: .2s;
+  --transition-timing-function: ease-in;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --border-radius-md: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --border-radius-md: 12px;
+    --border-radius-xxs: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --border-radius-md: 8px;
+    --border-radius-xxs: 4px;
+  }
+}
