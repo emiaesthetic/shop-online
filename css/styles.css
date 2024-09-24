@@ -1,0 +1,18 @@
+@import '_normalize.css';
+@import '_fonts.css';
+@import '_variables.css';
+@import '_base.css';
+
+@import './blocks/_logo.css';
+@import './blocks/_button.css';
+@import './blocks/_discount.css';
+
+@import './blocks/header/_header.css';
+@import './blocks/header/_search-form.css';
+@import './blocks/header/_actions.css';
+
+@import './blocks/promo/_banner.css';
+@import './blocks/promo/_offers.css';
+@import './blocks/promo/_timer.css';
+
+@import './blocks/footer/_footer.css';

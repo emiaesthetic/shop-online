@@ -1,0 +1,125 @@
+.header {
+  padding: 27px 0 45px;
+}
+
+.header__container {
+  display: grid;
+  grid-template-columns: 190px minmax(70px, 1fr) 151px minmax(70px, 1fr) minmax(440px, 757px) minmax(70px, 1fr) 354px;
+  grid-template-rows: auto;
+  grid-template-areas: 'logo . menu . search-form . actions';
+  align-items: center;
+}
+
+.header__logo {
+  grid-area: logo;
+}
+
+.header__menu {
+  position: relative;
+  grid-area: menu;
+  height: 54px;
+  padding-inline: 63px 28px;
+}
+
+.header__menu:before {
+  content: url('/img/icons/sort-big.svg');
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+
+  width: 24px;
+}
+
+.header__search-form {
+  grid-area: search-form;
+  max-width: 757px;
+}
+
+.header__actions {
+  grid-area: actions;
+}
+
+@media (max-width: 1400px) {
+  .header__container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'logo menu actions'
+      'search-form search-form search-form';
+    justify-content: space-between;
+    row-gap: 40px;
+  }
+
+  .header__menu {
+    justify-self: start;
+  }
+
+  .header__search-form {
+    justify-self: center;
+    max-width: 992px;
+  }
+
+  .header__actions {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 34px 0 28px;
+  }
+
+  .header__container {
+    grid-template-columns: auto minmax(540px, 700px);
+    grid-template-areas:
+      'logo actions'
+      'menu search-form';
+    row-gap: 34px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 25px 0;
+  }
+
+  .header__container {
+    grid-template-columns: auto minmax(280px, 540px);
+    row-gap: 29px;
+  }
+
+  .header__menu {
+    height: 42px;
+    padding-inline: 50px 21px;
+  }
+
+  .header__menu:before {
+    left: 21px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 20px 0;
+  }
+
+  .header__container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'logo logo'
+      'menu actions'
+      'search-form search-form';
+    row-gap: 20px;
+  }
+
+  .header__menu {
+    height: 30px;
+    padding-inline: 32px 14px;
+  }
+
+  .header__menu:before {
+    content: url('/img/icons/sort.svg');
+    left: 14px;
+    width: 14px;
+  }
+}

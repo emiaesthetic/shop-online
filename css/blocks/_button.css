@@ -1,0 +1,45 @@
+.button {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.5;
+
+  color: var(--color-light);
+  background-color: var(--color-blue);
+  border-radius: 10px;
+
+  transition-property: background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  background-color: var(--color-dark-blue);
+}
+
+@media (hover:hover) {
+  .button:hover {
+    background-color: var(--color-light-blue);
+  }
+}
+
+.button:active {
+  background-color: var(--color-light-blue);
+}
+
+/* Media */
+
+@media (max-width: 768px) {
+  .button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    font-size: 12px;
+  }
+}

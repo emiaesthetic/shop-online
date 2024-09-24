@@ -1,8 +1,8 @@
 export const createTitle = () => {
-  const h2 = document.createElement('h2');
-  h2.classList.add('timer__title');
-  h2.textContent = 'До конца осталось';
-  return h2;
+  const title = document.createElement('h3');
+  title.classList.add('timer__title');
+  title.textContent = 'До конца осталось';
+  return title;
 };
 
 const createTimeRow = (className) => {
