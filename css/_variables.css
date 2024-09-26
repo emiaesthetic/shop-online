@@ -43,11 +43,12 @@
 @media (max-width: 768px) {
   :root {
     --border-radius-md: 12px;
+    --border-radius-xs: 12px;
     --border-radius-xxs: 6px;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
   :root {
     --border-radius-md: 8px;
     --border-radius-xxs: 4px;

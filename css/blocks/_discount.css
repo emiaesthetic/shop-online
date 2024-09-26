@@ -26,6 +26,11 @@
   bottom: var(--offset);
 }
 
+.discount--lb {
+  left: var(--offset);
+  bottom: var(--offset);
+}
+
 /* Media */
 
 @media (max-width: 1024px) {
