@@ -1,0 +1,49 @@
+.best-deals {
+  padding: 50px 0 140px;
+}
+
+.best-deals__title {
+  margin: 0;
+  margin-bottom: 50px;
+
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 1.3;
+
+  color: var(--color-dark);
+}
+
+/* Media */
+
+@media (max-width: 1024px) {
+  .best-deals {
+    padding: 45px 0 100px;
+  }
+
+  .best-deals__title {
+    margin-bottom: 40px;
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .best-deals {
+    padding: 30px 0 80px;
+  }
+
+  .best-deals__title {
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .best-deals {
+    padding: 70px 0;
+  }
+
+  .best-deals__title {
+    margin-bottom: 26px;
+    font-size: 20px;
+  }
+}

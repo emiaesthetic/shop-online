@@ -1,0 +1,35 @@
+.catalog {
+  --count: 4;
+  --column-gap: 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px var(--column-gap);
+}
+
+.catalog__item {
+  flex-basis: calc((100% - var(--column-gap) * (var(--count) - 1)) / var(--count));
+}
+
+/* Media */
+
+@media (max-width: 1024px) {
+  .catalog {
+    --count: 3;
+    --column-gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog {
+    row-gap: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .catalog {
+    --count: 2;
+
+    row-gap: 30px;
+  }
+}
