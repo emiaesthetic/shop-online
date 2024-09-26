@@ -7,17 +7,13 @@
 @import './blocks/_button.css';
 @import './blocks/_discount.css';
 @import './blocks/_catalog.css';
-
-@import './blocks/header/_header.css';
-@import './blocks/header/_search-form.css';
-@import './blocks/header/_actions.css';
-
-@import './blocks/promo/_banner.css';
-@import './blocks/promo/_offers.css';
-@import './blocks/promo/_timer.css';
-
+@import './blocks/_header.css';
+@import './blocks/_search-form.css';
+@import './blocks/_actions.css';
+@import './blocks/_banner.css';
+@import './blocks/_offers.css';
+@import './blocks/_timer.css';
 @import './blocks/_best-deals.css';
 @import './blocks/_product.css';
-
-@import './blocks/footer/_footer.css';
-@import './blocks/footer/_social.css';
+@import './blocks/_footer.css';
+@import './blocks/_social.css';

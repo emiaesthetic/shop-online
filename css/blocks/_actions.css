@@ -69,6 +69,7 @@
   }
 
   .actions__link-text {
-    display: none;
+    position: fixed;
+    transform: scale(0);
   }
 }
