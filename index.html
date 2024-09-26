@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preload" href="fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/OpenSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
   <title>ShopOnline</title>
 
   <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="./js/dropdown.js"></script>
 </head>
 <body>
   <header class="header">
@@ -26,7 +27,7 @@
         <input class="search-form__input" id="search" type="search" placeholder="Я ищу...">
         <button class="search-form__button button button-reset" aria-label="Поиск">
           <svg class="search-form-icon" width="27" height="27" aria-hidden="true">
-            <use xlink:href="./img/icons/svgsprite.svg#loupe"></use>
+            <use href="./img/icons/svgsprite.svg#loupe"></use>
           </svg>
         </button>
       </form>
@@ -35,7 +36,7 @@
         <li class="actions__item">
           <a class="actions__link link-reset" href="#">
             <svg class="actions__link-icon" width="24" height="24" aria-hidden="true">
-              <use xlink:href="./img/icons/svgsprite.svg#profile"></use>
+              <use href="./img/icons/svgsprite.svg#profile"></use>
             </svg>
             <span class="actions__link-text">Профиль</span>
           </a>
@@ -44,7 +45,7 @@
         <li class="actions__item">
           <a class="actions__link link-reset" href="#">
             <svg class="actions__link-icon" width="36" height="36" aria-hidden="true">
-              <use xlink:href="./img/icons/svgsprite.svg#cart"></use>
+              <use href="./img/icons/svgsprite.svg#cart"></use>
             </svg>
             <span class="actions__link-text">Корзина</span>
           </a>
@@ -53,7 +54,7 @@
         <li class="actions__item">
           <a class="actions__link link-reset" href="#">
             <svg class="actions__link-icon" width="30" height="29" aria-hidden="true">
-              <use xlink:href="./img/icons/svgsprite.svg#favorites"></use>
+              <use href="./img/icons/svgsprite.svg#favorites"></use>
             </svg>
             <span class="actions__link-text">Избранное</span>
           </a>
@@ -153,5 +154,143 @@
       </div>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="footer__container container">
+      <a class="footer__logo logo logo--dark link-reset" href="/">
+        Shop<span class="logo__color-blue">Online</span>
+      </a>
+
+      <div class="footer__catalog">
+        <h2 class="footer__title footer__title--mobile-hidden">Каталог</h2>
+        <h2 class="footer__dropdown-title">
+          <button class="footer__dropdown-button button-reset" type="button" aria-expanded="false">Каталог
+            <svg class="footer__dropdown-icon" width="15" height="6" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#arrow"></use>
+            </svg>
+          </button>
+        </h2>
+        <ul class="footer__list footer__list--column list-reset footer__dropdown-content">
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Смартфоны</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link footer__link link-reset" href="#">Бытовая химия</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Ноутбуки</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Книги и журналы</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Ювелирные изделия</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Домашний текстиль</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Одежда</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Электроника</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Бытовая техника</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Косметика</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__customers">
+        <h2 class="footer__title footer__title--mobile-hidden">Покупателям</h2>
+        <h2 class="footer__dropdown-title">
+          <button class="footer__dropdown-button button-reset" type="button" aria-expanded="false">Покупателям
+            <svg class="footer__dropdown-icon" width="15" height="6" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#arrow"></use>
+            </svg>
+          </button>
+        </h2>
+        <ul class="footer__list list-reset footer__dropdown-content">
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Оплата заказа</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Условия доставки</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Условия возврата заказа</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Блог</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__contacts">
+        <h2 class="footer__title">Контакты</h2>
+        <address class="footer__address">
+          <p class="footer__phone">
+            Тел: <a class="footer__link link-reset" href="tel:+79378392361">+7 937 839 23-61</a>
+          </p>
+          <p class="footer__email">
+            Email: <a class="footer__link link-reset" href="mailto:OnlineShop@gmail.com">OnlineShop@gmail.com</a>
+          </p>
+        </address>
+
+        <ul class="footer__social social list-reset">
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Ватсап">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#whatsup"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Инстаграм">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#instagram"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Ютуб">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#youtube"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Фэйсбук">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Телеграм">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#telegram"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <span class="footer__copyright">&copy; OnlineShop, 2024</span>
+
+      <div class="footer__author">
+        <span class="footer__author-name">Design by Anastasia Ilina</span>
+        <span class="footer__author-link">
+          <span aria-hidden="true">Tg:</span>
+          <a class="footer__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Перейти в телеграм">
+            @Mrshmallowww
+          </a>
+        </span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

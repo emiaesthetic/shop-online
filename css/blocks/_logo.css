@@ -40,8 +40,9 @@
   outline: none;
 }
 
-.logo:focus-visible:after {
-  width: 100%;
+.logo:focus-visible {
+  outline: var(--outline);
+  outline-offset: var(--outline-offset);
 }
 
 @media (hover: hover) {

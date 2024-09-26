@@ -1,1 +1,1 @@
-import './timer/app.js';
+import './dropdown.js';
