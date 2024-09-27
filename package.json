@@ -1,8 +1,22 @@
 {
+  "name": "shop-online",
+  "version": "1.0.0",
+  "description": "Shop Online - study project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.6.0",
+    "browser-sync": "^3.0.3",
+    "del": "^7.1.0",
     "eslint-plugin-jsdoc": "^48.7.0",
-    "globals": "^15.8.0"
+    "globals": "^15.8.0",
+    "gulp": "^5.0.0",
+    "gulp-cssimport": "^7.0.0"
   }
 }
