@@ -26,7 +26,7 @@
   grid-row: 1 / 2;
   padding: 20px;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-1.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-1.jpg);
 }
 
 .promo-offers__item:nth-child(2) {
@@ -34,7 +34,7 @@
   grid-row: 1 / 2;
   padding: 14px 14px 128px;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-2.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-2.jpg);
 }
 
 .promo-offers__item:nth-child(3) {
@@ -42,7 +42,7 @@
   grid-row: 1 / span 2;
   padding: 20px;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-3.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-3.jpg);
 }
 
 .promo-offers__item:nth-child(3) .promo-offers__text {
@@ -57,7 +57,7 @@
   grid-row: 1 / 2;
   padding: 30px;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-4.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-4.jpg);
 }
 
 .promo-offers__item:nth-child(4) .promo-offers__text {
@@ -67,7 +67,7 @@
 .promo-offers__item:nth-child(5) {
   grid-column: 1 / span 2;
   grid-row: 2 / 3;
-  background-image: var(--linear-gradient), url(/img/promo/image-5.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-5.jpg);
 }
 
 .promo-offers__item:nth-child(6) {
@@ -75,7 +75,7 @@
   grid-row: 2 / 3;
   padding: 30px 128px 30px 30px;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-6.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-6.jpg);
 }
 
 .promo-offers__item:nth-child(7) {
@@ -83,7 +83,7 @@
   grid-row: 3 / span 2;
   padding: 50px;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-7.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-7.jpg);
 }
 
 .promo-offers__item:nth-child(7) .promo-offers__text {
@@ -98,7 +98,7 @@
   grid-column: 5 / 6;
   grid-row: 3 / span 2;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-8.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-8.jpg);
 }
 
 .promo-offers__item:nth-child(9) {
@@ -106,14 +106,14 @@
   grid-row: 3 / 4;
   padding: 20px;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-9.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-9.jpg);
 }
 
 .promo-offers__item:last-child {
   grid-column: 6 / 7;
   grid-row: 4 / 5;
 
-  background-image: var(--linear-gradient), url(/img/promo/image-10.jpg);
+  background-image: var(--linear-gradient), url(../img/promo/image-10.jpg);
 }
 
 .promo-offers__text {

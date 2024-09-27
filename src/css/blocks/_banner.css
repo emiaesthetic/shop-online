@@ -7,8 +7,7 @@
   flex-direction: column;
   min-height: 480px;
   padding-block: 50px;
-
-  background-image: var(--linear-gradient-accent), url(/img/promo/banner.jpg);
+  background-image: var(--linear-gradient-accent), url(../img/promo/banner.jpg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -37,7 +36,7 @@
   .promo-banner__inner {
     min-height: 314px;
     padding-block: 30px;
-    background-image: var(--linear-gradient-accent), url(/img/promo/banner@1024.jpg);
+    background-image: var(--linear-gradient-accent), url(../img/promo/banner@1024.jpg);
   }
 
   .promo-banner__title {
@@ -55,7 +54,7 @@
 
   .promo-banner__inner {
     min-height: 280px;
-    background-image: var(--linear-gradient-accent), url(/img/promo/banner@768.jpg);
+    background-image: var(--linear-gradient-accent), url(../img/promo/banner@768.jpg);
   }
 
   .promo-banner__title {
@@ -73,7 +72,7 @@
 
   .promo-banner__inner {
     min-height: 340px;
-    background-image: var(--linear-gradient-accent), url(/img/promo/banner@320.jpg);
+    background-image: var(--linear-gradient-accent), url(../img/promo/banner@320.jpg);
   }
 
   .promo-banner__title {
