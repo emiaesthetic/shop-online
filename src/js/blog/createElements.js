@@ -1,26 +1,25 @@
-export const createPost = (index, obj) => {
-  const postWrapper = document.createElement('li');
-  postWrapper.classList.add('blog__item');
-
+export const createPost = ({id, title}, index) => {
   const post = document.createElement('article');
-  post.classList.add('card');
+  post.classList.add('post');
   post.innerHTML = `
-    <img
-      class="card__image"
-      src="https://loremflickr.com/400/400?${index}"
-      alt="" width="195" height="195" loading="lazy"
-    >
-    <h2 class="card__title">
-      <a
-        class="card__link
-        article-link"
-        href="article.html?id=${obj.id}">${obj.title.slice(0, 50).trim()}...
-      </a>
-    </h2>
+    <div class="post__image">
+      <img
+        src="https://loremflickr.com/400/400?${index}"
+        alt="" width="195" height="195" loading="lazy"
+        aria-hidden="true"
+      >
+    </div>
+
+    <div class="post__content">
+      <h2 class="post__title">
+        <a class="post__link link-reset" href="article.html?id=${id}">
+          ${title}
+        </a>
+      </h2>
+    </div>
   `;
 
-  postWrapper.append(post);
-  return postWrapper;
+  return post;
 };
 
 export const createPageNum = (list, pageNum) => {
@@ -28,7 +27,7 @@ export const createPageNum = (list, pageNum) => {
   item.classList.add('pagination__item');
 
   const link = document.createElement('a');
-  link.classList.add('pagination__link', 'page-num');
+  link.classList.add('pagination__link', 'page-num', 'link-reset');
   link.textContent = pageNum;
   link.href = pageNum === 1 ? 'blog.html' : `blog.html?page=${pageNum}`;
 
