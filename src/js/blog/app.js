@@ -1,9 +1,11 @@
-import {loadPosts} from './render.js';
+import {renderPosts, renderPagination} from './render.js';
+import {loadPosts} from './fetchRequest.js';
 
 const init = () => {
   const paramsFromUrl = new URLSearchParams(window.location.search);
   const pageNum = paramsFromUrl.has('page') ? +paramsFromUrl.get('page') : 1;
-  loadPosts(pageNum);
+
+  loadPosts(pageNum, {renderPosts, renderPagination});
 };
 
 init();

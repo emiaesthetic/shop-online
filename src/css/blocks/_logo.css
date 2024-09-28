@@ -9,10 +9,6 @@
   letter-spacing: 0.06em;
 
   color: var(--colorText);
-
-  transition-property: width;
-  transition-duration: var(--transition-duration);
-  transition-timing-function: var(--transition-timing-function);
 }
 
 .logo:after {
@@ -25,7 +21,10 @@
   height: 2px;
 
   background-color: currentColor;
-  transition-duration: inherit;
+
+  transition-property: width;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .logo__color-blue {

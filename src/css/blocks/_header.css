@@ -22,7 +22,7 @@
 }
 
 .header__menu:before {
-  content: url('/img/icons/sort-big.svg');
+  content: url('../img/icons/sort-big.svg');
   position: absolute;
   top: 50%;
   left: 30px;

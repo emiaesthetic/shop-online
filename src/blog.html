@@ -10,29 +10,227 @@
   <title>ShopOnline</title>
 
   <link rel="stylesheet" href="css/styles.css">
-  <script type="module" src="js/blog/app.js"></script>
+  <script src="js/blog/app.js" type="module"></script>
 </head>
 <body>
-  <section class="blog">
-    <div class="container">
-      <h1 class="visually-hidden">Новостной блог</h1>
+  <header class="header">
+    <div class="header__container container">
+      <a class="header__logo logo link-reset" href="/">
+        Shop<span class="logo__color-blue">Online</span>
+      </a>
 
-      <ul class="blog__list"></ul>
+      <button class="header__menu button button-reset">Меню</button>
 
-      <div class="pagination">
-        <a class="pagination__link arrow prev disabled" href="" aria-label="Назад">
-          <svg width="29" height="19" viewBox="0 0 29 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28.375 7.95833H6.52958L12.0487 2.42375L9.875 0.25L0.625 9.5L9.875 18.75L12.0487 16.5763L6.52958 11.0417H28.375V7.95833Z" />
+      <form class="header__search-form search-form">
+        <label class="visually-hidden" for="search">Поиск по сайту</label>
+        <input class="search-form__input" id="search" type="search" placeholder="Я ищу...">
+        <button class="search-form__button button button-reset" aria-label="Поиск">
+          <svg class="search-form-icon" width="27" height="27" aria-hidden="true">
+            <use href="./img/icons/svgsprite.svg#loupe"></use>
           </svg>
-        </a>
+        </button>
+      </form>
 
-        <a class="pagination__link arrow next" href="" aria-label="Вперед">
-          <svg width="29" height="19" viewBox="0 0 29 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.625 7.95833H22.4704L16.9513 2.42375L19.125 0.25L28.375 9.5L19.125 18.75L16.9513 16.5763L22.4704 11.0417H0.625V7.95833Z" />
-          </svg>
-        </a>
+      <ul class="header__actions actions list-reset">
+        <li class="actions__item">
+          <a class="actions__link link-reset" href="#">
+            <svg class="actions__link-icon" width="24" height="24" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#profile"></use>
+            </svg>
+            <span class="actions__link-text">Профиль</span>
+          </a>
+        </li>
+
+        <li class="actions__item">
+          <a class="actions__link link-reset" href="#">
+            <svg class="actions__link-icon" width="36" height="36" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#cart"></use>
+            </svg>
+            <span class="actions__link-text">Корзина</span>
+          </a>
+        </li>
+
+        <li class="actions__item">
+          <a class="actions__link link-reset" href="#">
+            <svg class="actions__link-icon" width="30" height="29" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#favorites"></use>
+            </svg>
+            <span class="actions__link-text">Избранное</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="blog">
+      <div class="container">
+        <nav class="blog__breadcrumb breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb__list list-reset">
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link link-reset" href="/" aria-label="Вернуться на главную">Главная</a>
+            </li>
+            <li class="breadcrumb__item active" aria-current="page">Блог</li>
+          </ol>
+        </nav>
+
+        <h1 class="visually-hidden">Новостной блог</h1>
+
+        <ul class="blog__list list-reset"></ul>
+
+        <div class="pagination">
+          <a class="pagination__link arrow prev" href="" aria-label="Назад">
+            <svg class="arrow__icon" width="29" height="19" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#prevPage"></use>
+            </svg>
+          </a>
+
+          <a class="pagination__link arrow next" href="" aria-label="Вперед">
+            <svg class="arrow__icon" width="29" height="19" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#nextPage"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container container">
+      <a class="footer__logo logo logo--dark link-reset" href="/">
+        Shop<span class="logo__color-blue">Online</span>
+      </a>
+
+      <div class="footer__catalog">
+        <h2 class="footer__title footer__title--mobile-hidden">Каталог</h2>
+        <h2 class="footer__dropdown-title">
+          <button class="footer__dropdown-button button-reset" type="button" aria-expanded="false">Каталог
+            <svg class="footer__dropdown-icon" width="15" height="6" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#arrow"></use>
+            </svg>
+          </button>
+        </h2>
+        <ul class="footer__list footer__list--column list-reset footer__dropdown-content">
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Смартфоны</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link footer__link link-reset" href="#">Бытовая химия</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Ноутбуки</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Книги и журналы</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Ювелирные изделия</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Домашний текстиль</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Одежда</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Электроника</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Бытовая техника</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Косметика</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__customers">
+        <h2 class="footer__title footer__title--mobile-hidden">Покупателям</h2>
+        <h2 class="footer__dropdown-title">
+          <button class="footer__dropdown-button button-reset" type="button" aria-expanded="false">Покупателям
+            <svg class="footer__dropdown-icon" width="15" height="6" aria-hidden="true">
+              <use href="./img/icons/svgsprite.svg#arrow"></use>
+            </svg>
+          </button>
+        </h2>
+        <ul class="footer__list list-reset footer__dropdown-content">
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Оплата заказа</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Условия доставки</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="#">Условия возврата заказа</a>
+          </li>
+          <li class="footer__item">
+            <a class="footer__link link-reset" href="./blog.html">Блог</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__contacts">
+        <h2 class="footer__title">Контакты</h2>
+        <address class="footer__address">
+          <p class="footer__phone">
+            Тел: <a class="footer__link link-reset" href="tel:+79378392361">+7 937 839 23-61</a>
+          </p>
+          <p class="footer__email">
+            Email: <a class="footer__link link-reset" href="mailto:OnlineShop@gmail.com">OnlineShop@gmail.com</a>
+          </p>
+        </address>
+
+        <ul class="footer__social social list-reset">
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Ватсап">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#whatsup"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Инстаграм">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#instagram"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Ютуб">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#youtube"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Фэйсбук">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a class="social__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Телеграм">
+              <svg class="social__link-icon" width="26" height="26" aria-hidden="true">
+                <use href="./img/icons/svgsprite.svg#telegram"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <span class="footer__copyright">&copy; OnlineShop, 2024</span>
+
+      <div class="footer__author">
+        <span class="footer__author-name">Design by Anastasia Ilina</span>
+        <span class="footer__author-link">
+          <span aria-hidden="true">Tg:</span>
+          <a class="footer__link link-reset" href="#" target="_blank" rel="noopener noreferrer" aria-label="Перейти в телеграм">
+            @Mrshmallowww
+          </a>
+        </span>
       </div>
     </div>
-  </section>
+  </footer>
 </body>
 </html>

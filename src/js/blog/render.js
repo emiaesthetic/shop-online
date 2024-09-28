@@ -1,12 +1,17 @@
 import {createPost, createPageNum, createDottedLine} from './createElements.js';
 
-const renderPosts = (data) => {
-  const listWrapper = document.querySelector('.blog__list');
-  listWrapper.innerHTML = '';
+export const renderPosts = (posts) => {
+  const postList = document.querySelector('.blog__list');
+  postList.innerHTML = '';
 
-  data.forEach((item, index) => {
-    const post = createPost(index, item);
-    listWrapper.append(post);
+  posts.forEach((item, index) => {
+    const postWrapper = document.createElement('li');
+    postWrapper.classList.add('blog__item');
+
+    const post = createPost(item, index);
+
+    postWrapper.append(post);
+    postList.append(postWrapper);
   });
 };
 
@@ -36,13 +41,13 @@ const updatePaginationState = (currentPage) => {
   });
 };
 
-const renderPagination = (pageCount, currentPage) => {
+export const renderPagination = (pageCount, currentPage) => {
   const firstPage = 1;
   const visiblePages = 3;
   const lastVisiblePages = pageCount - visiblePages + 1;
 
   const list = document.createElement('ul');
-  list.classList.add('pagination__list');
+  list.classList.add('pagination__list', 'list-reset');
 
   if (pageCount <= visiblePages) {
     for (let page = 1; page <= visiblePages; page++) {
@@ -71,16 +76,4 @@ const renderPagination = (pageCount, currentPage) => {
 
   updatePaginationState(currentPage);
   updateArrowsState(pageCount, currentPage);
-};
-
-export const loadPosts = async (page = 1) => {
-  const postsUrl = `
-    https://gorest.co.in/public/v2/posts?page=${page}&per_page=12
-  `;
-  const response = await fetch(postsUrl);
-  const posts = await response.json();
-  const pageCount = Number(response.headers.get('X-Pagination-Pages'));
-
-  renderPosts(posts);
-  renderPagination(pageCount, page);
 };
