@@ -1,0 +1,15 @@
+.best-deals {
+  padding: 50px 0 140px;
+
+  @include laptop {
+    padding: 45px 0 100px;
+  }
+
+  @include tablet {
+    padding: 30px 0 80px;
+  }
+
+  @include mobile {
+    padding: 70px 0;
+  }
+}

@@ -1,0 +1,57 @@
+.dropdown {
+  &__title {
+    display: none;
+
+    @include mobile-lg {
+      display: block;
+
+      @include transition(rotate, margin-bottom);
+    }
+
+    &:has(.open) {
+      margin-bottom: 20px;
+
+      @include mobile {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &__content {
+    @include mobile-lg {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+
+      @include transition(max-height, opacity, visibility);
+    }
+
+    &.open {
+      max-height: 100%;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    font-weight: 700;
+    font-size: 26px;
+    color: currentColor;
+
+    @include mobile {
+      font-size: 20px;
+    }
+
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+
+    &.open svg {
+      rotate: 180deg;
+    }
+  }
+}
