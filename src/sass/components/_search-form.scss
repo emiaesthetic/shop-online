@@ -1,0 +1,77 @@
+.search-form {
+  --height: 54px;
+  --border-radius: 33px;
+
+  width: 100%;
+  position: relative;
+
+  @include tablet {
+    --height: 42px;
+  }
+
+  @include mobile {
+    --height: 30px;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    height: var(--height);
+    padding-inline: 40px 110px;
+    border: 1px solid transparent;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--text-color-primary);
+    background-color: var(--bg-color-input);
+    border-radius: var(--border-radius);
+    @include transition(border-color);
+
+    @include tablet {
+      padding-inline: 30px 98px;
+      font-size: 12px;
+    }
+
+    @include mobile {
+      padding-inline: 16px 65px;
+      font-size: 8px;
+    }
+
+    &::placeholder {
+      color: var(--text-color-tertiary);
+    }
+
+    @include focus {
+      border-color: var(--border-input-color);
+    }
+  }
+
+  &__button {
+    height: var(--height);
+    padding-inline: 37px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: var(--border-radius);
+
+    @include tablet {
+      padding-inline: 30px;
+    }
+
+    @include mobile {
+      padding-inline: 15px;
+    }
+
+    & svg {
+      @include tablet {
+        width: 23px;
+        height: 23px;
+      }
+
+      @include mobile {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}

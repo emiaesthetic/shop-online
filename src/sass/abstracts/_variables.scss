@@ -1,0 +1,54 @@
+:root {
+  --container-width: 1770px;
+  --container-padding-x: 20px;
+
+  --color-primary: #2d2d2d;
+  --color-secondary: #fff;
+  --color-accent: #3670c7;
+
+  --color-focus: #3b65a5;
+  --color-hover: #5d92e0;
+  --color-active: #5d92e0;
+
+  --text-color-primary: var(--color-primary);
+  --text-color-secondary: var(--color-secondary);
+  --text-color-tertiary: #8f8f8f;
+  --text-color-accent: var(--color-accent);
+  --text-color-accent-secondary: #f00;
+
+  --bg-color-primary: #fff;
+  --bg-color-secondary: #2d2d2d;
+  --bg-color-accent: #ffbd13;
+  --bg-color-input: #efefef;
+
+  --border-input-color: #8f8f8f;
+
+  --banner-gradient: linear-gradient(181deg, rgb(0 0 0 / 0.4) 0%, rgb(0 0 0 / 0.4) 100%);
+  --promo-gradient: linear-gradient(181deg, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0.2) 100%);
+
+  --font-family: 'Lato', sans-serif;
+  --second-family: 'Open Sans', sans-serif;
+
+  --border-radius-lg: 20px;
+  --border-radius-md: 16px;
+  --border-radius-sm: 14px;
+  --btn-border-radius: 10px;
+
+  --outline: 1px solid var(--color-focus);
+  --outline-offset: 2px;
+
+  @include laptop {
+    --border-radius-lg: 16px;
+  }
+
+  @include tablet {
+    --border-radius-lg: 12px;
+    --border-radius-sm: 12px;
+    --btn-border-radius: 6px;
+  }
+
+  @include mobile {
+    --border-radius-lg: 8px;
+    --btn-border-radius: 4px;
+  }
+}

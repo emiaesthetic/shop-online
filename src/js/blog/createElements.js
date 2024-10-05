@@ -12,7 +12,7 @@ export const createPost = ({id, title}, index) => {
 
     <div class="post__content">
       <h2 class="post__title">
-        <a class="post__link link-reset" href="article.html?id=${id}">
+        <a class="post__link" href="article.html?id=${id}">
           ${title}
         </a>
       </h2>
@@ -27,7 +27,7 @@ export const createPageNum = (list, pageNum) => {
   item.classList.add('pagination__item');
 
   const link = document.createElement('a');
-  link.classList.add('pagination__link', 'page-num', 'link-reset');
+  link.classList.add('pagination__link', 'page-num');
   link.textContent = pageNum;
   link.href = pageNum === 1 ? 'blog.html' : `blog.html?page=${pageNum}`;
 

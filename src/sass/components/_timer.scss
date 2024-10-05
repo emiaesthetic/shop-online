@@ -1,0 +1,45 @@
+.timer {
+  margin: 0 auto;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--text-color-secondary);
+
+  &__title {
+    margin-bottom: 5px;
+    font-size: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+
+    @include laptop {
+      margin-bottom: 10px;
+    }
+
+    @include mobile {
+      margin-bottom: 6px;
+    }
+  }
+
+  &__time {
+    display: inline-flex;
+    column-gap: 30px;
+
+    @include laptop {
+      column-gap: 20px;
+    }
+
+    @include tablet {
+      column-gap: 10px;
+    }
+
+    @include mobile {
+      column-gap: 8px;
+    }
+  }
+
+  &__number {
+    font-size: clamp(1.25rem, 0.75rem + 2.5vw, 3.75rem);
+  }
+
+  &__units {
+    font-size: clamp(0.75rem, 0.5rem + 1.25vw, 2rem);
+  }
+}

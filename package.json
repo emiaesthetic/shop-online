@@ -17,6 +17,9 @@
     "eslint-plugin-jsdoc": "^48.7.0",
     "globals": "^15.8.0",
     "gulp": "^5.0.0",
-    "gulp-cssimport": "^7.0.0"
+    "gulp-cssimport": "^7.0.0",
+    "gulp-file-include": "^2.3.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.79.4"
   }
 }

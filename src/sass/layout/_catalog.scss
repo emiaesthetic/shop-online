@@ -1,0 +1,27 @@
+.catalog {
+  --count: 4;
+  --column-gap: 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px var(--column-gap);
+
+  @include laptop {
+    --count: 3;
+    --column-gap: 20px;
+  }
+
+  @include tablet {
+    row-gap: 40px;
+  }
+
+  @include mobile {
+    --count: 2;
+
+    row-gap: 30px;
+  }
+
+  &__item {
+    flex-basis: calc((100% - var(--column-gap) * (var(--count) - 1)) / var(--count));
+  }
+}

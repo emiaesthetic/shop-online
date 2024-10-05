@@ -1,0 +1,47 @@
+.logo {
+  position: relative;
+  width: max-content;
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.06em;
+  color: var(--text-color-primary);
+
+  @include tablet {
+    font-size: 26px;
+  }
+
+  @include mobile {
+    font-size: 18px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    @include transition(width);
+  }
+
+  @include focus {
+    outline: var(--outline);
+    outline-offset: var(--outline-offset);
+  }
+
+  @include hover {
+    &:after {
+      width: 100%;
+    }
+  }
+
+  &__color--blue {
+    color: var(--text-color-accent);
+  }
+
+  &--light {
+    color: var(--text-color-secondary);
+  }
+}
