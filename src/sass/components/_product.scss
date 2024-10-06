@@ -7,20 +7,16 @@
 
   &__image {
     position: relative;
-    aspect-ratio: 420 / 295;
     margin-bottom: 20px;
 
     @include laptop {
-      aspect-ratio: 300 / 295;
     }
 
     @include tablet {
-      aspect-ratio: 220 / 216;
       margin-bottom: 15px;
     }
 
     @include mobile {
-      aspect-ratio: 1 / 1;
       margin-bottom: 10px;
     }
 

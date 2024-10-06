@@ -1,5 +1,5 @@
 import {createTitle, createTime, changeTextColor} from './createElements.js';
-import {formatNumber, formatUnits, formatToDate} from './handlers.js';
+import {formatUnits, formatToDate} from './utils.js';
 
 const isNotEmptyDeadline = () =>
   !document.querySelector('[data-timer-deadline]');
@@ -32,13 +32,13 @@ export const createTimer = () => {
   const updateTime = () => {
     const timer = getTimeRemaining();
 
-    days.number.textContent = formatNumber(timer.days);
+    days.number.textContent = timer.days.toString().padStart(2, '0');
     days.units.textContent = formatUnits('days', timer.days);
 
-    hours.number.textContent = formatNumber(timer.hours);
+    hours.number.textContent = timer.hours.toString().padStart(2, '0');
     hours.units.textContent = formatUnits('hours', timer.hours);
 
-    minutes.number.textContent = formatNumber(timer.minutes);
+    minutes.number.textContent = timer.minutes.toString().padStart(2, '0');
     minutes.units.textContent = formatUnits('minutes', timer.minutes);
 
     const intervalID = setTimeout(updateTime, timer.seconds * 1000);
