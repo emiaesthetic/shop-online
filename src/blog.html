@@ -9,7 +9,18 @@
 
   <title>ShopOnline</title>
 
-  <link rel="stylesheet" href="css/main.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const createLink = url => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url;
+        document.head.append(link);
+      };
+
+      createLink('./css/main.css');
+    })
+  </script>
   <script type="module" src="./js/index.js"></script>
 </head>
 <body>
@@ -33,7 +44,7 @@
             <h2 class="dropdown__title">
               <button class="dropdown__button" type="button" aria-expanded="false">Каталог
                 <svg class="dropdown__icon" width="15" height="6" aria-hidden="true">
-                  <use href="./img/icons/svgsprite.svg#arrow"></use>
+                  <use href="./img/icons/svgsprite.svg#arrowDown"></use>
                 </svg>
               </button>
             </h2>
@@ -76,7 +87,7 @@
             <h2 class="dropdown__title">
               <button class="dropdown__button" type="button" aria-expanded="false">Покупателям
                 <svg class="dropdown__icon" width="15" height="6" aria-hidden="true">
-                  <use href="./img/icons/svgsprite.svg#arrow"></use>
+                  <use href="./img/icons/svgsprite.svg#arrowDown"></use>
                 </svg>
               </button>
             </h2>
@@ -101,7 +112,7 @@
             <h2 class="dropdown__title">
               <button class="dropdown__button" type="button" aria-expanded="false">Связаться с нами
                 <svg class="dropdown__icon" width="15" height="6" aria-hidden="true">
-                  <use href="./img/icons/svgsprite.svg#arrow"></use>
+                  <use href="./img/icons/svgsprite.svg#arrowDown"></use>
                 </svg>
               </button>
             </h2>
@@ -199,7 +210,7 @@
         <h2 class="dropdown__title">
           <button class="dropdown__button" type="button" aria-expanded="false">Каталог
             <svg class="dropdown__icon" width="15" height="6" aria-hidden="true">
-              <use href="./img/icons/svgsprite.svg#arrow"></use>
+              <use href="./img/icons/svgsprite.svg#arrowDown"></use>
             </svg>
           </button>
         </h2>
@@ -242,7 +253,7 @@
         <h2 class="dropdown__title">
           <button class="dropdown__button" type="button" aria-expanded="false">Покупателям
             <svg class="dropdown__icon" width="15" height="6" aria-hidden="true">
-              <use href="./img/icons/svgsprite.svg#arrow"></use>
+              <use href="./img/icons/svgsprite.svg#arrowDown"></use>
             </svg>
           </button>
         </h2>
