@@ -44,7 +44,7 @@
       height: var(--line-height);
       background-color: var(--color-secondary);
 
-      @include transition(width, rotate);
+      @include transition(rotate, width, top, left);
 
       &--lg {
         top: calc(50% - var(--line-offset) - var(--line-height));
@@ -81,7 +81,7 @@
         }
 
         &--sm {
-          display: none;
+          visibility: hidden;
         }
       }
     }

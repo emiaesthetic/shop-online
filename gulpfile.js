@@ -12,11 +12,13 @@ import plumber from 'gulp-plumber';
 import gulpIf from 'gulp-if';
 import webpackStream from 'webpack-stream';
 import webpack from 'webpack';
+import rename from 'gulp-rename';
 import gulpImg from 'gulp-image';
 import filter from 'gulp-filter';
 import gulpWebp from 'gulp-webp';
 import gulpAvif from 'gulp-avif';
 import {stream as critical} from 'critical';
+import autoprefixer from 'gulp-autoprefixer';
 
 let dev = false;
 const isPreproc = true;
@@ -60,11 +62,17 @@ export const style = () => {
         .src('src/sass/**/*.scss')
         .pipe(gulpIf(dev, sourcemaps.init()))
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
         .pipe(cleanCSS({
           2: {
             specialComments: 0,
           },
         }))
+        .pipe(
+            rename({
+              suffix: '.min',
+            }),
+        )
         .pipe(gulpIf(dev, sourcemaps.write('../maps')))
         .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.stream());
@@ -76,11 +84,17 @@ export const style = () => {
       .pipe(cssImport({
         extensions: ['css'],
       }))
+      .pipe(autoprefixer())
       .pipe(cleanCSS({
         2: {
           specialComments: 0,
         },
       }))
+      .pipe(
+          rename({
+            suffix: '.min',
+          }),
+      )
       .pipe(gulpIf(dev, sourcemaps.write('../maps')))
       .pipe(gulp.dest('dist/css'))
       .pipe(browserSync.stream());
@@ -93,6 +107,11 @@ export const js = () => gulp
     .pipe(gulpIf(!dev, gulp.dest('dist/js')))
     .pipe(gulpIf(dev, sourcemaps.init()))
     .pipe(gulpIf(!dev, terser()))
+    .pipe(
+        rename({
+          suffix: '.min',
+        }),
+    )
     .pipe(gulpIf(dev, sourcemaps.write('../maps')))
     .pipe(gulp.dest('dist/js'))
     .pipe(browserSync.stream());
@@ -149,7 +168,7 @@ export const critCSS = () => gulp
     .pipe(critical({
       base: 'dist/',
       inline: true,
-      css: ['dist/css/main.css'],
+      css: ['dist/css/main.min.css'],
     }))
     .pipe(gulp.dest('dist'));
 
