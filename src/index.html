@@ -33,7 +33,7 @@
       </a>
 
       <nav class="header__menu menu">
-        <button class="menu__button button" aria-haspopup="true" aria-expanded="false">
+        <button class="menu__button button button--bg" aria-haspopup="true" aria-expanded="false">
           Меню
           <span class="menu__button-line menu__button-line--lg" aria-hidden="true"></span>
           <span class="menu__button-line menu__button-line--md" aria-hidden="true"></span>
@@ -130,7 +130,7 @@
       <form class="header__search-form search-form">
         <label class="visually-hidden" for="search">Поиск по сайту</label>
         <input class="search-form__input" id="search" type="search" placeholder="Я ищу...">
-        <button class="search-form__button button" aria-label="Поиск">
+        <button class="search-form__button button button--bg" aria-label="Поиск">
           <svg class="search-form-icon" width="27" height="27" aria-hidden="true">
             <use href="./img/icons/svgsprite.svg#loupe"></use>
           </svg>
@@ -883,9 +883,9 @@
         <h2 class="best-deals__title title">Это выгодно!</h2>
         <ul class="catalog">
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -944,21 +944,21 @@
                 </picture>
                 <span class="discount discount--lb">-50%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">1299&nbsp;₽</span>
-                  <del class="product__non-discounted-price">2598&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">1299&nbsp;₽</span>
+                  <del class="card__non-discounted-price">2598&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Пара футболок</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Пара футболок</a>
                 </h3>
               </div>
             </article>
           </li>
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -1017,21 +1017,21 @@
                 </picture>
                 <span class="discount discount--lb">-40%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">2099&nbsp;₽</span>
-                  <del class="product__non-discounted-price">5938&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">2099&nbsp;₽</span>
+                  <del class="card__non-discounted-price">5938&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Кроссовки</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Кроссовки</a>
                 </h3>
               </div>
             </article>
           </li>
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -1090,21 +1090,21 @@
                 </picture>
                 <span class="discount discount--lb">-10%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">3902&nbsp;₽</span>
-                  <del class="product__non-discounted-price">4490&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">3902&nbsp;₽</span>
+                  <del class="card__non-discounted-price">4490&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Постельное белье</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Постельное белье</a>
                 </h3>
               </div>
             </article>
           </li>
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -1163,21 +1163,21 @@
                 </picture>
                 <span class="discount discount--lb">-30%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">2999&nbsp;₽</span>
-                  <del class="product__non-discounted-price">6030&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">2999&nbsp;₽</span>
+                  <del class="card__non-discounted-price">6030&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Фен</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Фен</a>
                 </h3>
               </div>
             </article>
           </li>
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -1236,21 +1236,21 @@
                 </picture>
                 <span class="discount discount--lb">-10%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">3902&nbsp;₽</span>
-                  <del class="product__non-discounted-price">4490&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">3902&nbsp;₽</span>
+                  <del class="card__non-discounted-price">4490&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Постельное белье</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Постельное белье</a>
                 </h3>
               </div>
             </article>
           </li>
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -1309,21 +1309,21 @@
                 </picture>
                 <span class="discount discount--lb">-30%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">2999&nbsp;₽</span>
-                  <del class="product__non-discounted-price">6030&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">2999&nbsp;₽</span>
+                  <del class="card__non-discounted-price">6030&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Фен</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Фен</a>
                 </h3>
               </div>
             </article>
           </li>
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -1382,21 +1382,21 @@
                 </picture>
                 <span class="discount discount--lb">-30%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">540&nbsp;₽</span>
-                  <del class="product__non-discounted-price">890&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">540&nbsp;₽</span>
+                  <del class="card__non-discounted-price">890&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Варежки-мишки</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Варежки-мишки</a>
                 </h3>
               </div>
             </article>
           </li>
           <li class="catalog__item">
-            <article class="product">
-              <div class="product__image">
-                <picture>
+            <article class="card">
+              <div class="card__image-wrapper">
+                <picture class="card__image">
                   <source
                     type="image/avif"
                     media="(max-width: 480px)"
@@ -1455,13 +1455,13 @@
                 </picture>
                 <span class="discount discount--lb">-50%</span>
               </div>
-              <div class="product__content">
-                <div class="product__price">
-                  <span class="product__discounted-price">1299&nbsp;₽</span>
-                  <del class="product__non-discounted-price">2598&nbsp;₽</del>
+              <div class="card__content">
+                <div class="card__price">
+                  <span class="card__discounted-price">1299&nbsp;₽</span>
+                  <del class="card__non-discounted-price">2598&nbsp;₽</del>
                 </div>
-                <h3 class="product__title">
-                  <a class="product__link" href="#">Пара футболок</a>
+                <h3 class="card__title">
+                  <a class="card__link" href="#">Пара футболок</a>
                 </h3>
               </div>
             </article>
