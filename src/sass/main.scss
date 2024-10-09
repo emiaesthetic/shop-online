@@ -12,10 +12,10 @@
 @import 'layout/banner';
 @import 'layout/promo-offers';
 @import 'layout/best-deals';
-@import 'layout/catalog';
 @import 'layout/footer';
 @import 'layout/blog';
 @import 'layout/article-page';
+@import 'layout/product';
 
 @import 'components/logo';
 @import 'components/buttons';
@@ -26,8 +26,10 @@
 @import 'components/timer';
 @import 'components/discount';
 @import 'components/title';
-@import 'components/product';
+@import 'components/catalog';
+@import 'components/card';
 @import 'components/social';
 @import 'components/breadcrumbs';
 @import 'components/pagination';
 @import 'components/post';
+@import 'components/sale';

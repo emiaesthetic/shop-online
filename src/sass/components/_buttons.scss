@@ -4,19 +4,42 @@
   line-height: 1.3;
   white-space: nowrap;
   color: var(--text-color-secondary);
-  background-color: var(--color-accent);
+  background-color: transparent;
   border-radius: var(--btn-border-radius);
   @include transition(background-color);
 
-  @include focus {
-    background-color: var(--color-focus);
+  @include mobile {
+    font-size: 12px;
   }
 
-  @include hover {
-    background-color: var(--color-hover);
+  &--bg {
+    background-color: var(--color-accent);
+
+    @include focus {
+      background-color: var(--color-focus);
+    }
+
+    @include hover {
+      background-color: var(--color-hover);
+    }
+
+    &:active {
+      background-color: var(--color-active);
+    }
   }
 
-  &:active {
-    background-color: var(--color-active);
+  &--transparent {
+
+    @include focus {
+      color: var(--color-focus);
+    }
+
+    @include hover {
+      color: var(--color-hover);
+    }
+
+    &:active {
+      color: var(--color-active);
+    }
   }
 }

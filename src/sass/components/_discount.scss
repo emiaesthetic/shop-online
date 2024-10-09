@@ -42,4 +42,29 @@
     left: var(--offset);
     bottom: var(--offset);
   }
+
+  &--product {
+    top: 20px;
+    right: 50px;
+
+    @include laptop {
+      width: 66px;
+      height: 66px;
+      top: 10px;
+      right: 30px;
+      font-size: 20px;
+    }
+
+    @include tablet {
+      font-size: 16px;
+    }
+
+    @include mobile {
+      width: 32px;
+      height: 32px;
+      top: 5px;
+      right: 5px;
+      font-size: 12px;
+    }
+  }
 }
