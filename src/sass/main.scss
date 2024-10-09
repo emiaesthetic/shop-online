@@ -14,9 +14,11 @@
 @import 'layout/best-deals';
 @import 'layout/footer';
 @import 'layout/blog';
-@import 'layout/article-page';
+@import 'layout/article';
 @import 'layout/product';
 
+@import 'components/page';
+@import 'components/grid';
 @import 'components/logo';
 @import 'components/buttons';
 @import 'components/menu';
@@ -26,7 +28,6 @@
 @import 'components/timer';
 @import 'components/discount';
 @import 'components/title';
-@import 'components/catalog';
 @import 'components/card';
 @import 'components/social';
 @import 'components/breadcrumbs';

@@ -3,19 +3,13 @@
   --card-count: 2;
   --max-card-width: 645px;
 
-  padding: 30px 0 150px;
-
   @include laptop {
     --column-gap: 20px;
     --max-card-width: 460px;
-
-    padding: 20px 0 100px;
   }
 
   @include tablet {
     --card-count: 1;
-
-    padding: 20px 0 80px;
   }
 
   @include mobile {

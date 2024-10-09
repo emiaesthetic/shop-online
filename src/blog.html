@@ -31,7 +31,7 @@
       </a>
 
       <nav class="header__menu menu">
-        <button class="menu__button button" aria-haspopup="true" aria-expanded="false">
+        <button class="menu__button button button--bg" aria-haspopup="true" aria-expanded="false">
           Меню
           <span class="menu__button-line menu__button-line--lg" aria-hidden="true"></span>
           <span class="menu__button-line menu__button-line--md" aria-hidden="true"></span>
@@ -128,7 +128,7 @@
       <form class="header__search-form search-form">
         <label class="visually-hidden" for="search">Поиск по сайту</label>
         <input class="search-form__input" id="search" type="search" placeholder="Я ищу...">
-        <button class="search-form__button button" aria-label="Поиск">
+        <button class="search-form__button button button--bg" aria-label="Поиск">
           <svg class="search-form-icon" width="27" height="27" aria-hidden="true">
             <use href="./img/icons/svgsprite.svg#loupe"></use>
           </svg>
@@ -167,9 +167,9 @@
   </header>
 
   <main class="main">
-    <section class="blog">
+    <section class="blog page">
       <div class="container">
-        <nav class="blog__breadcrumbs breadcrumbs" aria-label="breadcrumbs">
+        <nav class="breadcrumbs" aria-label="breadcrumbs">
           <ol class="breadcrumbs__list">
             <li class="breadcrumbs__item">
               <a class="breadcrumbs__link" href="/" aria-label="Вернуться на главную">Главная</a>
@@ -184,13 +184,13 @@
 
         <div class="pagination">
           <a class="pagination__link arrow prev" href="" aria-label="Назад">
-            <svg class="arrow__icon" width="29" height="19" aria-hidden="true">
+            <svg class="arrow__icon" width="28" height="19" aria-hidden="true">
               <use href="./img/icons/svgsprite.svg#prevPage"></use>
             </svg>
           </a>
 
           <a class="pagination__link arrow next" href="" aria-label="Вперед">
-            <svg class="arrow__icon" width="29" height="19" aria-hidden="true">
+            <svg class="arrow__icon" width="28" height="19" aria-hidden="true">
               <use href="./img/icons/svgsprite.svg#nextPage"></use>
             </svg>
           </a>

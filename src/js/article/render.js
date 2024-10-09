@@ -22,8 +22,6 @@ export const loadPost = async (id) => {
   let response = await fetch(url);
   const post = await response.json();
 
-  console.log(post.user_id);
-
   const userUrl = `https://gorest.co.in/public/v2/users/${post.user_id}`;
   response = await fetch(userUrl);
   const user = await response.json();

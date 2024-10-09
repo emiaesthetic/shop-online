@@ -25,10 +25,10 @@
   }
 
   &__content {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
     row-gap: 15px;
     color: var(--text-color-primary);
 
