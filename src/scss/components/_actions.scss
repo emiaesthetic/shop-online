@@ -1,0 +1,65 @@
+.actions {
+  display: flex;
+  column-gap: 70px;
+
+  @include laptop {
+    column-gap: 40px;
+  }
+
+  @include tablet {
+    column-gap: 30px;
+  }
+
+  @include mobile {
+    column-gap: 20px;
+  }
+
+  &__link {
+    display: flex;
+    height: 60px;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--text-dark-color);
+
+    @include transition(color);
+
+    @include tablet {
+      height: 44px;
+      font-size: 12px;
+    }
+
+    @include mobile {
+      flex-direction: row;
+      height: 30px;
+    }
+
+    @include focus {
+      color: var(--link-focus-color);
+    }
+
+    @include hover {
+      color: var(--link-hover-color);
+    }
+
+    &:active {
+      color: var(--link-active-color);
+    }
+  }
+
+  &__link-icon {
+    @include mobile {
+      scale: 0.84;
+    }
+  }
+
+  &__link-text {
+    margin-top: auto;
+
+    @include mobile {
+      @include visually-hidden;
+    }
+  }
+}

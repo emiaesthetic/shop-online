@@ -1,0 +1,30 @@
+.logo {
+  position: relative;
+  width: max-content;
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.06em;
+  color: var(--text-dark-color);
+
+  @include tablet {
+    font-size: 26px;
+  }
+
+  @include mobile {
+    font-size: 18px;
+  }
+
+  @include focus {
+    outline: var(--outline);
+    outline-offset: var(--outline-offset);
+  }
+
+  &__text--accent {
+    color: var(--text-accent-color);
+  }
+
+  &--light {
+    color: var(--text-light-color);
+  }
+}

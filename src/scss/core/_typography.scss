@@ -1,0 +1,15 @@
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--base-font-size);
+  line-height: 1.3;
+  color: var(--text-dark-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}

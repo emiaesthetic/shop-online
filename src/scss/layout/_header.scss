@@ -1,0 +1,145 @@
+.header {
+  padding: 27px 0 45px;
+
+  @include laptop {
+    padding: 34px 0 28px;
+  }
+
+  @include tablet {
+    padding: 25px 0;
+  }
+
+  @include mobile {
+    padding: 20px 0;
+  }
+
+  &--custom-pb {
+    padding-bottom: 30px;
+  }
+
+  &__container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 190px minmax(70px, 1fr) 151px minmax(70px, 1fr) minmax(440px, 757px) minmax(70px, 1fr) 354px;
+    grid-template-rows: auto;
+    grid-template-areas: 'logo . menu . search-form . actions';
+    align-items: center;
+
+    @include desktop-wide {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        'logo menu actions'
+        'search-form search-form search-form';
+      justify-content: space-between;
+      row-gap: 40px;
+    }
+
+    @include laptop {
+      grid-template-columns: auto minmax(540px, 700px);
+      grid-template-areas:
+        'logo actions'
+        'menu search-form';
+      row-gap: 34px;
+    }
+
+    @include tablet {
+      grid-template-columns: auto minmax(280px, 540px);
+      row-gap: 29px;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        'logo logo'
+        'menu actions'
+        'search-form search-form';
+      row-gap: 20px;
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+  }
+
+  &__menu {
+    grid-area: menu;
+
+    @include desktop-wide {
+      justify-self: start;
+    }
+  }
+
+  &__menu-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns:
+      minmax(min-content, 533px)
+      minmax(50px, 225px)
+      minmax(min-content, 307px)
+      minmax(50px, 173px)
+      minmax(min-content, 307px);
+    grid-template-areas: 'catalog . customers . contacts';
+    width: 100%;
+    max-height: 0;
+    height: min-content;
+    padding-block: 54px;
+    background-color: var(--bg-light-color);
+    opacity: 0;
+    visibility: hidden;
+
+    @include transition(max-height, opacity, visibility);
+
+    @include laptop {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: 'catalog customers contacts';
+      justify-content: space-between;
+      gap: 30px 20px;
+      padding-block: 40px;
+    }
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'catalog' 'customers' 'contacts';
+      padding-block: 30px;
+    }
+
+    @include mobile {
+      row-gap: 20px;
+    }
+  }
+
+  &__menu-item {
+    &:first {
+      grid-area: catalog;
+    }
+
+    &:nth-child(2) {
+      grid-area: customers;
+    }
+
+    &:last-child {
+      grid-area: contacts;
+    }
+  }
+
+  &__search-form {
+    grid-area: search-form;
+    max-width: 757px;
+
+    @include desktop-wide {
+      justify-self: center;
+      max-width: 992px;
+    }
+  }
+
+  &__actions {
+    grid-area: actions;
+
+    @include desktop-wide {
+      justify-self: end;
+    }
+  }
+}

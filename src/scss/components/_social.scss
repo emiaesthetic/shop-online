@@ -1,0 +1,25 @@
+.social {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  color: var(--text-light-color);
+
+  @include tablet {
+    column-gap: 15px;
+  }
+
+  &__link {
+    display: block;
+
+    @include transition(color);
+
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+
+    @include hover {
+      color: var(--link-hover-color);
+    }
+  }
+}

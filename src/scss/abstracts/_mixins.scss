@@ -1,0 +1,57 @@
+@mixin flex-center($isInline: false) {
+  @if $isInline {
+    display: inline-flex;
+  } @else {
+    display: flex;
+  }
+
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin focus {
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin hover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin text-truncate($rows) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: $rows;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $rows;
+}
+
+@mixin transition($properties...) {
+  $duration: 0.2s;
+  $function: ease-in-out;
+
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-timing-function: $function;
+}
+
+@mixin visually-hidden {
+  position: fixed;
+  transform: scale(0);
+}

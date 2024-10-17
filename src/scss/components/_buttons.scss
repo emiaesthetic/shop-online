@@ -1,0 +1,33 @@
+.button {
+  --textColor: var(--text-light-color);
+  --bgColor: transparent;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: var(--textColor);
+  background-color: var(--bgColor);
+  border-radius: var(--border-radius-xsm);
+  @include transition(background-color, color, border-color);
+
+  @include mobile {
+    font-size: 12px;
+  }
+
+  &--accent {
+    --bgColor: var(--btn-primary-color);
+
+    @include focus {
+      --bgColor: var(--btn-focus-color);
+    }
+
+    @include hover {
+      --bgColor: var(--btn-hover-color);
+    }
+
+    &:active {
+      --bgColor: var(--btn-active-color);
+    }
+  }
+}

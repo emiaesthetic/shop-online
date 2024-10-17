@@ -1,0 +1,182 @@
+.footer {
+  padding: 80px 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--text-light-color);
+  background-color: var(--bg-dark-color);
+
+  @include laptop {
+    padding: 60px 0 44px;
+  }
+
+  @include tablet {
+    padding: 40px 0;
+    font-size: 12px;
+  }
+
+  @include mobile {
+    padding: 30px 0 30px;
+    font-size: 10px;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns:
+      190px
+      minmax(50px, 118px)
+      minmax(min-content, 885px)
+      minmax(50px, 127px)
+      minmax(min-content, 307px);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      'logo . menu . contacts'
+      'copyright . . . author';
+    row-gap: 50px;
+
+    @include desktop-wide {
+      grid-template-columns: 3fr 1fr;
+      grid-template-rows: repeat(3, auto);
+      grid-template-areas:
+        'logo logo'
+        'menu contacts'
+        'copyright author';
+      column-gap: 50px;
+    }
+
+    @include laptop {
+      gap: 60px 30px;
+    }
+
+    @include tablet {
+      gap: 40px 20px;
+    }
+
+    @include mobile-lg {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(5, auto);
+      grid-template-areas:
+        'logo logo'
+        'menu menu'
+        'contacts contacts'
+        '. .'
+        'copyright author';
+      row-gap: 30px;
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+    height: min-content;
+  }
+
+  &__menu {
+    grid-area: menu;
+  }
+
+  &__menu-list {
+    display: grid;
+    grid-template-columns:
+      minmax(min-content, 480px)
+      minmax(50px, 98px)
+      minmax(min-content, 307px);
+    grid-template-areas: 'catalog . customers';
+
+    @include desktop {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: 'catalog customers';
+      column-gap: 50px;
+    }
+
+    @include laptop {
+      column-gap: 30px;
+    }
+
+    @include tablet {
+      gap: 40px 20px;
+    }
+
+    @include mobile-lg {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'catalog'
+        'customers';
+      row-gap: 30px;
+    }
+
+    @include mobile {
+      row-gap: 20px;
+    }
+  }
+
+  &__menu-item {
+    width: max-content;
+
+    @include laptop {
+      width: unset;
+    }
+
+    &:first-child {
+      grid-area: catalog;
+    }
+
+    &:last-child {
+      grid-area: customers;
+    }
+  }
+
+  &__contacts {
+    grid-area: contacts;
+  }
+
+  &__copyright {
+    grid-area: copyright;
+  }
+
+  &__author {
+    grid-area: author;
+
+    @include mobile-lg {
+      justify-self: end;
+    }
+  }
+
+  &__address {
+    width: max-content;
+    margin-bottom: 36px;
+    font-style: normal;
+
+    @include tablet {
+      margin-bottom: 30px;
+    }
+
+    @include mobile {
+      margin-bottom: 23px;
+    }
+  }
+
+  &__phone {
+    margin-bottom: 21px;
+
+    @include tablet {
+      margin-bottom: 14px;
+    }
+
+    @include mobile {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__author-name {
+    display: block;
+    margin-bottom: 10px;
+
+    @include tablet {
+      margin-bottom: 8px;
+    }
+
+    @include mobile {
+      margin-bottom: 4px;
+    }
+  }
+}

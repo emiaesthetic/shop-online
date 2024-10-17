@@ -1,0 +1,16 @@
+# Ignore setting files VS Code and IDE
+.idea
+.vscode
+
+# Ignore MacOS file
+.DS_Store
+
+# Ignore build output directories
+dist/
+
+# Ignore node modules
+node_modules/
+
+# Ignore lock files
+yarn.lock
+package-lock.json

@@ -1,0 +1,15 @@
+.goods {
+  padding: 50px 0 140px;
+
+  @include laptop {
+    padding: 45px 0 100px;
+  }
+
+  @include tablet {
+    padding: 30px 0 80px;
+  }
+
+  @include mobile {
+    padding: 35px 0 70px;
+  }
+}

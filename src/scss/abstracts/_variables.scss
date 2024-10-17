@@ -1,0 +1,76 @@
+:root {
+  --container-width: 1770px;
+  --container-padding-x: 20px;
+
+  --font-family: 'Lato', sans-serif;
+  --second-family: 'Open Sans', sans-serif;
+  --base-font-size: 16px;
+
+  --gray-lighten: #fff;
+  --gray-light: #e8e8e8;
+  --gray: #8f8f8f;
+  --gray-dark: #525252;
+  --gray-darken: #2d2d2d;
+
+  --color-primary-light: #5d92e0;
+  --color-primary: #3670c7;
+  --color-primary-dark: #3b65a5;
+  --color-secondary: #f00;
+  --color-tertiary: #ffbd13;
+
+  --text-light-color: var(--gray-lighten);
+  --text-gray-color: var(--gray);
+  --text-dark-color: var(--gray-darken);
+  --text-accent-color: var(--color-primary);
+  --text-accent-secondary-color: var(--color-secondary);
+
+  --bg-dark-color: var(--gray-darken);
+  --bg-light-color: var(--gray-lighten);
+
+  --outline: 1px solid var(--color-primary-dark);
+  --outline-offset: 2px;
+
+  --box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.25);
+
+  --border-radius-lg: 20px;
+  --border-radius-md: 16px;
+  --border-radius-sm: 14px;
+  --border-radius-xsm: 10px;
+
+  --btn-primary-color: var(--color-primary);
+  --btn-focus-color: var(--color-primary-dark);
+  --btn-hover-color: var(--color-primary-light);
+  --btn-active-color: var(--color-primary-light);
+  --btn-active-accent-color: var(--color-secondary);
+
+  --link-primary-color: var(--color-primary);
+  --link-focus-color: var(--color-primary-dark);
+  --link-hover-color: var(--color-primary-light);
+  --link-active-color: var(--color-primary-light);
+
+  --search-input-bg-color: var(--gray-light);
+  --search-input-border-color: var(--gray);
+  --search-input-border-radius: 30px;
+
+  --banner-gradient: linear-gradient(181deg, rgb(0 0 0 / 0.4) 0%, rgb(0 0 0 / 0.4) 100%);
+
+  --promo-gradient: linear-gradient(181deg, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0.2) 100%);
+  --promo-bg-accent-color: #38c0eb;
+  --promo-text-accent-color: #f91155;
+
+  --discount-bg-color: var(--color-tertiary);
+
+  @include laptop {
+    --border-radius-lg: 16px;
+  }
+
+  @include tablet {
+    --border-radius-lg: 12px;
+    --border-radius-sm: 12px;
+  }
+
+  @include mobile {
+    --border-radius-lg: 8px;
+    --border-radius-xsm: 8px;
+  }
+}

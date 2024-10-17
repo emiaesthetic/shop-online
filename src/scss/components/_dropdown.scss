@@ -1,0 +1,43 @@
+.dropdown {
+  &__button {
+    display: none;
+    align-items: center;
+    column-gap: 12px;
+    font-weight: 700;
+    font-size: 26px;
+    color: currentColor;
+
+    @include mobile-lg {
+      display: flex;
+
+      @include transition(rotate, margin-bottom);
+    }
+
+    @include mobile {
+      font-size: 20px;
+    }
+
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+
+    &.is-open svg {
+      rotate: 180deg;
+    }
+  }
+
+  &__content {
+    @include mobile-lg {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &.is-open {
+      max-height: min-content;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
