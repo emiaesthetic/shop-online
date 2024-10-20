@@ -13,8 +13,20 @@
     padding: 20px 0;
   }
 
-  &--custom-pb {
+  &--pb-sm {
     padding-bottom: 30px;
+
+    @include laptop {
+      padding-bottom: 20px;
+    }
+
+    @include tablet {
+      padding-bottom: 18px;
+    }
+
+    @include mobile {
+      padding-bottom: 8px;
+    }
   }
 
   &__container {
