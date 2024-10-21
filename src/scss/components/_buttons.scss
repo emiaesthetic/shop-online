@@ -1,13 +1,13 @@
 .button {
-  --textColor: var(--text-light-color);
-  --bgColor: transparent;
+  --text-color: var(--text-light-color);
+  --bg-color: transparent;
 
   font-weight: 400;
   font-size: 16px;
   line-height: 1.3;
   white-space: nowrap;
-  color: var(--textColor);
-  background-color: var(--bgColor);
+  color: var(--text-color);
+  background-color: var(--bg-color);
   border-radius: var(--border-radius-xsm);
   @include transition(background-color, color, border-color);
 
@@ -16,18 +16,46 @@
   }
 
   &--accent {
-    --bgColor: var(--btn-primary-color);
+    --bg-color: var(--btn-primary-color);
 
     @include focus {
-      --bgColor: var(--btn-focus-color);
+      --bg-color: var(--btn-focus-color);
     }
 
     @include hover {
-      --bgColor: var(--btn-hover-color);
+      --bg-color: var(--btn-hover-color);
     }
 
     &:active {
-      --bgColor: var(--btn-active-color);
+      --bg-color: var(--btn-active-color);
+    }
+  }
+
+  &--transparent {
+    --text-color: var(--text-accent-color);
+
+    @include focus {
+      --text-color: var(--btn-focus-color);
+    }
+
+    @include hover {
+      --text-color: var(--btn-hover-color);
+    }
+
+    &:active {
+      --text-color: var(--btn-active-color);
+    }
+  }
+
+  &--icon {
+    --text-color: var(--text-accent-color);
+
+    @include focus {
+      --text-color: var(--text-dark-color);
+    }
+
+    &:active {
+      --text-color: var(--text-accent-secondary-color);
     }
   }
 }
