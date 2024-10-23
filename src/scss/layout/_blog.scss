@@ -3,23 +3,13 @@
   --card-count: 2;
   --max-card-width: 645px;
 
-  padding: 30px 0 150px;
-
   @include laptop {
     --column-gap: 20px;
     --max-card-width: 460px;
-
-    padding: 20px 0 100px;
   }
 
   @include tablet {
     --card-count: 1;
-
-    padding: 18px 0 80px;
-  }
-
-  @include mobile {
-    padding: 8px 0 50px;
   }
 
   &__list {
@@ -46,7 +36,10 @@
   }
 
   &__item {
-    flex-basis: min(calc((100% - var(--column-gap) * (var(--card-count) - 1)) / var(--card-count)), var(--max-card-width));
+    flex-basis: min(
+      calc((100% - var(--column-gap) * (var(--card-count) - 1)) / var(--card-count)),
+      var(--max-card-width)
+    );
 
     @include tablet {
       flex-basis: 100%;

@@ -1,13 +1,20 @@
-import { createHeader, createContent, createFooter } from './createElements.js';
+import {
+  createContainer,
+  createHeader,
+  createContent,
+  createFooter,
+} from './createElements.js';
 
 const renderArticlePage = (articleData, userData) => {
   const article = document.querySelector('.article');
 
+  const container = createContainer();
   const header = createHeader(articleData.title);
   const content = createContent(articleData.body);
   const footer = createFooter(userData.id, userData.name);
 
-  article.append(header, content, footer);
+  container.append(header, content, footer);
+  article.append(container);
 
   const breadcrumbsItem = document.querySelector('[aria-current="page"]');
   breadcrumbsItem.innerHTML = `

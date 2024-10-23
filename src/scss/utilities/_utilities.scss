@@ -9,6 +9,134 @@
   grid-template-rows: min-content 1fr min-content;
 }
 
+.p-t-lg {
+  padding-top: 50px;
+
+  @include laptop {
+    padding-top: 40px;
+  }
+
+  @include tablet {
+    padding-top: 30px;
+  }
+
+  @include mobile {
+    padding-top: 25px;
+  }
+}
+
+.p-t-mdx {
+  padding-top: 45px;
+
+  @include laptop {
+    padding-top: 30px;
+  }
+
+  @include tablet {
+    padding-top: 25px;
+  }
+
+  @include mobile {
+    padding-top: 20px;
+  }
+}
+
+.p-t-md {
+  padding-top: 40px;
+
+  @include laptop {
+    padding-top: 30px;
+  }
+
+  @include tablet {
+    padding-top: 25px;
+  }
+
+  @include mobile {
+    padding-top: 15px;
+  }
+}
+
+.p-t-sm {
+  padding-top: 30px;
+
+  @include laptop {
+    padding-top: 25px;
+  }
+
+  @include tablet {
+    padding-top: 20px;
+  }
+
+  @include mobile {
+    padding-top: 10px;
+  }
+}
+
+.p-b-lg {
+  padding-bottom: 150px;
+
+  @include laptop {
+    padding-bottom: 100px;
+  }
+
+  @include tablet {
+    padding-bottom: 80px;
+  }
+
+  @include mobile {
+    padding-bottom: 50px;
+  }
+}
+
+.p-b-md {
+  padding-bottom: 100px;
+
+  @include laptop {
+    padding-bottom: 80px;
+  }
+
+  @include tablet {
+    padding-bottom: 60px;
+  }
+
+  @include mobile {
+    padding-bottom: 40px;
+  }
+}
+
+.p-b-smx {
+  padding-bottom: 50px;
+
+  @include laptop {
+    padding-bottom: 40px;
+  }
+
+  @include tablet {
+    padding-bottom: 30px;
+  }
+
+  @include mobile {
+    padding-bottom: 25px;
+  }
+}
+
+.p-b-sm {
+  padding-bottom: 30px;
+
+  @include laptop {
+    padding-bottom: 25px;
+  }
+
+  @include tablet {
+    padding-bottom: 20px;
+  }
+
+  @include mobile {
+    padding-bottom: 10px;
+  }
+}
+
 .title {
   margin-bottom: 50px;
   font-weight: 700;

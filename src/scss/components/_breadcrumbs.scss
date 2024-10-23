@@ -1,16 +1,32 @@
 .breadcrumbs {
-  margin-bottom: 80px;
+  padding: 30px 0 40px;
 
   @include laptop {
-    margin-bottom: 60px;
+    padding: 20px 0 30px;
   }
 
   @include tablet {
-    margin-bottom: 50px;
+    padding: 15px 0 25px;
   }
 
   @include mobile {
-    margin-bottom: 30px;
+    padding: 10px 0 15px;
+  }
+
+  &--p-b-sm {
+    padding-bottom: 30px;
+
+    @include laptop {
+      padding-bottom: 25px;
+    }
+
+    @include tablet {
+      padding-bottom: 20px;
+    }
+
+    @include mobile {
+      padding-bottom: 10px;
+    }
   }
 
   &__list {

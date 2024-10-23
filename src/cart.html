@@ -26,7 +26,7 @@
   <script type="module" src="./js/index.min.js"></script>
 </head>
 <body class="page">
-  <header class="header header--pb-sm">
+  <header class="header header--p-b-sm">
     <div class="header__container container">
       <a class="header__logo logo underline-link" href="/">
         <span class="logo__text">Shop</span><span class="logo__text logo__text--accent">Online</span>
@@ -177,115 +177,185 @@
   </header>
 
   <main class="main">
-    <div class="cart">
+    <h1 class="visually-hidden">Проверка и оформление заказа</h1>
+
+    <nav class="breadcrumbs breadcrumbs--p-b-sm" aria-label="Хлебные крошки">
       <div class="container">
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <ol class="breadcrumbs__list">
-            <li class="breadcrumbs__item">
-              <a class="breadcrumbs__link underline-link" href="/" aria-label="Вернуться на главную">Главная</a>
-            </li>
-            <li class="breadcrumbs__item" aria-current="page">
-              <a class="breadcrumbs__link underline-link" href="">Корзина</a>
-            </li>
-          </ol>
-        </nav>
+        <ol class="breadcrumbs__list">
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link underline-link" href="/" aria-label="Вернуться на главную">Главная</a>
+          </li>
+          <li class="breadcrumbs__item" aria-current="page">
+            <a class="breadcrumbs__link underline-link" href="">Корзина</a>
+          </li>
+        </ol>
+      </div>
+    </nav>
 
-        <h1 class="visually-hidden">Проверка и оформление заказа</h1>
+    <div class="cart p-t-sm p-b-smx">
+      <div class="cart__container container">
+        <section class="cart-items cart-section">
+          <header class="cart-items__header">
+            <h2 class="cart-items__title title title--sm">Корзина<sup class="cart-items__sup-title">2</sup></h2>
 
-        <div class="cart__content">
-          <section class="cart-items cart__section">
-            <header class="cart-items__header">
-              <h2 class="cart-items__title title title--sm">Корзина<sup class="cart-items__sup-title">2</sup></h2>
+            <div class="cart-items__controls">
+              <label class="cart-items__label">
+                <input class="checkbox-input" type="checkbox" name="allProducts">
+                <span class="cart-items__checkbox checkbox" aria-hidden="true"></span>
+                <span>Выбрать все</span>
+              </label>
 
-              <div class="cart-items__controls">
-                <label class="cart-items__label">
-                  <input class="checkbox-input" type="checkbox" name="allProducts">
-                  <span class="cart-items__checkbox checkbox" aria-hidden="true"></span>
-                  <span>Выбрать все</span>
-                </label>
+              <button class="cart-items__delete button button--delete" aria-label="Удалить товары из корзины">
+                <svg class="cart-items__delete-icon" width="18" height="23" aria-hidden="true">
+                  <use href="./img/sprite.svg#delete"></use>
+                </svg>
+              </button>
+            </div>
+          </header>
 
-                <button class="cart-items__delete button button--delete" aria-label="Удалить товары из корзины">
-                  <svg class="cart-items__delete-icon" width="18" height="23" aria-hidden="true">
+          <ul class="cart-items__list">
+            <li class="cart-item">
+              <div class="cart-item__content">
+                <div class="cart-item__image-wrapper">
+                  <label class="cart-item__label">
+                    <input class="checkbox-input" type="checkbox" name="product">
+                    <span class="cart-item__checkbox checkbox" aria-hidden="true"></span>
+                  </label>
+                  <a class="cart-item__image-link" href="#">
+                    <picture>
+                      <source
+                        type="image/avif"
+                        media="(max-width: 768px)"
+                        srcset="./img/cart/t-shirt-tablet.avif 1x, ./img/cart/t-shirt-tablet@2x.avif 2x"
+                      >
+                      <source
+                        type="image/webp"
+                        media="(max-width: 768px)"
+                        srcset="./img/cart/t-shirt-tablet.webp 1x, ./img/cart/t-shirt-tablet@2x.webp 2x"
+                      >
+                      <source
+                        media="(max-width: 768px)"
+                        srcset="./img/cart/t-shirt-tablet.jpg 1x, ./img/cart/t-shirt-tablet@2x.jpg 2x"
+                      >
+                      <source
+                        type="image/avif"
+                        srcset="./img/cart/t-shirt.avif 1x, ./img/cart/t-shirt@2x.avif 2x"
+                      >
+                      <source
+                        type="image/webp"
+                        srcset="./img/cart/t-shirt.webp 1x, ./img/cart/t-shirt@2x.webp 2x"
+                      >
+                      <img
+                        src="./img/cart/t-shirt.jpg" srcset="./img/cart/t-shirt@2x.jpg 2x"
+                        width="130" height="130"
+                        alt="Пара футболок"
+                      >
+                    </picture>
+                  </a>
+                </div>
+
+                <div class="cart-item__details">
+                  <div class="cart-item__main-info">
+                    <h3 class="cart-item__title">
+                      <a class="cart-item__link" href="#">Пара футболок</a>
+                    </h3>
+                    <div class="cart-item__description">
+                      <span class="cart-item__description-line">Цвет: белый</span>
+                      <span class="cart-item__description-line">Материал: хлопок + полиэстер</span>
+                    </div>
+                  </div>
+
+                  <div class="cart-item__quantity cart-item__quantity--tablet-hidden">
+                    <button class="cart-item__quantity-button button button--quantity" aria-label="Минус один">
+                      &minus;
+                    </button>
+                    <span class="cart-item__quantity-number">1</span>
+                    <button class="cart-item__quantity-button button button--quantity" aria-label="Плюс один">
+                      +
+                    </button>
+                  </div>
+
+                  <div class="cart-item__price">
+                    <div class="cart-item__main-price">
+                      <span class="cart-item__discounted-price">1299&nbsp;₽</span>
+                      <del class="cart-item__non-discounted-price">2598&nbsp;₽</del>
+                    </div>
+                    <span class="cart-item__credit">В кредит от 130&nbsp;₽</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-item__controls">
+                <div class="cart-item__quantity">
+                  <button class="cart-item__quantity-button button button--quantity" aria-label="Минус один">
+                    &minus;
+                  </button>
+                  <span class="cart-item__quantity-number">1</span>
+                  <button class="cart-item__quantity-button button button--quantity" aria-label="Плюс один">
+                    +
+                  </button>
+                </div>
+
+                <button class="cart-item__delete button button--delete" aria-label="Удалить товар из корзины">
+                  <svg class="cart-item__delete-icon" width="18" height="23" aria-hidden="true">
                     <use href="./img/sprite.svg#delete"></use>
                   </svg>
                 </button>
               </div>
-            </header>
+            </li>
+            <li class="cart-item">
+              <div class="cart-item__content">
+                <div class="cart-item__image-wrapper">
+                  <label class="cart-item__label">
+                    <input class="checkbox-input" type="checkbox" name="product">
+                    <span class="cart-item__checkbox checkbox" aria-hidden="true"></span>
+                  </label>
 
-            <ul class="cart-items__list">
-              <li class="cart-item">
-                <div class="cart-item__content">
-                  <div class="cart-item__image-wrapper">
-                    <label class="cart-item__label">
-                      <input class="checkbox-input" type="checkbox" name="product">
-                      <span class="cart-item__checkbox checkbox" aria-hidden="true"></span>
-                    </label>
-                    <a class="cart-item__image-link" href="#">
-                      <picture>
-                        <source
-                          type="image/avif"
-                          media="(max-width: 768px)"
-                          srcset="./img/cart/t-shirt-tablet.avif 1x, ./img/cart/t-shirt-tablet@2x.avif 2x"
-                        >
-                        <source
-                          type="image/webp"
-                          media="(max-width: 768px)"
-                          srcset="./img/cart/t-shirt-tablet.webp 1x, ./img/cart/t-shirt-tablet@2x.webp 2x"
-                        >
-                        <source
-                          media="(max-width: 768px)"
-                          srcset="./img/cart/t-shirt-tablet.jpg 1x, ./img/cart/t-shirt-tablet@2x.jpg 2x"
-                        >
-                        <source
-                          type="image/avif"
-                          srcset="./img/cart/t-shirt.avif 1x, ./img/cart/t-shirt@2x.avif 2x"
-                        >
-                        <source
-                          type="image/webp"
-                          srcset="./img/cart/t-shirt.webp 1x, ./img/cart/t-shirt@2x.webp 2x"
-                        >
-                        <img
-                          src="./img/cart/t-shirt.jpg" srcset="./img/cart/t-shirt@2x.jpg 2x"
-                          width="130" height="130"
-                          alt="Пара футболок"
-                        >
-                      </picture>
-                    </a>
-                  </div>
-
-                  <div class="cart-item__details">
-                    <div class="cart-item__main-info">
-                      <h3 class="cart-item__title">
-                        <a class="cart-item__link" href="#">Пара футболок</a>
-                      </h3>
-                      <div class="cart-item__description">
-                        <span class="cart-item__description-line">Цвет: белый</span>
-                        <span class="cart-item__description-line">Материал: хлопок + полиэстер</span>
-                      </div>
-                    </div>
-
-                    <div class="cart-item__quantity cart-item__quantity--tablet-hidden">
-                      <button class="cart-item__quantity-button button button--quantity" aria-label="Минус один">
-                        &minus;
-                      </button>
-                      <span class="cart-item__quantity-number">1</span>
-                      <button class="cart-item__quantity-button button button--quantity" aria-label="Плюс один">
-                        +
-                      </button>
-                    </div>
-
-                    <div class="cart-item__price">
-                      <div class="cart-item__main-price">
-                        <span class="cart-item__discounted-price">1299&nbsp;₽</span>
-                        <del class="cart-item__non-discounted-price">2598&nbsp;₽</del>
-                      </div>
-                      <span class="cart-item__credit">В кредит от 130&nbsp;₽</span>
-                    </div>
-                  </div>
+                  <a class="cart-item__image-link" href="#">
+                    <picture>
+                      <source
+                        type="image/avif"
+                        media="(max-width: 768px)"
+                        srcset="./img/cart/bed-linen-tablet.avif 1x, ./img/cart/bed-linen-tablet@2x.avif 2x"
+                      >
+                      <source
+                        type="image/webp"
+                        media="(max-width: 768px)"
+                        srcset="./img/cart/bed-linen-tablet.webp 1x, ./img/cart/bed-linen-tablet@2x.webp 2x"
+                      >
+                      <source
+                        media="(max-width: 768px)"
+                        srcset="./img/cart/bed-linen-tablet.jpg 1x, ./img/cart/bed-linen-tablet@2x.jpg 2x"
+                      >
+                      <source
+                        type="image/avif"
+                        srcset="./img/cart/bed-linen.avif 1x, ./img/cart/bed-linen@2x.avif 2x"
+                      >
+                      <source
+                        type="image/webp"
+                        srcset="./img/cart/bed-linen.webp 1x, ./img/cart/bed-linen@2x.webp 2x"
+                      >
+                      <img
+                        src="./img/cart/bed-linen.jpg" srcset="./img/cart/bed-linen@2x.jpg 2x"
+                        width="130" height="130"
+                        alt="Постельное белье"
+                      >
+                    </picture>
+                  </a>
                 </div>
 
-                <div class="cart-item__controls">
-                  <div class="cart-item__quantity">
+                <div class="cart-item__details">
+                  <div class="cart-item__main-info">
+                    <h3 class="cart-item__title">
+                      <a class="cart-item__link" href="#">Постельное белье</a>
+                    </h3>
+                    <div class="cart-item__description">
+                      <span class="cart-item__description-line">Цвет: белый</span>
+                      <span class="cart-item__description-line">Размер: Евро, двуспальное</span>
+                    </div>
+                  </div>
+
+                  <div class="cart-item__quantity cart-item__quantity--tablet-hidden">
                     <button class="cart-item__quantity-button button button--quantity" aria-label="Минус один">
                       &minus;
                     </button>
@@ -295,232 +365,163 @@
                     </button>
                   </div>
 
-                  <button class="cart-item__delete button button--delete" aria-label="Удалить товар из корзины">
-                    <svg class="cart-item__delete-icon" width="18" height="23" aria-hidden="true">
-                      <use href="./img/sprite.svg#delete"></use>
-                    </svg>
+                  <div class="cart-item__price">
+                    <div class="cart-item__main-price">
+                      <span class="cart-item__discounted-price">3902&nbsp;₽</span>
+                      <del class="cart-item__non-discounted-price">4490&nbsp;₽</del>
+                    </div>
+                    <span class="cart-item__credit">В кредит от 560&nbsp;₽</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-item__controls">
+                <div class="cart-item__quantity">
+                  <button class="cart-item__quantity-button button button--quantity" aria-label="Минус один">
+                    &minus;
+                  </button>
+                  <span class="cart-item__quantity-number">1</span>
+                  <button class="cart-item__quantity-button button button--quantity" aria-label="Плюс один">
+                    +
                   </button>
                 </div>
-              </li>
-              <li class="cart-item">
-                <div class="cart-item__content">
-                  <div class="cart-item__image-wrapper">
-                    <label class="cart-item__label">
-                      <input class="checkbox-input" type="checkbox" name="product">
-                      <span class="cart-item__checkbox checkbox" aria-hidden="true"></span>
-                    </label>
 
-                    <a class="cart-item__image-link" href="#">
-                      <picture>
-                        <source
-                          type="image/avif"
-                          media="(max-width: 768px)"
-                          srcset="./img/cart/bed-linen-tablet.avif 1x, ./img/cart/bed-linen-tablet@2x.avif 2x"
-                        >
-                        <source
-                          type="image/webp"
-                          media="(max-width: 768px)"
-                          srcset="./img/cart/bed-linen-tablet.webp 1x, ./img/cart/bed-linen-tablet@2x.webp 2x"
-                        >
-                        <source
-                          media="(max-width: 768px)"
-                          srcset="./img/cart/bed-linen-tablet.jpg 1x, ./img/cart/bed-linen-tablet@2x.jpg 2x"
-                        >
-                        <source
-                          type="image/avif"
-                          srcset="./img/cart/bed-linen.avif 1x, ./img/cart/bed-linen@2x.avif 2x"
-                        >
-                        <source
-                          type="image/webp"
-                          srcset="./img/cart/bed-linen.webp 1x, ./img/cart/bed-linen@2x.webp 2x"
-                        >
-                        <img
-                          src="./img/cart/bed-linen.jpg" srcset="./img/cart/bed-linen@2x.jpg 2x"
-                          width="130" height="130"
-                          alt="Постельное белье"
-                        >
-                      </picture>
-                    </a>
-                  </div>
+                <button class="cart-item__delete button button--delete" aria-label="Удалить товар из корзины">
+                  <svg class="cart-item__delete-icon" width="18" height="23" aria-hidden="true">
+                    <use href="./img/sprite.svg#delete"></use>
+                  </svg>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </section>
 
-                  <div class="cart-item__details">
-                    <div class="cart-item__main-info">
-                      <h3 class="cart-item__title">
-                        <a class="cart-item__link" href="#">Постельное белье</a>
-                      </h3>
-                      <div class="cart-item__description">
-                        <span class="cart-item__description-line">Цвет: белый</span>
-                        <span class="cart-item__description-line">Размер: Евро, двуспальное</span>
-                      </div>
-                    </div>
+        <section class="cart-delivery cart-section">
+          <header class="cart-delivery__header">
+            <h2 class="cart-delivery__title title title--sm">Способ доставки</h2>
+            <button class="cart-delivery__button button button--transparent">
+              <span>Изменить</span><span class="visually-hidden">адрес доставки</span>
+            </button>
+          </header>
 
-                    <div class="cart-item__quantity cart-item__quantity--tablet-hidden">
-                      <button class="cart-item__quantity-button button button--quantity" aria-label="Минус один">
-                        &minus;
-                      </button>
-                      <span class="cart-item__quantity-number">1</span>
-                      <button class="cart-item__quantity-button button button--quantity" aria-label="Плюс один">
-                        +
-                      </button>
-                    </div>
+          <div class="cart-delivery__content">
+            <div class="cart-delivery__items">
+              <div class="cart-delivery__item">
+                <span class="cart-delivery__label">Пункт выдачи</span>
+                <span class="cart-delivery__value">
+                  г. Москва (Московская область), улица Павлика Морозова, д. 48, (Пункт выдачи), Ежедневно 10:00-21:00
+                </span>
+              </div>
 
-                    <div class="cart-item__price">
-                      <div class="cart-item__main-price">
-                        <span class="cart-item__discounted-price">3902&nbsp;₽</span>
-                        <del class="cart-item__non-discounted-price">4490&nbsp;₽</del>
-                      </div>
-                      <span class="cart-item__credit">В кредит от 560&nbsp;₽</span>
-                    </div>
-                  </div>
-                </div>
+              <div class="cart-delivery__item">
+                <span class="cart-delivery__label">Стоимость доставки</span>
+                <span class="cart-delivery__value cart-delivery__value--is-gray">Бесплатно</span>
+              </div>
 
-                <div class="cart-item__controls">
-                  <div class="cart-item__quantity">
-                    <button class="cart-item__quantity-button button button--quantity" aria-label="Минус один">
-                      &minus;
-                    </button>
-                    <span class="cart-item__quantity-number">1</span>
-                    <button class="cart-item__quantity-button button button--quantity" aria-label="Плюс один">
-                      +
-                    </button>
-                  </div>
-
-                  <button class="cart-item__delete button button--delete" aria-label="Удалить товар из корзины">
-                    <svg class="cart-item__delete-icon" width="18" height="23" aria-hidden="true">
-                      <use href="./img/sprite.svg#delete"></use>
-                    </svg>
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </section>
-
-          <section class="cart-delivery cart__section">
-            <header class="cart-delivery__header">
-              <h2 class="cart-delivery__title title title--sm">Способ доставки</h2>
-              <button class="cart-delivery__button button button--transparent">
-                <span>Изменить</span><span class="visually-hidden">адрес доставки</span>
-              </button>
-            </header>
-            <div class="cart-delivery__content">
-              <div class="cart-delivery__items">
-                <div class="cart-delivery__item">
-                  <span class="cart-delivery__label">Пункт выдачи</span>
-                  <span class="cart-delivery__value">
-                    г. Москва (Московская область), улица Павлика Морозова, д. 48, (Пункт выдачи), Ежедневно 10:00-21:00
-                  </span>
-                </div>
-
-                <div class="cart-delivery__item">
-                  <span class="cart-delivery__label">Стоимость доставки</span>
-                  <span class="cart-delivery__value cart-delivery__value--is-gray">Бесплатно</span>
-                </div>
-
-                <div class="cart-delivery__item">
-                  <span class="cart-delivery__label cart-delivery__label--is-bold">10-13 февраля</span>
-                  <ul class="cart-delivery__goods">
-                    <li class="cart-delivery__goods-item">
-                      <picture class="cart-delivery__goods-image">
-                        <source
-                          type="image/avif"
-                          srcset="./img/cart/t-shirt-tablet.avif 1x, ./img/cart/t-shirt-tablet@2x.avif 2x"
-                        >
-                        <source
-                          type="image/webp"
-                          srcset="./img/cart/t-shirt-tablet.webp 1x, ./img/cart/t-shirt-tablet@2x.webp 2x"
-                        >
-                        <img
-                          src="./img/cart/t-shirt-tablet.jpg" srcset="./img/cart/t-shirt-tablet@2x.jpg 2x"
-                          width="80" height="80"
-                          alt="Пара футболок"
-                        >
-                      </picture>
-                    </li>
-                    <li class="cart-delivery__goods-item">
-                      <picture class="cart-delivery__goods-image">
-                        <source
-                          type="image/avif"
-                          srcset="./img/cart/bed-linen-tablet.avif 1x, ./img/cart/bed-linen-tablet@2x.avif 2x"
-                        >
-                        <source
-                          type="image/webp"
-                          srcset="./img/cart/bed-linen-tablet.webp 1x, ./img/cart/bed-linen-tablet@2x.webp 2x"
-                        >
-                        <img
-                          src="./img/cart/bed-linen-tablet.jpg" srcset="./img/cart/bed-linen-tablet@2x.jpg 2x"
-                          width="80" height="80"
-                          alt="Постельное белье"
-                        >
-                      </picture>
-                    </li>
-                  </ul>
-                </div>
+              <div class="cart-delivery__item">
+                <span class="cart-delivery__label cart-delivery__label--is-bold">10-13 февраля</span>
+                <ul class="cart-delivery__goods">
+                  <li class="cart-delivery__goods-item">
+                    <picture class="cart-delivery__goods-image">
+                      <source
+                        type="image/avif"
+                        srcset="./img/cart/t-shirt-tablet.avif 1x, ./img/cart/t-shirt-tablet@2x.avif 2x"
+                      >
+                      <source
+                        type="image/webp"
+                        srcset="./img/cart/t-shirt-tablet.webp 1x, ./img/cart/t-shirt-tablet@2x.webp 2x"
+                      >
+                      <img
+                        src="./img/cart/t-shirt-tablet.jpg" srcset="./img/cart/t-shirt-tablet@2x.jpg 2x"
+                        width="80" height="80"
+                        alt="Пара футболок"
+                      >
+                    </picture>
+                  </li>
+                  <li class="cart-delivery__goods-item">
+                    <picture class="cart-delivery__goods-image">
+                      <source
+                        type="image/avif"
+                        srcset="./img/cart/bed-linen-tablet.avif 1x, ./img/cart/bed-linen-tablet@2x.avif 2x"
+                      >
+                      <source
+                        type="image/webp"
+                        srcset="./img/cart/bed-linen-tablet.webp 1x, ./img/cart/bed-linen-tablet@2x.webp 2x"
+                      >
+                      <img
+                        src="./img/cart/bed-linen-tablet.jpg" srcset="./img/cart/bed-linen-tablet@2x.jpg 2x"
+                        width="80" height="80"
+                        alt="Постельное белье"
+                      >
+                    </picture>
+                  </li>
+                </ul>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section class="cart-summary cart__section">
-            <header class="cart-summary__header">
-              <h2 class="cart-summary__title">Итого:</h2>
-              <span class="cart-summary__total">112&nbsp;992&nbsp;₽</span>
-            </header>
+        <section class="cart-summary cart-section">
+          <header class="cart-summary__header">
+            <h2 class="cart-summary__title">Итого:</h2>
+            <span class="cart-summary__total">112&nbsp;992&nbsp;₽</span>
+          </header>
 
-            <div class="cart-summary__price">
-              <div class="cart-summary__price-item">
-                <span>Товары, 2 шт.</span>
-                <span>145&nbsp;080&nbsp;₽</span>
-              </div>
-              <div class="cart-summary__price-item">
-                <span>Скидка</span>
-                <span>32&nbsp;088&nbsp;₽</span>
-              </div>
-              <div class="cart-summary__price-item">
-                <span>Доставка</span>
-                <span>Бесплатно</span>
-              </div>
+          <div class="cart-summary__price">
+            <div class="cart-summary__price-item">
+              <span>Товары, 2 шт.</span>
+              <span>145&nbsp;080&nbsp;₽</span>
             </div>
-
-            <div class="cart-summary__delivery">
-              <div class="cart-summary__delivery-header cart-summary__full-width">
-                <span class="cart-summary__label">Доставка:</span>
-                <span class="cart-summary__value">Пункт выдачи</span>
-              </div>
-              <div class="cart-summary__delivery-description">
-                <p class="cart-summary__delivery-text">Ежедневно 10:00 - 21:00</p>
-                <address class="cart-summary__delivery-text">г. Москва (Московская область), улица Павлика Морозова, д. 48</address>
-              </div>
+            <div class="cart-summary__price-item">
+              <span>Скидка</span>
+              <span>32&nbsp;088&nbsp;₽</span>
             </div>
+            <div class="cart-summary__price-item">
+              <span>Доставка</span>
+              <span>Бесплатно</span>
+            </div>
+          </div>
 
-            <div class="cart-summary__date cart-summary__full-width">
+          <div class="cart-summary__delivery">
+            <div class="cart-summary__delivery-header cart-summary__full-width">
               <span class="cart-summary__label">Доставка:</span>
               <span class="cart-summary__value">Пункт выдачи</span>
             </div>
-
-            <div class="cart-summary__payment cart-summary__full-width">
-              <span class="cart-summary__label">Оплата:</span>
-              <span class="cart-summary__value">Картой</span>
+            <div class="cart-summary__delivery-description">
+              <p class="cart-summary__delivery-text">Ежедневно 10:00 - 21:00</p>
+              <address class="cart-summary__delivery-text">г. Москва (Московская область), улица Павлика Морозова, д. 48</address>
             </div>
+          </div>
 
-            <footer class="cart-summary__footer">
-              <button class="cart-summary__order-button button button--accent">Заказать</button>
+          <div class="cart-summary__date cart-summary__full-width">
+            <span class="cart-summary__label">Доставка:</span>
+            <span class="cart-summary__value">Пункт выдачи</span>
+          </div>
 
-              <label class="cart-summary__terms">
-                <input class="checkbox-input" type="checkbox" name="terms-agreement">
-                <span class="cart-summary__terms-checkbox checkbox" aria-hidden="true"></span>
-                <span class="cart-summary__terms-text">
-                  Согласен с условиями
-                  <a class="cart-summary__terms-link" href="#" target="_blank">
-                    правил пользования торговой площадкой и правилами возврата
-                  </a>
-                </span>
-              </label>
-            </footer>
-          </section>
-        </div>
+          <div class="cart-summary__payment cart-summary__full-width">
+            <span class="cart-summary__label">Оплата:</span>
+            <span class="cart-summary__value">Картой</span>
+          </div>
+
+          <footer class="cart-summary__footer">
+            <button class="cart-summary__order-button button button--accent">Заказать</button>
+
+            <label class="cart-summary__terms">
+              <input class="checkbox-input" type="checkbox" name="terms-agreement">
+              <span class="cart-summary__terms-checkbox checkbox" aria-hidden="true"></span>
+              <span class="cart-summary__terms-text">
+                Согласен с условиями
+                <a class="cart-summary__terms-link" href="#" target="_blank">
+                  правил пользования торговой площадкой и правилами возврата
+                </a>
+              </span>
+            </label>
+          </footer>
+        </section>
       </div>
     </div>
 
-    <section class="goods">
+    <section class="goods p-t-lg p-b-lg">
       <div class="container">
         <h2 class="goods__title title">Это выгодно!</h2>
         <ul class="goods__list grid">

@@ -1,3 +1,9 @@
+export const createContainer = () => {
+  const container = document.createElement('div');
+  container.classList.add('container');
+  return container;
+};
+
 export const createHeader = title => {
   const header = document.createElement('header');
   header.classList.add('article__header');
@@ -36,7 +42,7 @@ export const createFooter = (userID, userName) => {
       class="article__author underline-link"
       href="user.html?id=${userID || 6941861}"
     >
-      ${userName || 'Sweta Varma'}
+      ${userName || 'Emile Aesthetic'}
     </a>
   `;
 

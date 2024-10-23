@@ -1,18 +1,4 @@
 .hero {
-  padding: 45px 0 30px;
-
-  @include laptop {
-    padding: 27px 0 12px;
-  }
-
-  @include tablet {
-    padding: 25px 0 20px;
-  }
-
-  @include mobile {
-    padding: 20px 0 10px;
-  }
-
   &__inner {
     position: relative;
     display: flex;
