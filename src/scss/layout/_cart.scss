@@ -1,0 +1,69 @@
+.cart {
+  padding: 30px 0 50px;
+
+  @include laptop {
+    padding: 20px 0 45px;
+  }
+
+  @include tablet {
+    padding: 18px 0 40px;
+  }
+
+  @include mobile {
+    padding: 8px 0 35px;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: auto 420px;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      'items summary'
+      'delivery summary';
+    gap: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--text-dark-color);
+
+    @include desktop-wide {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto);
+      grid-template-areas:
+        'items'
+        'delivery'
+        'summary';
+    }
+
+    @include tablet {
+      row-gap: 20px;
+      font-size: 12px;
+    }
+
+    @include mobile {
+      font-size: 10px;
+    }
+  }
+
+  &__section {
+    padding: 30px 40px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow);
+
+    @include laptop {
+      padding: 30px;
+    }
+
+    @include tablet {
+      max-width: 100vw;
+      width: 100vw;
+      margin-left: calc(-1 * var(--container-padding-x));
+      margin-right: calc(-1 * var(--container-padding-x));
+      border-radius: unset;
+    }
+
+    @include mobile {
+      padding: 15px 20px;
+    }
+  }
+}

@@ -2,6 +2,7 @@
   --text-color: var(--text-light-color);
   --bg-color: transparent;
 
+  @include flex-center(true);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.3;
@@ -56,6 +57,35 @@
 
     &:active {
       --text-color: var(--text-accent-secondary-color);
+    }
+  }
+
+  &--delete {
+    --text-color: #c9c9c9;
+
+    @include focus {
+      --text-color: var(--text-dark-color);
+    }
+  }
+
+  &--quantity {
+    --text-color: var(--text-dark-color);
+    --border-color: var(--gray-light);
+
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+
+    @include focus {
+      --text-color: var(--text-accent-color);
+      --border-color: var(--color-primary);
+    }
+
+    @include hover {
+      --border-color: var(--text-dark-color);
+    }
+
+    &:active {
+      --border-color: var(--text-dark-color);
     }
   }
 }

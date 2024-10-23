@@ -1,0 +1,32 @@
+.checkbox-input {
+  position: absolute;
+  appearance: none;
+
+  &:checked + .checkbox {
+    border-color: transparent;
+    background-color: var(--checkbox-bg-color);
+  }
+
+  &:checked:focus-visible + .checkbox {
+    border-color: var(--checkbox-checked-focus);
+  }
+
+  &:focus-visible + .checkbox {
+    border-color: var(--checkbox-focus);
+  }
+}
+
+.checkbox {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--gray-light);
+  border-radius: 2px;
+  background-image: url('../img/sprite.svg#checked');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+  background-color: var(--bg-light-color);
+
+  @include transition(border-color, background-color);
+}

@@ -60,6 +60,10 @@
 
   --discount-bg-color: var(--color-tertiary);
 
+  --checkbox-bg-color: var(--color-primary);
+  --checkbox-focus: var(--color-primary);
+  --checkbox-checked-focus: var(--gray-darken);
+
   @include laptop {
     --border-radius-lg: 16px;
   }

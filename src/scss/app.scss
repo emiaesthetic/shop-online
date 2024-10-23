@@ -3,14 +3,14 @@
 @import 'abstracts/media';
 @import 'abstracts/variables';
 
-// Utilities
-@import 'utilities/utilities';
-
 // Core
 @import 'core/normalize';
 @import 'core/fonts';
 @import 'core/base';
 @import 'core/typography';
+
+// Utilities
+@import 'utilities/utilities';
 
 // Components
 @import 'components/logo';
@@ -27,6 +27,7 @@
 @import 'components/pagination';
 @import 'components/post-card';
 @import 'components/product-card';
+@import 'components/checkbox';
 
 // Layout
 @import 'layout/header';
@@ -35,8 +36,10 @@
 @import 'layout/promo';
 @import 'layout/goods';
 @import 'layout/product';
+@import 'layout/cart';
+@import 'layout/cart-items';
+@import 'layout/cart-delivery';
+@import 'layout/cart-summary';
 @import 'layout/blog';
 @import 'layout/article';
 @import 'layout/footer';
-
-// Pages
