@@ -4,9 +4,11 @@
   flex-direction: column;
   height: 100%;
 
-  &__image-wrapper {
+  &__image-link {
     position: relative;
+    display: block;
     margin-bottom: 20px;
+    border-radius: var(--border-radius-sm);
 
     @include tablet {
       margin-bottom: 15px;
@@ -14,6 +16,11 @@
 
     @include mobile {
       margin-bottom: 10px;
+    }
+
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
     }
   }
 
@@ -93,9 +100,16 @@
     }
   }
 
-  &__link:after {
-    content: '';
-    position: absolute;
-    inset: 0;
+  &__link {
+    @include transition(color);
+
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+
+    @include hover {
+      color: var(--text-accent-color);
+    }
   }
 }

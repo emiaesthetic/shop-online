@@ -99,7 +99,7 @@
   }
 
   &__goods-image img {
-    border-radius: 10px;
+    border-radius: var(--border-radius-xsm);
 
     @include tablet {
       width: 60px;

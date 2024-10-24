@@ -132,16 +132,22 @@
   &__image-link {
     display: block;
     min-width: 130px;
+    border-radius: var(--border-radius-xsm);
 
     @include tablet {
       min-width: 91px;
+    }
+
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
     }
 
     & img {
       width: 100%;
       object-fit: cover;
       border: 1px solid var(--gray-light);
-      border-radius: 10px;
+      border-radius: var(--border-radius-xsm);
     }
   }
 
@@ -192,10 +198,13 @@
   &__link {
     @include transition(color);
 
-    &:after {
-      content: '';
-      position: absolute;
-      inset: 0;
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+
+    @include hover {
+      color: var(--text-accent-color);
     }
   }
 

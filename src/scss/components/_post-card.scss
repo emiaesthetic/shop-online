@@ -12,6 +12,12 @@
     column-gap: 8px;
   }
 
+  &:focus-within {
+    outline: var(--outline);
+    outline-offset: var(--outline-offset);
+    border-radius: var(--border-radius-lg);
+  }
+
   &__image {
     position: relative;
 
@@ -70,8 +76,8 @@
   &__link {
     @include transition(color);
 
-    @include focus {
-      color: var(--link-focus-color);
+    &:focus {
+      outline: none;
     }
 
     @include hover() {
