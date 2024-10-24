@@ -9,7 +9,7 @@ export const createHeader = title => {
   header.classList.add('article__header');
 
   const h1 = document.createElement('h1');
-  h1.classList.add('article__title', 'title');
+  h1.classList.add('article__title', 'title', 'title--md');
   h1.textContent = title;
 
   header.append(h1);
