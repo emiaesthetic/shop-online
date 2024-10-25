@@ -62,8 +62,6 @@
   }
 
   &__icon {
-    @include transition(width, opacity, visibility);
-
     &--lines {
       opacity: 1;
       visibility: visible;

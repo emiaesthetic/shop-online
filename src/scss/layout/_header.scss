@@ -102,8 +102,6 @@
     opacity: 0;
     visibility: hidden;
 
-    @include transition(max-height, opacity, visibility);
-
     @include laptop {
       grid-template-columns: repeat(3, 1fr);
       grid-template-areas: 'catalog customers contacts';
