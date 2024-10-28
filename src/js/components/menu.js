@@ -1,4 +1,4 @@
-import { loadCategories } from '../services/api.js';
+import { loadData } from '../services/api.js';
 
 const isOpen = elem => elem.classList.contains('is-open');
 
@@ -11,7 +11,6 @@ const setExpandedAttribute = (target, element) => {
 };
 
 const updateAriaHidden = dropdowns => {
-  // console.log(dropdowns);
   dropdowns.forEach(item => {
     const content = item.querySelector('.dropdown__content');
 
@@ -29,7 +28,7 @@ const createMenuItem = category => {
 
   const link = document.createElement('a');
   link.classList.add('menu__sublink', 'underline-link');
-  link.href = '#';
+  link.href = `/category.html?category=${category}`;
   link.textContent = category;
 
   item.append(link);
@@ -73,7 +72,7 @@ const initMenu = async () => {
     updateAriaHidden(dropdowns);
   });
 
-  const categories = await loadCategories();
+  const categories = await loadData('api/categories');
   addCategoriesToCatalog(headerCatalog, categories);
   addCategoriesToCatalog(footerCatalog, categories);
 };

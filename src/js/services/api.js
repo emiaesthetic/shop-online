@@ -23,17 +23,6 @@ const sendRequest = async (
   }
 };
 
-export const loadCategories = async () =>
-  await sendRequest('api/categories', {
-    callback: (error, categories) => {
-      if (error) {
-        console.error(error);
-        return;
-      }
-      return categories;
-    },
-  });
-
 export const loadData = async endpoint =>
   await sendRequest(endpoint, {
     callback: (error, data) => {
