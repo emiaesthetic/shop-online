@@ -33,3 +33,14 @@ export const loadCategories = async () =>
       return categories;
     },
   });
+
+export const loadData = async endpoint =>
+  await sendRequest(endpoint, {
+    callback: (error, data) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+      return data;
+    },
+  });
