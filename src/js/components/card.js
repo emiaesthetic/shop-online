@@ -1,16 +1,11 @@
+import { calculateDiscountPrice } from '../helpers/productUtils.js';
 import { serverURL } from '../helpers/constants.js';
-
-const calculateDiscountPrice = (price, discount) => {
-  const discountAmount = price * (discount / 100);
-  return Math.floor(price - discountAmount);
-};
 
 export const createCard = (data, titleTag = 'h3') => {
   const card = document.createElement('article');
-  card.dataset.productID = data.id;
   card.classList.add('card');
   card.innerHTML = `
-    <a class="card__image-link" href="/product.html">
+    <a class="card__image-link" href="/product.html?id=${data.id}">
       <picture class="card__image">
         <img
           src="${serverURL}${data.image}"
@@ -39,7 +34,9 @@ export const createCard = (data, titleTag = 'h3') => {
       }
       </div>
       <${titleTag} class="card__title">
-        <a class="card__link" href="#">${data.title}</a>
+        <a class="card__link" href="/product.html?id=${data.id}">
+          ${data.title}
+        </a>
       </${titleTag}>
     </div>
   `;

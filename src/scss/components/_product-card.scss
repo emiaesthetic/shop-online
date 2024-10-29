@@ -148,6 +148,7 @@
 
   &__notification {
     display: inline-flex;
+    justify-content: start;
     align-items: center;
     column-gap: 16px;
     font-weight: 700;
