@@ -51,7 +51,7 @@ const getCurrentDate = () => {
   return currentDate.getTime() + (timeZoneOffset + 180) * 60 * 1000;
 };
 
-export const createTimer = () => {
+export const renderTimer = () => {
   if (isNotEmptyDeadline()) return;
 
   const title = createTitle();
@@ -92,5 +92,3 @@ export const createTimer = () => {
 
   updateTime();
 };
-
-window.addEventListener('DOMContentLoaded', createTimer);

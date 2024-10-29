@@ -10,7 +10,7 @@ export const createCard = (data, titleTag = 'h3') => {
   card.dataset.productID = data.id;
   card.classList.add('card');
   card.innerHTML = `
-    <a class="card__image-link" href="#">
+    <a class="card__image-link" href="/product.html">
       <picture class="card__image">
         <img
           src="${serverURL}${data.image}"

@@ -1,3 +1,4 @@
+import { serverURL } from '../helpers/constants.js';
 import { loadData } from '../services/api.js';
 
 const isOpen = elem => elem.classList.contains('is-open');
@@ -40,7 +41,7 @@ const addCategoriesToCatalog = (catalog, categories) => {
   catalog.append(...items);
 };
 
-const initMenu = async () => {
+export const renderMenu = async () => {
   const menu = document.querySelector('.menu');
   const menuList = document.querySelector('.menu__list');
   const menuBtn = document.querySelector('.menu__button');
@@ -72,9 +73,7 @@ const initMenu = async () => {
     updateAriaHidden(dropdowns);
   });
 
-  const categories = await loadData('api/categories');
+  const categories = await loadData(serverURL, 'api/categories');
   addCategoriesToCatalog(headerCatalog, categories);
   addCategoriesToCatalog(footerCatalog, categories);
 };
-
-initMenu();

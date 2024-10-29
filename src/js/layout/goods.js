@@ -1,5 +1,6 @@
-import { loadData } from '../services/api.js';
 import { createCard } from '../components/card.js';
+import { loadData } from '../services/api.js';
+import { serverURL } from '../helpers/constants.js';
 
 const sortGoodsByDiscount = goods => {
   goods.sort((a, b) => b.discount - a.discount);
@@ -21,7 +22,7 @@ export const renderGoods = async (sectionID, category) => {
   const endpoint = category
     ? `api/goods/category/${category}`
     : 'api/goods/discount';
-  const goods = await loadData(endpoint);
+  const goods = await loadData(serverURL, endpoint);
 
   const quantityGoods = getQuantityGoods(sectionID);
   if (quantityGoods === 0) return;
