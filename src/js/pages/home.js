@@ -1,4 +1,4 @@
-import { renderGoods } from '../layout/goods.js';
+import { renderDiscountGoods } from '../layout/goods.js';
 import { renderMenu } from '../components/menu.js';
 import { renderTimer } from '../components/timer.js';
 
@@ -7,5 +7,5 @@ export const renderHomePage = () => {
 
   renderMenu();
   window.addEventListener('DOMContentLoaded', renderTimer);
-  renderGoods('discount');
+  renderDiscountGoods();
 };

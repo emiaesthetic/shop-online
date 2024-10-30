@@ -1,4 +1,4 @@
-import { renderGoods } from '../layout/goods.js';
+import { renderCategoryGoods } from '../layout/goods.js';
 import { renderMenu } from '../components/menu.js';
 
 export const renderCategoryPage = () => {
@@ -12,5 +12,5 @@ export const renderCategoryPage = () => {
   const title = document.querySelector('.title');
   title.textContent = category;
 
-  renderGoods('category', category);
+  renderCategoryGoods(category);
 };

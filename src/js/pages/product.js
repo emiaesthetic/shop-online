@@ -1,6 +1,6 @@
 import { createContainer } from '../layout/container.js';
 import { createProductCard } from '../components/product-card.js';
-import { renderGoods } from '../layout/goods.js';
+import { renderRecommendGoods } from '../layout/goods.js';
 import { renderMenu } from '../components/menu.js';
 import { serverURL } from '../helpers/constants.js';
 import { loadData } from '../services/api.js';
@@ -103,6 +103,5 @@ export const renderProductPage = async () => {
 
   const productData = await loadData(serverURL, `api/goods/${productID}`);
   renderArticleContent(productData);
-
-  renderGoods('recommend', productData.category);
+  renderRecommendGoods(productData);
 };
