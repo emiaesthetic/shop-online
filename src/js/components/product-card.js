@@ -1,9 +1,15 @@
 import { createButton } from './button.js';
 import { createSVG } from './svg.js';
+import { FAVORITE_ITEMS_KEY } from '../helpers/constants.js';
 import {
   calculateDiscountPrice,
   calculateMonthlyPayment,
 } from '../helpers/productUtils.js';
+import {
+  getStorage,
+  addProductToStorage,
+  removeProductFromStorage,
+} from '../services/storage.js';
 
 const createPrice = (price, discount) => {
   const priceWrapper = document.createElement('div');
@@ -51,7 +57,10 @@ const createActions = () => {
   });
 
   actions.append(addToCartBtn, addToFavoriteBtn);
-  return actions;
+  return {
+    actions,
+    addToFavoriteBtn,
+  };
 };
 
 const createInfo = () => {
@@ -89,14 +98,33 @@ const createNotificationBtn = () => {
   return button;
 };
 
-export const createProductCard = (price, discount) => {
+const handleFavoriteAction = (button, id) => {
+  const goods = getStorage(FAVORITE_ITEMS_KEY);
+  if (goods.find(item => item === id)) {
+    button.classList.add('is-active');
+  }
+
+  button.addEventListener('click', () => {
+    button.classList.toggle('is-active');
+
+    if (button.classList.contains('is-active')) {
+      addProductToStorage(FAVORITE_ITEMS_KEY, id);
+    } else {
+      removeProductFromStorage(FAVORITE_ITEMS_KEY, id);
+    }
+  });
+};
+
+export const createProductCard = (id, price, discount) => {
   const productCard = document.createElement('div');
   productCard.classList.add('product-card');
 
   const priceWrapper = createPrice(price, discount);
-  const actions = createActions();
+  const { actions, addToFavoriteBtn } = createActions(id);
   const info = createInfo();
   const notificationBtn = createNotificationBtn();
+
+  handleFavoriteAction(addToFavoriteBtn, id);
 
   productCard.append(priceWrapper, actions, info, notificationBtn);
   return productCard;

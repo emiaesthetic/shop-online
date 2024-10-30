@@ -43,14 +43,14 @@ const createImage = (imageURL, title) => {
   return wrapper;
 };
 
-const createDetails = (title, image, price, discount) => {
+const createDetails = ({ id, title, image, price, discount }) => {
   const details = document.createElement('div');
   details.classList.add('product__details');
 
   const imgWrapper = createImage(image, title);
   if (discount) imgWrapper.append(createDiscount(discount));
 
-  const productCard = createProductCard(price, discount);
+  const productCard = createProductCard(id, price, discount);
 
   details.append(imgWrapper, productCard);
   return details;
@@ -75,21 +75,15 @@ const createDescription = text => {
   return description;
 };
 
-const renderArticleContent = ({
-  title,
-  image,
-  price,
-  discount,
-  description,
-}) => {
+const renderArticleContent = data => {
   const container = createContainer();
-  const header = createHeader(title);
-  const details = createDetails(title, image, price, discount);
-  const descriptionContent = createDescription(description);
+  const header = createHeader(data.title);
+  const details = createDetails(data);
+  const description = createDescription(data.description);
 
   const article = document.querySelector('.product');
   article.innerHTML = '';
-  container.append(header, details, descriptionContent);
+  container.append(header, details, description);
   article.append(container);
 };
 

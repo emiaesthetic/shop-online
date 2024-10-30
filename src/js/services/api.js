@@ -7,7 +7,6 @@ const sendRequest = async (
 ) => {
   try {
     const URL = `${baseURL}${path}`;
-    console.log(URL);
     const options = {
       method,
     };
