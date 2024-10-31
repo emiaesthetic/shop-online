@@ -3,6 +3,7 @@ import { createSVG } from '../components/svg.js';
 import { FAVORITE_ITEMS_KEY, CART_ITEMS_KEY } from '../helpers/constants.js';
 import { updateCartCounter } from '../components/cart-counter.js';
 import {
+  formatPrice,
   calculateDiscountPrice,
   calculateMonthlyPayment,
 } from '../helpers/productUtils.js';
@@ -19,18 +20,18 @@ const createPrice = (price, discount) => {
   if (discount) {
     const discountedPrice = document.createElement('span');
     discountedPrice.classList.add('product-card__discounted-price');
-    discountedPrice.textContent = `${calculateDiscountPrice(price, discount)} ₽`;
+    discountedPrice.textContent = `${calculateDiscountPrice(price, discount)}`;
     priceWrapper.append(discountedPrice);
   }
 
   const nonDiscountedPrice = document.createElement('span');
   nonDiscountedPrice.classList.add('product-card__non-discounted-price');
-  nonDiscountedPrice.textContent = `${price} ₽`;
+  nonDiscountedPrice.textContent = formatPrice(price);
 
   const creditPrice = document.createElement('span');
   creditPrice.classList.add('product-card__credit');
   creditPrice.textContent = `
-    В кредит от ${calculateMonthlyPayment(price, discount)} ₽
+    В кредит от ${calculateMonthlyPayment(price)}
   `;
 
   priceWrapper.append(nonDiscountedPrice, creditPrice);

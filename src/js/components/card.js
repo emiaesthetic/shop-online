@@ -1,4 +1,7 @@
-import { calculateDiscountPrice } from '../helpers/productUtils.js';
+import {
+  formatPrice,
+  calculateDiscountPrice,
+} from '../helpers/productUtils.js';
 import { serverURL } from '../helpers/constants.js';
 
 export const createCard = (data, titleTag = 'h3') => {
@@ -26,11 +29,15 @@ export const createCard = (data, titleTag = 'h3') => {
         data.discount
           ? `
         <span class="card__discounted-price">
-          ${calculateDiscountPrice(data.price, data.discount)}&nbsp;₽
+          ${calculateDiscountPrice(data.price, data.discount)}
         </span>
-        <del class="card__non-discounted-price">${data.price}&nbsp;₽</del>
+        <del class="card__non-discounted-price">
+          ${formatPrice(data.price)}
+        </del>
       `
-          : `<span class="card__discounted-price">${data.price}&nbsp;₽</span>`
+          : `<span class="card__discounted-price">
+              ${formatPrice(data.price)}
+            </span>`
       }
       </div>
       <${titleTag} class="card__title">
