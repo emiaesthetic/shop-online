@@ -62,4 +62,23 @@
       @include visually-hidden;
     }
   }
+
+  &__cart {
+    position: relative;
+  }
+
+  &__cart-counter {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    color: var(--text-accent-color);
+    background-color: var(--bg-light-color);
+    border-radius: 50%;
+  }
 }

@@ -4,6 +4,7 @@ import { renderProductPage } from './pages/product.js';
 import { renderCartPage } from './pages/cart.js';
 import { renderBlogPage } from './pages/blog.js';
 import { renderArticlePage } from './pages/article.js';
+import { updateCartCounter } from './components/cart-counter.js';
 
 const init = () => {
   renderHomePage();
@@ -12,6 +13,7 @@ const init = () => {
   renderCartPage();
   renderBlogPage();
   renderArticlePage();
+  updateCartCounter();
 };
 
 init();
