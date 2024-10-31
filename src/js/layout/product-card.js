@@ -1,5 +1,5 @@
-import { createButton } from './button.js';
-import { createSVG } from './svg.js';
+import { createButton } from '../components/button.js';
+import { createSVG } from '../components/svg.js';
 import { FAVORITE_ITEMS_KEY, CART_ITEMS_KEY } from '../helpers/constants.js';
 import { updateCartCounter } from '../components/cart-counter.js';
 import {

@@ -1,5 +1,5 @@
 import { createContainer } from '../layout/container.js';
-import { createProductCard } from '../components/product-card.js';
+import { createProductCard } from '../layout/product-card.js';
 import { renderRecommendGoods } from '../layout/goods.js';
 import { renderMenu } from '../components/menu.js';
 import { serverURL } from '../helpers/constants.js';
