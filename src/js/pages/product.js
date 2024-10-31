@@ -1,7 +1,6 @@
 import { createContainer } from '../layout/container.js';
 import { createProductCard } from '../layout/product-card.js';
 import { renderRecommendGoods } from '../layout/goods.js';
-import { renderMenu } from '../components/menu.js';
 import { serverURL } from '../helpers/constants.js';
 import { loadData } from '../services/api.js';
 
@@ -89,8 +88,6 @@ const renderArticleContent = data => {
 
 export const renderProductPage = async () => {
   if (!document.querySelector('#productPage')) return;
-
-  renderMenu();
 
   const ulrParams = new URLSearchParams(window.location.search);
   const productID = ulrParams.get('id');

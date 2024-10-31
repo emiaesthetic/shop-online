@@ -1,7 +1,6 @@
 import { createContainer } from '../layout/container.js';
 import { loadData } from '../services/api.js';
 import { newsURL } from '../helpers/constants.js';
-import { renderMenu } from '../components/menu.js';
 
 const createHeader = title => {
   const header = document.createElement('header');
@@ -72,13 +71,10 @@ const displayContent = (articleData, userData) => {
 export const renderArticlePage = async () => {
   if (!document.querySelector('#articlePage')) return;
 
-  renderMenu();
-
   const paramsFromUrl = new URLSearchParams(window.location.search);
   const articleID = paramsFromUrl.get('id');
 
   const articleData = await loadData(newsURL, `posts/${articleID}`);
   const userData = await loadData(newsURL, `users/${articleData.user_id}`);
-
   displayContent(articleData, userData);
 };
