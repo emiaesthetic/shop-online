@@ -49,7 +49,8 @@
   }
 
   &__price {
-    display: flex;
+    display: inline-flex;
+    width: max-content;
     align-items: center;
     column-gap: 28px;
 
@@ -82,6 +83,10 @@
     @include mobile {
       font-size: 12px;
     }
+
+    &.is-hidden {
+      @include visually-hidden;
+    }
   }
 
   &__title {
@@ -101,6 +106,7 @@
   }
 
   &__link {
+    @include text-truncate(2);
     @include transition(color);
 
     @include focus {

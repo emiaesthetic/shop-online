@@ -1,4 +1,4 @@
-import { serverURL } from '../helpers/constants.js';
+import { serverURL, mediaQueries } from '../helpers/constants.js';
 import { loadData } from '../services/api.js';
 
 const isOpen = elem => elem.classList.contains('is-open');
@@ -15,7 +15,7 @@ const updateAriaHidden = dropdowns => {
   dropdowns.forEach(item => {
     const content = item.querySelector('.dropdown__content');
 
-    if (window.innerWidth >= 576) {
+    if (window.innerWidth >= mediaQueries.mobileLg) {
       content.setAttribute('aria-hidden', 'true');
     } else {
       content.setAttribute('aria-hidden', 'false');

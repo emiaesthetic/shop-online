@@ -1,4 +1,4 @@
-import { createCard } from '../components/card.js';
+import { createCard, updateAllPricesVisibility } from '../components/card.js';
 import { loadData } from '../services/api.js';
 import { serverURL } from '../helpers/constants.js';
 
@@ -18,6 +18,9 @@ const renderGoodsItem = (goods, title = 'h3') => {
     item.append(card);
     goodsList.append(item);
   });
+
+  updateAllPricesVisibility();
+  window.addEventListener('resize', updateAllPricesVisibility);
 };
 
 export const renderCategoryGoods = async category => {

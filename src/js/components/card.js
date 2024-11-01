@@ -2,23 +2,27 @@ import {
   formatPrice,
   calculateDiscountPrice,
 } from '../helpers/productUtils.js';
+import { mediaQueries } from '../helpers/constants.js';
 import { serverURL } from '../helpers/constants.js';
 
-export const createCard = (data, titleTag = 'h3') => {
+export const createCard = (
+  { id, title, image, price, discount },
+  titleTag = 'h3',
+) => {
   const card = document.createElement('article');
   card.classList.add('card');
   card.innerHTML = `
-    <a class="card__image-link" href="/product.html?id=${data.id}">
+    <a class="card__image-link" href="/product.html?id=${id}">
       <picture class="card__image">
         <img
-          src="${serverURL}${data.image}"
+          src="${serverURL}${image}"
           width="420" height="295" loading="lazy"
-          alt="${data.title}"
+          alt="${title}"
         >
       </picture>
       ${
-        data.discount
-          ? `<span class="discount discount--lb">-${data.discount}%</span>`
+        discount
+          ? `<span class="discount discount--lb">-${discount}%</span>`
           : ''
       }
     </a>
@@ -26,27 +30,48 @@ export const createCard = (data, titleTag = 'h3') => {
     <div class="card__content">
       <div class="card__price">
       ${
-        data.discount
+        discount
           ? `
         <span class="card__discounted-price">
-          ${calculateDiscountPrice(data.price, data.discount)}
+          ${calculateDiscountPrice(price, discount)}
         </span>
         <del class="card__non-discounted-price">
-          ${formatPrice(data.price)}
+          ${formatPrice(price)}
         </del>
       `
           : `<span class="card__discounted-price">
-              ${formatPrice(data.price)}
+              ${formatPrice(price)}
             </span>`
       }
       </div>
-      <${titleTag} class="card__title">
-        <a class="card__link" href="/product.html?id=${data.id}">
-          ${data.title}
+      <${titleTag} class="card__title" title="${title}">
+        <a class="card__link" href="/product.html?id=${id}">
+          ${title}
         </a>
       </${titleTag}>
     </div>
   `;
 
   return card;
+};
+
+export const updateAllPricesVisibility = () => {
+  document.querySelectorAll('.card').forEach(card => {
+    const priceContainer = card.querySelector('.card__price');
+    const nonDiscountedPrice = card.querySelector(
+      '.card__non-discounted-price',
+    );
+
+    if (!nonDiscountedPrice) return;
+
+    Object.values(mediaQueries).forEach(value => {
+      if (window.innerWidth === value) {
+        nonDiscountedPrice.classList.remove('is-hidden');
+      }
+    });
+
+    if (priceContainer.offsetWidth >= card.offsetWidth) {
+      nonDiscountedPrice.classList.add('is-hidden');
+    }
+  });
 };
