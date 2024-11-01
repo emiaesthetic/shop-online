@@ -5,21 +5,32 @@ import {
 import { mediaQueries } from '../helpers/constants.js';
 import { serverURL } from '../helpers/constants.js';
 
+const createImage = (src, alt) => {
+  const image = new Image(420, 295);
+  image.src = `${serverURL}${src}`;
+  image.alt = alt;
+
+  const imageWrapper = document.createElement('picture');
+  imageWrapper.classList.add('card__image');
+  imageWrapper.append(image);
+
+  return {
+    imageWrapper,
+    image,
+  };
+};
+
 export const createCard = (
-  { id, title, image, price, discount },
+  { id, title, image: src, price, discount },
   titleTag = 'h3',
 ) => {
+  const { imageWrapper, image } = createImage(src, title);
+
   const card = document.createElement('article');
   card.classList.add('card');
   card.innerHTML = `
     <a class="card__image-link" href="/product.html?id=${id}">
-      <picture class="card__image">
-        <img
-          src="${serverURL}${image}"
-          width="420" height="295" loading="lazy"
-          alt="${title}"
-        >
-      </picture>
+      ${imageWrapper.innerHTML}
       ${
         discount
           ? `<span class="discount discount--lb">-${discount}%</span>`
@@ -52,7 +63,10 @@ export const createCard = (
     </div>
   `;
 
-  return card;
+  return {
+    card,
+    image,
+  };
 };
 
 export const updateAllPricesVisibility = () => {

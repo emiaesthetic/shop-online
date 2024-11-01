@@ -20,3 +20,18 @@ export const calculateMonthlyPayment = price => {
 
   return formatPrice(Math.floor(monthlyPayment));
 };
+
+export const preloadImages = images =>
+  Promise.all(
+    images.map(
+      image =>
+        new Promise((resolve, reject) => {
+          image.addEventListener('load', () => {
+            resolve();
+          });
+          image.addEventListener('error', () => {
+            reject(new Error(`Не удалось загрузить изображение: ${image.src}`));
+          });
+        }),
+    ),
+  );

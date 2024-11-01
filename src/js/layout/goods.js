@@ -1,23 +1,31 @@
 import { createCard, updateAllPricesVisibility } from '../components/card.js';
+import { removeLoader } from '../components/loader.js';
 import { loadData } from '../services/api.js';
 import { serverURL } from '../helpers/constants.js';
+import { preloadImages } from '../helpers/productUtils.js';
 
 const sortGoodsByDiscount = goods => {
   return goods.sort((a, b) => b.discount - a.discount);
 };
 
-const renderGoodsItem = (goods, title = 'h3') => {
+const renderGoodsItem = async (goods, title = 'h3') => {
   const goodsList = document.querySelector('.goods__list');
   goodsList.innerHTML = '';
 
+  const images = [];
   goods.forEach(product => {
     const item = document.createElement('li');
     item.classList.add('goods__item');
 
-    const card = createCard(product, title);
+    const { card, image } = createCard(product, title);
+    images.push(image);
+
     item.append(card);
     goodsList.append(item);
   });
+
+  await preloadImages(images);
+  removeLoader();
 
   updateAllPricesVisibility();
   window.addEventListener('resize', updateAllPricesVisibility);

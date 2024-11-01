@@ -14,6 +14,10 @@ body {
   min-height: 100vh;
   background-color: var(--bg-light-color);
   overflow-x: hidden;
+
+  &:has(.loader) {
+    overflow-y: hidden;
+  }
 }
 
 ul,
