@@ -1,8 +1,8 @@
 import { createCard, updateAllPricesVisibility } from '../components/card.js';
+import { preloadImages } from '../components/image.js';
 import { removeLoader } from '../components/loader.js';
 import { loadData } from '../services/api.js';
 import { serverURL } from '../helpers/constants.js';
-import { preloadImages } from '../helpers/productUtils.js';
 
 const sortGoodsByDiscount = goods => {
   return goods.sort((a, b) => b.discount - a.discount);

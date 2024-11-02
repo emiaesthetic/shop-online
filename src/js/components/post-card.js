@@ -1,15 +1,19 @@
+import { createImage, preloadImages } from './image.js';
+import { removeLoader } from './loader.js';
+
 const createPost = ({ id, title }, index) => {
+  const { imageWrapper, image } = createImage({
+    tag: 'div',
+    className: 'post-card__image',
+    src: `https://loremflickr.com/400/400?${index}`,
+    width: 195,
+    height: 195,
+  });
+
   const post = document.createElement('article');
   post.classList.add('post-card');
   post.innerHTML = `
-    <div class="post-card__image">
-      <img
-        src="https://loremflickr.com/400/400?${index}"
-        alt="" width="195" height="195" loading="lazy"
-        aria-hidden="true"
-      >
-    </div>
-
+    ${imageWrapper.innerHTML}
     <div class="post-card__content">
       <h2 class="post-card__title">
         <a class="post-card__link" href="article.html?id=${id}">
@@ -19,20 +23,28 @@ const createPost = ({ id, title }, index) => {
     </div>
   `;
 
-  return post;
+  return {
+    post,
+    image,
+  };
 };
 
-export const renderPosts = posts => {
+export const renderPosts = async posts => {
   const postList = document.querySelector('.blog__list');
   postList.innerHTML = '';
 
+  const images = [];
   posts.forEach((item, index) => {
     const postWrapper = document.createElement('li');
     postWrapper.classList.add('blog__item');
 
-    const post = createPost(item, index);
+    const { post, image } = createPost(item, index);
+    images.push(image);
 
     postWrapper.append(post);
     postList.append(postWrapper);
   });
+
+  await preloadImages(images);
+  removeLoader();
 };

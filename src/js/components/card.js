@@ -1,30 +1,22 @@
+import { createImage } from './image.js';
+import { serverURL, mediaQueries } from '../helpers/constants.js';
 import {
   formatPrice,
   calculateDiscountPrice,
 } from '../helpers/productUtils.js';
-import { mediaQueries } from '../helpers/constants.js';
-import { serverURL } from '../helpers/constants.js';
-
-const createImage = (src, alt) => {
-  const image = new Image(420, 295);
-  image.src = `${serverURL}${src}`;
-  image.alt = alt;
-
-  const imageWrapper = document.createElement('picture');
-  imageWrapper.classList.add('card__image');
-  imageWrapper.append(image);
-
-  return {
-    imageWrapper,
-    image,
-  };
-};
 
 export const createCard = (
   { id, title, image: src, price, discount },
   titleTag = 'h3',
 ) => {
-  const { imageWrapper, image } = createImage(src, title);
+  const { imageWrapper, image } = createImage({
+    tag: 'picture',
+    className: 'card__image',
+    src: `${serverURL}${src}`,
+    width: 420,
+    height: 295,
+    alt: title,
+  });
 
   const card = document.createElement('article');
   card.classList.add('card');

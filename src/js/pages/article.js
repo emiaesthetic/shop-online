@@ -1,3 +1,4 @@
+import { removeLoader } from '../components/loader.js';
 import { createContainer } from '../layout/container.js';
 import { loadData } from '../services/api.js';
 import { newsURL } from '../helpers/constants.js';
@@ -77,4 +78,6 @@ export const renderArticlePage = async () => {
   const articleData = await loadData(newsURL, `posts/${articleID}`);
   const userData = await loadData(newsURL, `users/${articleData.user_id}`);
   displayContent(articleData, userData);
+
+  removeLoader();
 };
