@@ -42,9 +42,11 @@ export const createCard = (
           ${formatPrice(price)}
         </del>
       `
-          : `<span class="card__discounted-price">
-              ${formatPrice(price)}
-            </span>`
+          : `
+        <span class="card__discounted-price">
+            ${formatPrice(price)}
+        </span>
+      `
       }
       </div>
       <${titleTag} class="card__title" title="${title}">

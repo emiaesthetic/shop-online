@@ -9,4 +9,4 @@ export const renderLoader = () => {
   document.body.append(loader);
 };
 
-export const removeLoader = () => document.querySelector('.loader').remove();
+export const removeLoader = () => document.querySelector('.loader')?.remove();

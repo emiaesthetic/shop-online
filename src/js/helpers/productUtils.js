@@ -1,5 +1,5 @@
 export const formatPrice = price => {
-  return new Intl.NumberFormat('ru-RU').format(price) + '\u00A0₽';
+  return new Intl.NumberFormat('ru-RU').format(Math.floor(price)) + '\u00A0₽';
 };
 
 export const calculateDiscountPrice = (price, discount) => {
@@ -19,4 +19,27 @@ export const calculateMonthlyPayment = price => {
     (Math.pow(1 + monthlyRate, termMonths) - 1);
 
   return formatPrice(Math.floor(monthlyPayment));
+};
+
+const getNumber = string => parseFloat(string.replace(/[^\d.-]/g, ''));
+
+export const recalculatePrices = (prices, prevQuantity, currentQuantity) => {
+  const currentPrice = prices.querySelector('.cart-item__discounted-price');
+  currentPrice.textContent = formatPrice(
+    (getNumber(currentPrice.textContent) / prevQuantity) * currentQuantity,
+  );
+
+  const creditPrice = prices.querySelector('.cart-item__credit');
+  creditPrice.textContent = formatPrice(
+    (getNumber(creditPrice.textContent) / prevQuantity) * currentQuantity,
+  );
+
+  const originalPrice = prices.querySelector(
+    '.cart-item__non-discounted-price',
+  );
+  if (originalPrice) {
+    originalPrice.textContent = formatPrice(
+      (getNumber(originalPrice.textContent) / prevQuantity) * currentQuantity,
+    );
+  }
 };

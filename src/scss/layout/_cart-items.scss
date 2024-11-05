@@ -145,9 +145,16 @@
 
     & img {
       width: 100%;
+      width: 130px;
+      height: 130px;
       object-fit: cover;
       border: 1px solid var(--gray-light);
       border-radius: var(--border-radius-xsm);
+
+      @include tablet {
+        width: 91px;
+        height: 91px;
+      }
     }
   }
 
