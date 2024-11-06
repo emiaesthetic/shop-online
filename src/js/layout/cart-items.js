@@ -36,8 +36,11 @@ const createCartHeader = goods => {
     inputClassName: 'checkbox-input',
     inputName: 'allProducts',
     spanClassName: 'cart-items__checkbox checkbox',
-    text: 'Выбрать все',
   });
+
+  const span = document.createElement('span');
+  span.textContent = 'Выбрать все';
+  label.append(span);
 
   const deleteBtn = createButton({
     className: 'cart-items__delete button button--delete',

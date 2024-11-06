@@ -3,7 +3,6 @@ export const createCheckbox = ({
   inputClassName,
   inputName,
   spanClassName,
-  text,
 }) => {
   const label = document.createElement('label');
   label.className = labelClassName;
@@ -17,10 +16,7 @@ export const createCheckbox = ({
   span.className = spanClassName;
   span.ariaHidden = true;
 
-  const spanText = document.createElement('span');
-  spanText.textContent = text;
-
-  label.append(checkbox, span, spanText);
+  label.append(checkbox, span);
   return {
     label,
     checkbox,

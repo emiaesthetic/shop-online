@@ -21,7 +21,7 @@ export const calculateMonthlyPayment = price => {
   return formatPrice(Math.floor(monthlyPayment));
 };
 
-const getNumber = string => parseFloat(string.replace(/[^\d.-]/g, ''));
+export const getNumber = string => parseFloat(string.replace(/[^\d.-]/g, ''));
 
 export const recalculatePrices = (prices, prevQuantity, currentQuantity) => {
   const currentPrice = prices.querySelector('.cart-item__discounted-price');
