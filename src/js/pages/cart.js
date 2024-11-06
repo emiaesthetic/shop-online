@@ -1,5 +1,6 @@
 import { renderCartItems } from '../layout/cart-items.js';
 import { renderCartSummary } from '../layout/cart-summary.js';
+import { renderCartDelivery } from '../layout/cart-delivery.js';
 import { renderDiscountGoods } from '../layout/goods.js';
 
 export const renderCartPage = () => {
@@ -7,5 +8,6 @@ export const renderCartPage = () => {
 
   renderCartItems();
   renderCartSummary();
+  renderCartDelivery();
   renderDiscountGoods('discount');
 };
