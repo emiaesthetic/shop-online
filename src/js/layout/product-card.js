@@ -1,16 +1,17 @@
 import { createButton } from '../components/button.js';
 import { createSVG } from '../components/svg.js';
-import { FAVORITE_ITEMS_KEY, CART_ITEMS_KEY } from '../helpers/constants.js';
-import { updateCartCounter } from '../components/cart-counter.js';
+import { updateCartCounter } from '../pages/cart.js';
 import {
   formatPrice,
   calculateDiscountPrice,
   calculateMonthlyPayment,
 } from '../helpers/productUtils.js';
+import { FAVORITE_ITEMS_KEY, CART_ITEMS_KEY } from '../helpers/constants.js';
 import {
   getStorage,
-  addProductToStorage,
-  removeProductFromStorage,
+  addProductToFavorite,
+  removeProductFromFavorite,
+  addProductToCart,
 } from '../services/storage.js';
 
 const createPrice = (price, discount) => {
@@ -20,7 +21,8 @@ const createPrice = (price, discount) => {
   if (discount) {
     const discountedPrice = document.createElement('span');
     discountedPrice.classList.add('product-card__discounted-price');
-    discountedPrice.textContent = `${calculateDiscountPrice(price, discount)}`;
+    const discountedPriceValue = calculateDiscountPrice(price, discount);
+    discountedPrice.textContent = `${formatPrice(discountedPriceValue)}`;
     priceWrapper.append(discountedPrice);
   }
 
@@ -31,7 +33,7 @@ const createPrice = (price, discount) => {
   const creditPrice = document.createElement('span');
   creditPrice.classList.add('product-card__credit');
   creditPrice.textContent = `
-    В кредит от ${calculateMonthlyPayment(price)}
+    В кредит от ${formatPrice(calculateMonthlyPayment(price))}
   `;
 
   priceWrapper.append(nonDiscountedPrice, creditPrice);
@@ -101,9 +103,10 @@ const createNotificationBtn = () => {
   return button;
 };
 
-const handleFavoriteAction = (button, id) => {
-  const goods = getStorage(FAVORITE_ITEMS_KEY);
-  if (goods.find(item => item === id)) {
+const handleFavoriteAction = (button, itemID) => {
+  const cartGoods = getStorage(FAVORITE_ITEMS_KEY);
+
+  if (cartGoods.includes(itemID)) {
     button.classList.add('is-active');
   }
 
@@ -111,18 +114,18 @@ const handleFavoriteAction = (button, id) => {
     button.classList.toggle('is-active');
 
     if (button.classList.contains('is-active')) {
-      addProductToStorage(FAVORITE_ITEMS_KEY, id);
+      addProductToFavorite(itemID);
     } else {
-      removeProductFromStorage(FAVORITE_ITEMS_KEY, id);
+      removeProductFromFavorite(itemID);
     }
   });
 };
 
-const handleCartAction = (button, id) => {
+const handleCartAction = (button, itemID) => {
   button.addEventListener('click', () => {
-    const goods = getStorage(CART_ITEMS_KEY);
-    if (!goods.includes(id)) {
-      addProductToStorage(CART_ITEMS_KEY, id);
+    const cartGoods = getStorage(CART_ITEMS_KEY);
+    if (!cartGoods.some(product => product.id === itemID)) {
+      addProductToCart(itemID);
       updateCartCounter();
     }
   });

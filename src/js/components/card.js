@@ -36,7 +36,7 @@ export const createCard = (
         discount
           ? `
         <span class="card__discounted-price">
-          ${calculateDiscountPrice(price, discount)}
+          ${formatPrice(calculateDiscountPrice(price, discount))}
         </span>
         <del class="card__non-discounted-price">
           ${formatPrice(price)}

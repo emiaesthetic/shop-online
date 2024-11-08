@@ -4,7 +4,7 @@ export const formatPrice = price => {
 
 export const calculateDiscountPrice = (price, discount) => {
   const discountAmount = price * (discount / 100);
-  return formatPrice(Math.floor(price - discountAmount));
+  return Math.floor(price - discountAmount);
 };
 
 export const calculateMonthlyPayment = price => {
@@ -18,28 +18,27 @@ export const calculateMonthlyPayment = price => {
     (loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, termMonths))) /
     (Math.pow(1 + monthlyRate, termMonths) - 1);
 
-  return formatPrice(Math.floor(monthlyPayment));
+  return Math.floor(monthlyPayment);
 };
 
-export const getNumber = string => parseFloat(string.replace(/[^\d.-]/g, ''));
+const getNumber = string => parseFloat(string.replace(/[^\d.-]/g, ''));
 
-export const recalculatePrices = (prices, prevQuantity, currentQuantity) => {
-  const currentPrice = prices.querySelector('.cart-item__discounted-price');
-  currentPrice.textContent = formatPrice(
-    (getNumber(currentPrice.textContent) / prevQuantity) * currentQuantity,
-  );
+export const recalculatePrices = (itemID, quantity, newQuantity) => {
+  const cartPrices = document.querySelector(`[data-id="${itemID}"]`);
 
-  const creditPrice = prices.querySelector('.cart-item__credit');
-  creditPrice.textContent = formatPrice(
-    (getNumber(creditPrice.textContent) / prevQuantity) * currentQuantity,
-  );
+  const currentPrice = cartPrices.querySelector('.cart-item__discounted-price');
+  const currentPriceValue = getNumber(currentPrice.textContent) / quantity;
+  currentPrice.textContent = formatPrice(currentPriceValue * newQuantity);
 
-  const originalPrice = prices.querySelector(
+  const creditPrice = cartPrices.querySelector('.cart-item__credit');
+  const creditPriceValue = getNumber(creditPrice.textContent) / quantity;
+  creditPrice.textContent = formatPrice(creditPriceValue * newQuantity);
+
+  const originalPrice = cartPrices.querySelector(
     '.cart-item__non-discounted-price',
   );
   if (originalPrice) {
-    originalPrice.textContent = formatPrice(
-      (getNumber(originalPrice.textContent) / prevQuantity) * currentQuantity,
-    );
+    const originalPriceValue = getNumber(originalPrice.textContent) / quantity;
+    originalPrice.textContent = formatPrice(originalPriceValue * newQuantity);
   }
 };

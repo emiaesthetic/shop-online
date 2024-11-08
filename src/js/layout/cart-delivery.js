@@ -1,7 +1,5 @@
 import { createButton } from '../components/button.js';
-import { serverURL, CART_ITEMS_KEY } from '../helpers/constants.js';
-import { getStorage } from '../services/storage.js';
-import { loadData } from '../services/api.js';
+import { serverURL } from '../helpers/constants.js';
 
 const createHeader = () => {
   const header = document.createElement('header');
@@ -24,6 +22,7 @@ const createHeader = () => {
 
 const createItem = ({ id, title, image }) => {
   const item = document.createElement('li');
+  item.dataset.id = id;
   item.className = 'cart-delivery__goods-item';
   item.innerHTML = `
     <a class="cart-delivery__goods-link" href="/product.html?id=${id}">
@@ -64,29 +63,21 @@ const createContent = goods => {
     </div>
   `;
 
-  const list = document.createElement('ul');
-  list.className = 'cart-delivery__goods';
+  const items = document.createElement('ul');
+  items.className = 'cart-delivery__goods';
 
   goods.forEach(product => {
     const item = createItem(product);
-    list.append(item);
+    items.append(item);
   });
 
   const lastCartItem = content.querySelector('.cart-delivery__item:last-child');
-  lastCartItem.append(list);
+  lastCartItem.append(items);
 
   return content;
 };
 
-export const renderCartDelivery = async () => {
-  const goodsID = getStorage(CART_ITEMS_KEY);
-  const goods = [];
-
-  for (const item of goodsID) {
-    const product = await loadData(serverURL, `api/goods/${item}`);
-    goods.push(product);
-  }
-
+export const renderCartDelivery = goods => {
   const header = createHeader();
   const content = createContent(goods);
 

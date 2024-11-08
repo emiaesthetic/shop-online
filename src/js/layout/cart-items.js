@@ -2,30 +2,23 @@ import { createImage } from '../components/image.js';
 import { createButton } from '../components/button.js';
 import { createSVG } from '../components/svg.js';
 import { createCheckbox } from '../components/checkbox.js';
-import {
-  serverURL,
-  mediaQueries,
-  CART_ITEMS_KEY,
-} from '../helpers/constants.js';
+import { serverURL, mediaQueries } from '../helpers/constants.js';
 import {
   formatPrice,
   calculateDiscountPrice,
   calculateMonthlyPayment,
-  recalculatePrices,
 } from '../helpers/productUtils.js';
-import { getStorage, removeProductFromStorage } from '../services/storage.js';
-import { loadData } from '../services/api.js';
-import { updateCartCounter } from '../components/cart-counter.js';
 
-const createCartHeader = goods => {
+const createCartHeader = quantity => {
   const header = document.createElement('header');
   header.className = 'cart-items__header';
 
   const title = document.createElement('h2');
   title.className = 'cart-items__title title title--sm';
-  const quantity = goods.length <= 0 ? '' : goods.length;
   title.innerHTML = `
-    Корзина<sup class="cart-items__sup-title">${quantity}</sup>
+    Корзина<sup class="cart-items__sup-title">${
+      quantity <= 0 ? '' : quantity
+    }</sup>
   `;
 
   const controls = document.createElement('div');
@@ -62,36 +55,22 @@ const createCartHeader = goods => {
     );
   });
 
-  deleteBtn.addEventListener('click', () => {
-    document.querySelectorAll('.cart-item').forEach(item => {
-      const checkbox = item.querySelector('.cart-item__checkbox-input');
-      if (checkbox.checked) {
-        const productID = item.dataset.id;
-
-        item.remove();
-        removeProductFromStorage(CART_ITEMS_KEY, productID);
-        updateCartCounter();
-
-        const supTitle = title.querySelector('.cart-items__sup-title');
-        const quantity = goods.filter(item => item !== productID).length;
-        supTitle.textContent = quantity <= 0 ? '' : quantity;
-      }
-    });
-  });
-
   controls.append(label, deleteBtn);
   header.append(title, controls);
 
-  return header;
+  return {
+    header,
+    deleteBtn,
+  };
 };
 
-const createCartQuantity = cartPrices => {
+const createCartQuantity = quantity => {
   const cartQuantity = document.createElement('div');
   cartQuantity.classList.add('cart-item__quantity');
 
   const counter = document.createElement('span');
   counter.classList.add('cart-item__quantity-number');
-  counter.textContent = 1;
+  counter.textContent = quantity;
 
   const decrementBtn = createButton({
     className: 'cart-item__quantity-button button button--quantity',
@@ -99,26 +78,15 @@ const createCartQuantity = cartPrices => {
     ariaLabel: 'Минус один',
   });
   decrementBtn.disabled = Number(counter.textContent) === 1;
-  decrementBtn.addEventListener('click', () => {
-    const quantity = Number(counter.textContent) - 1;
-    counter.textContent = quantity;
-    decrementBtn.disabled = Number(counter.textContent) === 1;
-    recalculatePrices(cartPrices, quantity + 1, quantity);
-  });
 
   const incrementBtn = createButton({
     className: 'cart-item__quantity-button button button--quantity',
     text: '+',
     ariaLabel: 'Плюс один',
   });
-  incrementBtn.addEventListener('click', () => {
-    const quantity = Number(counter.textContent) + 1;
-    counter.textContent = quantity;
-    decrementBtn.disabled = Number(counter.textContent) === 1;
-    recalculatePrices(cartPrices, quantity - 1, quantity);
-  });
 
   cartQuantity.append(decrementBtn, counter, incrementBtn);
+
   return cartQuantity;
 };
 
@@ -130,7 +98,14 @@ const moveCartQuantity = (target, from, where) => {
   }
 };
 
-const createCartItem = ({ id, title, image: src, price, discount }) => {
+const createCartItem = ({
+  id,
+  title,
+  image: src,
+  price,
+  discount,
+  quantityCart,
+}) => {
   const cartItem = document.createElement('li');
   cartItem.classList.add('cart-item');
   cartItem.dataset.id = id;
@@ -168,7 +143,7 @@ const createCartItem = ({ id, title, image: src, price, discount }) => {
             discount
               ? `
             <span class="cart-item__discounted-price">
-              ${calculateDiscountPrice(price, discount)}
+              ${formatPrice(calculateDiscountPrice(price, discount))}
             </span>
             <del class="cart-item__non-discounted-price">
               ${formatPrice(price)}
@@ -182,7 +157,7 @@ const createCartItem = ({ id, title, image: src, price, discount }) => {
           }
         </div>
         <span class="cart-item__credit">
-          ${calculateMonthlyPayment(price)}
+          ${formatPrice(calculateMonthlyPayment(price))}
         </span>
       </div>
       </div>
@@ -216,7 +191,7 @@ const createCartItem = ({ id, title, image: src, price, discount }) => {
   imageLink.append(imageWrapper);
 
   const cartPrices = cartItem.querySelector('.cart-item__price');
-  const cartQuantity = createCartQuantity(cartPrices);
+  const cartQuantity = createCartQuantity(quantityCart);
 
   cartItem
     .querySelector('.cart-item__details')
@@ -235,21 +210,25 @@ const createCartItem = ({ id, title, image: src, price, discount }) => {
   };
 };
 
-export const renderCartItems = async () => {
-  const goodsID = getStorage(CART_ITEMS_KEY);
-
-  const header = createCartHeader(goodsID);
+export const renderCartItems = (goods, quantity) => {
+  const { header, deleteBtn } = createCartHeader(quantity);
 
   const items = document.createElement('ul');
   items.className = 'cart-items__list';
 
-  for (const productID of goodsID) {
-    const productData = await loadData(serverURL, `api/goods/${productID}`);
-    const { cartItem } = createCartItem(productData);
+  const images = [];
+  goods.forEach(product => {
+    const { cartItem, image } = createCartItem(product);
     items.append(cartItem);
-  }
+    images.push(image);
+  });
 
   const cartItems = document.querySelector('.cart-items');
   cartItems.innerHTML = '';
   cartItems.append(header, items);
+
+  return {
+    items,
+    deleteBtn,
+  };
 };

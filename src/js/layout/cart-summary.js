@@ -1,10 +1,6 @@
 import { createButton } from '../components/button.js';
 import { createCheckbox } from '../components/checkbox.js';
-import { serverURL, CART_ITEMS_KEY } from '../helpers/constants.js';
-import { getStorage } from '../services/storage.js';
-import { loadData } from '../services/api.js';
 import {
-  getNumber,
   formatPrice,
   calculateDiscountPrice,
 } from '../helpers/productUtils.js';
@@ -20,22 +16,22 @@ const createHeader = price => {
   return header;
 };
 
-const getPrices = async goods => {
+const getPrices = goods => {
   let totalCurrentPrice = 0;
   let totalOriginalPrice = 0;
   let totalDiscountPrice = 0;
 
-  for (const item of goods) {
-    const { price, discount } = await loadData(serverURL, `api/goods/${item}`);
-
+  goods.forEach(({ price, discount }) => {
     totalCurrentPrice += discount
-      ? getNumber(calculateDiscountPrice(price, discount))
+      ? calculateDiscountPrice(price, discount)
       : price;
+
     totalDiscountPrice += discount
-      ? price - getNumber(calculateDiscountPrice(price, discount))
+      ? price - calculateDiscountPrice(price, discount)
       : 0;
+
     totalOriginalPrice += price;
-  }
+  });
 
   return {
     totalCurrentPrice,
@@ -80,12 +76,9 @@ const createFooter = () => {
   return footer;
 };
 
-export const renderCartSummary = async () => {
-  const goodsID = getStorage(CART_ITEMS_KEY);
+export const renderCartSummary = (goods, quantity) => {
   const { totalCurrentPrice, totalOriginalPrice, totalDiscountPrice } =
-    await getPrices(goodsID);
-
-  console.log(totalCurrentPrice);
+    getPrices(goods);
 
   const summarySection = document.querySelector('.cart-summary');
   summarySection.innerHTML = `
@@ -93,7 +86,7 @@ export const renderCartSummary = async () => {
 
     <div class="cart-summary__price">
       <div class="cart-summary__price-item">
-        <span>Товары, ${goodsID.length} шт.</span>
+        <span class="cart-summary__quantity">Товары, ${quantity} шт.</span>
         <span>${formatPrice(totalOriginalPrice)}</span>
       </div>
       <div class="cart-summary__price-item">
