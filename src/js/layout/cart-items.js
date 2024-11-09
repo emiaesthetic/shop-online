@@ -102,7 +102,7 @@ const createCartItem = ({
   image: src,
   price,
   discount,
-  quantityCart,
+  quantity,
 }) => {
   const cartItem = document.createElement('li');
   cartItem.classList.add('cart-item');
@@ -140,22 +140,22 @@ const createCartItem = ({
           ${
             discount
               ? `
-            <span class="cart-item__discounted-price">
-              ${formatPrice(calculateDiscountPrice(price, discount))}
+            <span class="cart-item__current-price">
+              ${formatPrice(calculateDiscountPrice(price, discount, quantity))}
             </span>
-            <del class="cart-item__non-discounted-price">
-              ${formatPrice(price)}
+            <del class="cart-item__original-price">
+              ${formatPrice(price * quantity)}
             </del>
           `
               : `
-            <span class="cart-item__discounted-price">
-              ${formatPrice(price)}
+            <span class="cart-item__current-price">
+              ${formatPrice(price * quantity)}
             </span>
           `
           }
         </div>
-        <span class="cart-item__credit">
-          ${formatPrice(calculateMonthlyPayment(price))}
+        <span class="cart-item__credit-price">
+          ${formatPrice(calculateMonthlyPayment(price * quantity))}
         </span>
       </div>
       </div>
@@ -188,7 +188,7 @@ const createCartItem = ({
   imageLink.append(imageWrapper);
 
   const cartPrices = cartItem.querySelector('.cart-item__price');
-  const cartQuantity = createCartQuantity(quantityCart);
+  const cartQuantity = createCartQuantity(quantity);
 
   cartItem
     .querySelector('.cart-item__details')

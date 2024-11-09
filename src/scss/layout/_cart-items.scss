@@ -308,7 +308,7 @@
     }
   }
 
-  &__discounted-price {
+  &__current-price {
     font-weight: 700;
     font-size: 26px;
 
@@ -321,7 +321,7 @@
     }
   }
 
-  &__non-discounted-price {
+  &__original-price {
     font-size: 18px;
     color: var(--text-gray-color);
 
@@ -334,7 +334,7 @@
     }
   }
 
-  &__credit {
+  &__credit-price {
     width: max-content;
     align-self: end;
     color: var(--text-accent-color);

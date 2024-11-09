@@ -1,4 +1,4 @@
-// import { renderLoader } from './components/loader.js';
+import { renderLoader } from './components/loader.js';
 import { renderMenu } from './components/menu.js';
 import { renderHomePage } from './pages/home.js';
 import { renderCategoryPage } from './pages/category.js';
@@ -8,7 +8,7 @@ import { renderBlogPage } from './pages/blog.js';
 import { renderArticlePage } from './pages/article.js';
 
 const init = () => {
-  // renderLoader();
+  renderLoader();
   renderMenu();
   renderHomePage();
   renderCategoryPage();

@@ -2,7 +2,9 @@ import { createButton } from '../components/button.js';
 import { createCheckbox } from '../components/checkbox.js';
 import {
   formatPrice,
-  calculateDiscountPrice,
+  getTotalCurrentPrice,
+  getTotalOriginalPrice,
+  getTotalDiscountPrice,
 } from '../helpers/productUtils.js';
 
 const createHeader = price => {
@@ -14,30 +16,6 @@ const createHeader = price => {
   `;
 
   return header;
-};
-
-const getPrices = goods => {
-  let totalCurrentPrice = 0;
-  let totalOriginalPrice = 0;
-  let totalDiscountPrice = 0;
-
-  goods.forEach(({ price, discount }) => {
-    totalCurrentPrice += discount
-      ? calculateDiscountPrice(price, discount)
-      : price;
-
-    totalDiscountPrice += discount
-      ? price - calculateDiscountPrice(price, discount)
-      : 0;
-
-    totalOriginalPrice += price;
-  });
-
-  return {
-    totalCurrentPrice,
-    totalOriginalPrice,
-    totalDiscountPrice,
-  };
 };
 
 const createFooter = () => {
@@ -76,22 +54,25 @@ const createFooter = () => {
   return footer;
 };
 
-export const renderCartSummary = (goods, quantity) => {
-  const { totalCurrentPrice, totalOriginalPrice, totalDiscountPrice } =
-    getPrices(goods);
-
+export const renderCartSummary = (goods, totalQuantity) => {
   const summarySection = document.querySelector('.cart-summary');
   summarySection.innerHTML = `
-    ${createHeader(totalCurrentPrice).outerHTML}
+    ${createHeader(getTotalCurrentPrice(goods)).outerHTML}
 
     <div class="cart-summary__price">
       <div class="cart-summary__price-item">
-        <span class="cart-summary__quantity">Товары, ${quantity} шт.</span>
-        <span>${formatPrice(totalOriginalPrice)}</span>
+        <span class="cart-summary__total-title">
+          Товары, ${totalQuantity} шт.
+        </span>
+        <span class="cart-summary__total-price">
+          ${formatPrice(getTotalOriginalPrice(goods))}
+        </span>
       </div>
       <div class="cart-summary__price-item">
-        <span>Скидка</span>
-        <span>${formatPrice(totalDiscountPrice)}</span>
+        <span class="cart-summary__discount-title">Скидка</span>
+        <span class="cart-summary__discount-price">
+          ${formatPrice(getTotalDiscountPrice(goods))}
+        </span>
       </div>
       <div class="cart-summary__price-item">
         <span>Доставка</span>

@@ -3,33 +3,50 @@ import { renderCartSummary } from '../layout/cart-summary.js';
 import { renderCartDelivery } from '../layout/cart-delivery.js';
 import { renderDiscountGoods } from '../layout/goods.js';
 import { serverURL, CART_ITEMS_KEY } from '../helpers/constants.js';
-import { getTotalQuantity } from '../helpers/cartUtils.js';
 import {
   getStorage,
   removeProductFromCart,
   setProductQuantityInCart,
 } from '../services/storage.js';
 import { loadData } from '../services/api.js';
-import { recalculatePrices } from '../helpers/productUtils.js';
+import {
+  formatPrice,
+  calculateDiscountPrice,
+  calculateMonthlyPayment,
+  getTotalCurrentPrice,
+  getTotalOriginalPrice,
+  getTotalDiscountPrice,
+} from '../helpers/productUtils.js';
 
-const loadGoods = async items => {
-  const goods = [];
-  for (const item of items) {
+let goods = [];
+
+const loadGoods = async cartGoods => {
+  for (const item of cartGoods) {
     const product = await loadData(serverURL, `api/goods/${item.id}`);
-    product.quantityCart = item.quantity;
+    product.quantity = item.quantity;
     goods.push(product);
   }
+};
 
-  return goods;
+const filteredGoods = itemID => {
+  goods = goods.filter(product => product.id !== itemID);
+};
+
+const getTotalQuantity = cartGoods =>
+  cartGoods.reduce((acc, item) => acc + item.quantity, 0);
+
+const updateGoodsQuantity = (itemID, quantity) => {
+  const product = goods.find(product => product.id === itemID);
+  product.quantity = quantity;
 };
 
 export const updateCartCounter = () => {
   const cartCounter = document.querySelector('.actions__cart-counter');
   const supTitle = document.querySelector('.cart-items__sup-title');
-  const summaryCounter = document.querySelector('.cart-summary__quantity');
+  const summaryCounter = document.querySelector('.cart-summary__total-title');
 
-  const goods = getStorage(CART_ITEMS_KEY);
-  const totalQuantity = getTotalQuantity(goods);
+  const cartGoods = getStorage(CART_ITEMS_KEY);
+  const totalQuantity = getTotalQuantity(cartGoods);
 
   cartCounter.style.display = totalQuantity > 0 ? 'inline-flex' : 'none';
   cartCounter.textContent = totalQuantity;
@@ -43,13 +60,47 @@ export const updateCartCounter = () => {
   }
 };
 
+const updateItemPrice = itemID => {
+  const item = document.querySelector(`[data-id="${itemID}"]`);
+  const { price, discount, quantity } = goods.find(
+    product => product.id === itemID,
+  );
+
+  const currentPrice = item.querySelector('.cart-item__current-price');
+  const currentPriceValue = discount
+    ? calculateDiscountPrice(price, discount, quantity)
+    : price * quantity;
+  currentPrice.textContent = formatPrice(currentPriceValue);
+
+  const creditPrice = item.querySelector('.cart-item__credit-price');
+  const creditPriceValue = calculateMonthlyPayment(price, quantity);
+  creditPrice.textContent = formatPrice(creditPriceValue);
+
+  const originalPrice = item.querySelector('.cart-item__original-price');
+  if (originalPrice) {
+    originalPrice.textContent = formatPrice(price * quantity);
+  }
+};
+
 const updateDeliveryItems = productID => {
   const items = document.querySelector('.cart-delivery__goods');
   const currentItem = items.querySelector(`[data-id="${productID}"]`);
   currentItem.remove();
 };
 
-const updateSummaryPrice = () => {};
+const updateSummaryPrice = () => {
+  const currentPrice = document.querySelector('.cart-summary__total');
+  const currentPriceValue = getTotalCurrentPrice(goods);
+  currentPrice.textContent = formatPrice(currentPriceValue);
+
+  const originalPrice = document.querySelector('.cart-summary__total-price');
+  const originalPriceValue = getTotalOriginalPrice(goods);
+  originalPrice.textContent = formatPrice(originalPriceValue);
+
+  const discountPrice = document.querySelector('.cart-summary__discount-price');
+  const discountPriceValue = getTotalDiscountPrice(goods);
+  discountPrice.textContent = formatPrice(discountPriceValue);
+};
 
 const handleQuantityChange = cartItems => {
   cartItems.addEventListener('click', ({ target }) => {
@@ -73,8 +124,11 @@ const handleQuantityChange = cartItems => {
 
       counter.textContent = newQuantity;
       decrementBtn.disabled = newQuantity === 1;
-      recalculatePrices(itemID, quantity, newQuantity);
+
+      updateGoodsQuantity(itemID, newQuantity);
       setProductQuantityInCart(itemID, newQuantity);
+      updateItemPrice(itemID);
+      updateSummaryPrice();
       updateCartCounter();
     }
   });
@@ -85,11 +139,12 @@ const handleDeleteSelectedItems = deleteBtn => {
     document.querySelectorAll('.cart-item').forEach(item => {
       const checkbox = item.querySelector('.cart-item__checkbox-input');
       if (checkbox.checked) {
-        const productID = item.dataset.id;
+        const itemID = item.dataset.id;
 
         item.remove();
-        removeProductFromCart(productID);
-        updateDeliveryItems(productID);
+        filteredGoods(itemID);
+        removeProductFromCart(itemID);
+        updateDeliveryItems(itemID);
         updateSummaryPrice();
         updateCartCounter();
       }
@@ -101,8 +156,8 @@ export const renderCartPage = async () => {
   if (!document.querySelector('#cartPage')) return;
 
   const cartGoods = getStorage(CART_ITEMS_KEY);
-  const goods = await loadGoods(cartGoods);
   const totalQuantity = getTotalQuantity(cartGoods);
+  await loadGoods(cartGoods);
 
   const { items: cartItems, deleteBtn } = renderCartItems(goods, totalQuantity);
   renderCartDelivery(goods);
