@@ -1,5 +1,4 @@
 import { createButton } from '../components/button.js';
-import { createSVG } from '../components/svg.js';
 import { updateCartCounter } from '../pages/cart.js';
 import {
   formatPrice,
@@ -51,14 +50,13 @@ const createActions = () => {
 
   const addToFavoriteBtn = createButton({
     className: 'product-card__add-to-favorite button button--icon',
-    svg: createSVG({
-      className: 'product-card__add-favorite-icon',
-      id: 'add-favorite',
-      width: 29,
-      height: 26,
-    }),
     ariaLabel: 'Добавить в избранное',
   });
+  addToFavoriteBtn.innerHTML = `
+    <svg width="29" height="26" aria-hidden="true">
+      <use href="./img/sprite.svg#add-favorite"></use>
+    </svg>
+  `;
 
   actions.append(addToCartBtn, addToFavoriteBtn);
   return {
@@ -87,13 +85,12 @@ const createInfo = () => {
 const createNotificationBtn = () => {
   const button = createButton({
     className: 'product-card__notification button button--transparent',
-    svg: createSVG({
-      className: 'product-card__notification-icon',
-      id: 'notification',
-      width: 18,
-      height: 20,
-    }),
   });
+  button.innerHTML = `
+    <svg width="18" height="20" aria-hidden="true">
+      <use href="./img/sprite.svg#notification"></use>
+    </svg>
+  `;
 
   const span = document.createElement('span');
   span.classList.add('product-card__notification-text');

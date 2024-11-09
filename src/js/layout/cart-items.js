@@ -1,6 +1,5 @@
 import { createImage } from '../components/image.js';
 import { createButton } from '../components/button.js';
-import { createSVG } from '../components/svg.js';
 import { createCheckbox } from '../components/checkbox.js';
 import { serverURL, mediaQueries } from '../helpers/constants.js';
 import {
@@ -37,14 +36,13 @@ const createCartHeader = quantity => {
 
   const deleteBtn = createButton({
     className: 'cart-items__delete button button--delete',
-    svg: createSVG({
-      className: 'cart-items__delete-icon',
-      id: 'delete',
-      width: 18,
-      height: 23,
-    }),
     ariaLabel: 'Удалить товары из корзины',
   });
+  deleteBtn.innerHTML = `
+    <svg width="18" height="23" aria-hidden="true">
+      <use href="./img/sprite.svg#delete"></use>
+    </svg>
+  `;
 
   overallCheckbox.addEventListener('click', () => {
     const goodsCheckbox = document.querySelectorAll(
@@ -178,14 +176,13 @@ const createCartItem = ({
 
   const deleteBtn = createButton({
     className: 'cart-item__delete button button--delete',
-    svg: createSVG({
-      className: 'cart-item__delete-icon',
-      id: 'delete',
-      width: 18,
-      height: 23,
-    }),
     ariaLabel: 'Удалить товар из корзины',
   });
+  deleteBtn.innerHTML = `
+  <svg width="18" height="23" aria-hidden="true">
+    <use href="./img/sprite.svg#delete"></use>
+  </svg>
+`;
 
   const imageLink = cartItem.querySelector('.cart-item__image-link');
   imageLink.append(imageWrapper);
