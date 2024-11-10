@@ -55,8 +55,8 @@ const createFooter = () => {
 };
 
 export const renderCartSummary = (goods, totalQuantity) => {
-  const summarySection = document.querySelector('.cart-summary');
-  summarySection.innerHTML = `
+  const cartSummary = document.querySelector('.cart-summary');
+  cartSummary.innerHTML = `
     ${createHeader(getTotalCurrentPrice(goods)).outerHTML}
 
     <div class="cart-summary__price">

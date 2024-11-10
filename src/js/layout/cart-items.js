@@ -213,11 +213,9 @@ export const renderCartItems = (goods, quantity) => {
   const items = document.createElement('ul');
   items.className = 'cart-items__list';
 
-  const images = [];
   goods.forEach(product => {
-    const { cartItem, image } = createCartItem(product);
+    const { cartItem } = createCartItem(product);
     items.append(cartItem);
-    images.push(image);
   });
 
   const cartItems = document.querySelector('.cart-items');

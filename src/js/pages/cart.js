@@ -1,6 +1,7 @@
 import { renderCartItems } from '../layout/cart-items.js';
 import { renderCartSummary } from '../layout/cart-summary.js';
 import { renderCartDelivery } from '../layout/cart-delivery.js';
+import { renderCartEmpty } from '../layout/cart-empty.js';
 import { renderDiscountGoods } from '../layout/goods.js';
 import { serverURL, CART_ITEMS_KEY } from '../helpers/constants.js';
 import {
@@ -143,6 +144,12 @@ const handleDeleteSelectedItems = deleteBtn => {
 
         item.remove();
         filteredGoods(itemID);
+
+        if (goods.length === 0) {
+          renderCartEmpty();
+          return;
+        }
+
         removeProductFromCart(itemID);
         updateDeliveryItems(itemID);
         updateSummaryPrice();
@@ -156,8 +163,15 @@ export const renderCartPage = async () => {
   if (!document.querySelector('#cartPage')) return;
 
   const cartGoods = getStorage(CART_ITEMS_KEY);
-  const totalQuantity = getTotalQuantity(cartGoods);
+
+  if (cartGoods.length === 0) {
+    renderCartEmpty();
+    renderDiscountGoods('discount');
+    return;
+  }
+
   await loadGoods(cartGoods);
+  const totalQuantity = getTotalQuantity(cartGoods);
 
   const { items: cartItems, deleteBtn } = renderCartItems(goods, totalQuantity);
   renderCartDelivery(goods);
