@@ -7,8 +7,9 @@ import { updateCartCounter, renderCartPage } from './pages/cart.js';
 import { renderBlogPage } from './pages/blog.js';
 import { renderArticlePage } from './pages/article.js';
 
-const init = () => {
+const init = async () => {
   renderLoader();
+
   renderMenu();
   renderHomePage();
   renderCategoryPage();

@@ -15,17 +15,23 @@ export const createImage = ({ tag, className, src, width, height, alt }) => {
   };
 };
 
-export const preloadImages = images =>
-  Promise.all(
-    images.map(
-      image =>
-        new Promise((resolve, reject) => {
-          image.addEventListener('load', () => {
-            resolve();
-          });
-          image.addEventListener('error', () => {
-            reject(new Error(`Не удалось загрузить изображение: ${image.src}`));
-          });
-        }),
-    ),
-  );
+export const preloadImages = () => {
+  const images = Array.from(document.images);
+  return new Promise(resolve => {
+    let loadedCount = 0;
+
+    const checkIfAllImagesLoaded = () => {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        resolve();
+      }
+    };
+
+    images.forEach(image => {
+      const img = new Image();
+      img.src = image.src;
+      img.onload = checkIfAllImagesLoaded;
+      img.onerror = checkIfAllImagesLoaded;
+    });
+  });
+};

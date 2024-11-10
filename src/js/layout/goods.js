@@ -24,8 +24,13 @@ const renderGoodsItem = async (goods, title = 'h3') => {
     goodsList.append(item);
   });
 
-  await preloadImages(images);
-  removeLoader();
+  try {
+    await preloadImages();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    removeLoader();
+  }
 
   updateAllPricesVisibility();
   window.addEventListener('resize', updateAllPricesVisibility);

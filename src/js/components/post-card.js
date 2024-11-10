@@ -45,6 +45,11 @@ export const renderPosts = async posts => {
     postList.append(postWrapper);
   });
 
-  await preloadImages(images);
-  removeLoader();
+  try {
+    await preloadImages(images);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    removeLoader();
+  }
 };
