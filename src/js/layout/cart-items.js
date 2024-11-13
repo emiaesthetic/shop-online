@@ -88,11 +88,11 @@ const createCartQuantity = quantity => {
   return cartQuantity;
 };
 
-const moveCartQuantity = (target, from, where) => {
+const moveCartQuantity = (target, desktopContainer, tabletContainer) => {
   if (window.innerWidth <= mediaQueries.tablet) {
-    where.prepend(target);
+    tabletContainer.prepend(target);
   } else {
-    from.before(target);
+    desktopContainer.before(target);
   }
 };
 
@@ -196,6 +196,8 @@ const createCartItem = ({
 
   const cartControls = cartItem.querySelector('.cart-item__controls');
   cartControls.append(deleteBtn);
+
+  moveCartQuantity(cartQuantity, cartPrices, cartControls);
 
   window.addEventListener('resize', () => {
     moveCartQuantity(cartQuantity, cartPrices, cartControls);
