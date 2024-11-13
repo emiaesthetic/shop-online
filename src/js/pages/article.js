@@ -1,4 +1,5 @@
 import { removeLoader } from '../components/loader.js';
+import { renderBreadcrumbs } from '../components/breadcrumbs.js';
 import { createContainer } from '../layout/container.js';
 import { loadData } from '../services/api.js';
 import { newsURL } from '../helpers/constants.js';
@@ -60,13 +61,6 @@ const displayContent = (articleData, userData) => {
 
   container.append(header, content, footer);
   article.append(container);
-
-  const breadcrumbsItem = document.querySelector('[aria-current="page"]');
-  breadcrumbsItem.innerHTML = `
-    <a class="breadcrumbs__link underline-link" href="#">
-      ${articleData.title}
-    </a>
-  `;
 };
 
 export const renderArticlePage = async () => {
@@ -77,6 +71,24 @@ export const renderArticlePage = async () => {
 
   const articleData = await loadData(newsURL, `posts/${articleID}`);
   const userData = await loadData(newsURL, `users/${articleData.user_id}`);
+
+  const breadcrumbs = [
+    {
+      title: 'Главная',
+      href: '/',
+      ariaLabel: 'Вернуться на главную',
+    },
+    {
+      title: 'Блог',
+      href: 'javascript:history.back()',
+      ariaLabel: '',
+    },
+    {
+      title: articleData.title,
+    },
+  ];
+
+  renderBreadcrumbs('articlePage', breadcrumbs);
   displayContent(articleData, userData);
 
   removeLoader();

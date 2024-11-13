@@ -1,3 +1,4 @@
+import { renderBreadcrumbs } from '../components/breadcrumbs.js';
 import { createContainer } from '../layout/container.js';
 import { createProductCard } from '../layout/product-card.js';
 import { renderRecommendGoods } from '../layout/goods.js';
@@ -93,6 +94,29 @@ export const renderProductPage = async () => {
   const productID = ulrParams.get('id');
 
   const productData = await loadData(serverURL, `api/goods/${productID}`);
+
+  const breadcrumbs = [
+    {
+      title: 'Главная',
+      href: '/',
+      ariaLabel: 'Вернуться на главную',
+    },
+    {
+      title: 'Каталог',
+      href: '#',
+      ariaLabel: 'Вернуться в раздел каталог',
+    },
+    {
+      title: `${productData.category}`,
+      href: `/category.html?category=${productData.category}`,
+      ariaLabel: `Вернуться в раздел ${productData.category}`,
+    },
+    {
+      title: `${productData.title}`,
+    },
+  ];
+
+  renderBreadcrumbs('productPage', breadcrumbs);
   renderArticleContent(productData);
   renderRecommendGoods(productData);
 };

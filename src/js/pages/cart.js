@@ -1,3 +1,4 @@
+import { renderBreadcrumbs } from '../components/breadcrumbs.js';
 import { renderCartItems } from '../layout/cart-items.js';
 import { renderCartSummary } from '../layout/cart-summary.js';
 import { renderCartDelivery } from '../layout/cart-delivery.js';
@@ -173,6 +174,18 @@ export const renderCartPage = async () => {
   await loadGoods(cartGoods);
   const totalQuantity = getTotalQuantity(cartGoods);
 
+  const breadcrumbs = [
+    {
+      title: 'Главная',
+      href: '/',
+      ariaLabel: 'Вернуться на главную',
+    },
+    {
+      title: 'Корзина',
+    },
+  ];
+
+  renderBreadcrumbs('cartPage', breadcrumbs);
   const { items: cartItems, deleteBtn } = renderCartItems(goods, totalQuantity);
   renderCartDelivery(goods);
   renderCartSummary(goods, totalQuantity);
