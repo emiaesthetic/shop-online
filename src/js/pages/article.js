@@ -88,6 +88,8 @@ export const renderArticlePage = async () => {
     },
   ];
 
+  document.title = `${articleData.title} - ShopOnline`;
+
   renderBreadcrumbs('articlePage', breadcrumbs);
   displayContent(articleData, userData);
 

@@ -185,6 +185,8 @@ export const renderCartPage = async () => {
     },
   ];
 
+  document.title = 'Корзина - ShopOnline';
+
   renderBreadcrumbs('cartPage', breadcrumbs);
   const { items: cartItems, deleteBtn } = renderCartItems(goods, totalQuantity);
   renderCartDelivery(goods);

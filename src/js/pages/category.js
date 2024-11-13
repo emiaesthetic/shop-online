@@ -9,5 +9,6 @@ export const renderCategoryPage = () => {
   const title = document.querySelector('.title');
   title.textContent = category;
 
+  document.title = `${category} - ShopOnline`;
   renderCategoryGoods(category);
 };

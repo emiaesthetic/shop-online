@@ -116,6 +116,8 @@ export const renderProductPage = async () => {
     },
   ];
 
+  document.title = `${productData.title} - ShopOnline`;
+
   renderBreadcrumbs('productPage', breadcrumbs);
   renderArticleContent(productData);
   renderRecommendGoods(productData);

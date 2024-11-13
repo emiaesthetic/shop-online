@@ -20,6 +20,8 @@ export const renderBlogPage = () => {
     },
   ];
 
+  document.title = 'Блог - ShopOnline';
+
   renderBreadcrumbs('blogPage', breadcrumbs);
   loadPosts(pageNum, { renderPosts, renderPagination });
 };
