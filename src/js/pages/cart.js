@@ -136,14 +136,36 @@ const handleQuantityChange = cartItems => {
   });
 };
 
-const handleDeleteSelectedItems = deleteBtn => {
-  deleteBtn.addEventListener('click', () => {
-    document.querySelectorAll('.cart-item').forEach(item => {
-      const checkbox = item.querySelector('.cart-item__checkbox-input');
-      if (checkbox.checked) {
-        const itemID = item.dataset.id;
+export const handleDeleteItem = cartItems => {
+  cartItems.addEventListener('click', ({ target }) => {
+    if (target.closest('.cart-item__delete')) {
+      const cartItem = target.closest('.cart-item');
+      const itemID = cartItem.dataset.id;
 
-        item.remove();
+      cartItem.remove();
+      filteredGoods(itemID);
+
+      if (goods.length === 0) {
+        renderCartEmpty();
+        return;
+      }
+
+      removeProductFromCart(itemID);
+      updateDeliveryItems(itemID);
+      updateSummaryPrice();
+      updateCartCounter();
+    }
+  });
+};
+
+const handleDeleteSelectedItems = button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.cart-item').forEach(cartItem => {
+      const checkbox = cartItem.querySelector('.cart-item__checkbox-input');
+      if (checkbox.checked) {
+        const itemID = cartItem.dataset.id;
+
+        cartItem.remove();
         filteredGoods(itemID);
 
         if (goods.length === 0) {
@@ -188,11 +210,12 @@ export const renderCartPage = async () => {
   document.title = 'Корзина - ShopOnline';
 
   renderBreadcrumbs('cartPage', breadcrumbs);
-  const { items: cartItems, deleteBtn } = renderCartItems(goods, totalQuantity);
+  const { items, deleteBtn } = renderCartItems(goods, totalQuantity);
   renderCartDelivery(goods);
   renderCartSummary(goods, totalQuantity);
   renderDiscountGoods('discount');
 
-  handleQuantityChange(cartItems);
+  handleQuantityChange(items);
+  handleDeleteItem(items);
   handleDeleteSelectedItems(deleteBtn);
 };
