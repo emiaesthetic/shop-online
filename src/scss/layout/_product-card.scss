@@ -1,6 +1,7 @@
 .product-card {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   max-width: 420px;
   width: 100%;
   row-gap: 30px;

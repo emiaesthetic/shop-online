@@ -58,6 +58,10 @@
       font-size: 8px;
     }
 
+    &:last-of-type {
+      @include text-truncate(1);
+    }
+
     &:not(:last-child):after {
       content: '';
       position: absolute;
@@ -87,6 +91,8 @@
   }
 
   &__link {
+    @include text-truncate(1);
+
     @include focus {
       outline: var(--outline);
       outline-offset: var(--outline-offset);
