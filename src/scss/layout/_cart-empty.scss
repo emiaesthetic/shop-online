@@ -1,4 +1,8 @@
 .cart-empty {
+  &.hidden {
+    display: none;
+  }
+
   &__content {
     display: grid;
     place-items: center;

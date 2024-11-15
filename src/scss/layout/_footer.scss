@@ -179,4 +179,11 @@
       margin-bottom: 4px;
     }
   }
+
+  &__link {
+    @include focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+  }
 }

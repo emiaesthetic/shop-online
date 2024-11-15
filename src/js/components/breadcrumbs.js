@@ -1,14 +1,6 @@
-import { createContainer } from '../layout/container.js';
-
-export const renderBreadcrumbs = (pageID, breadcrumbs) => {
-  const nav = document.createElement('nav');
-  nav.className = 'breadcrumbs';
-  nav.ariaLabel = 'Хлебные крошки';
-
-  const container = createContainer();
-
-  const list = document.createElement('ol');
-  list.className = 'breadcrumbs__list';
+export const renderBreadcrumbs = breadcrumbs => {
+  const list = document.querySelector('.breadcrumbs__list');
+  list.innerHTML = '';
 
   breadcrumbs.forEach((crumb, index) => {
     const item = document.createElement('li');
@@ -28,8 +20,4 @@ export const renderBreadcrumbs = (pageID, breadcrumbs) => {
 
     list.append(item);
   });
-
-  container.append(list);
-  nav.append(container);
-  document.querySelector(`#${pageID}`).prepend(nav);
 };

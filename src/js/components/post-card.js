@@ -8,12 +8,13 @@ const createPost = ({ id, title }, index) => {
     src: `https://loremflickr.com/400/400?${index}`,
     width: 195,
     height: 195,
+    alt: title,
   });
 
   const post = document.createElement('article');
   post.classList.add('post-card');
   post.innerHTML = `
-    ${imageWrapper.innerHTML}
+    ${imageWrapper.outerHTML}
     <div class="post-card__content">
       <h2 class="post-card__title">
         <a class="post-card__link" href="article.html?id=${id}">

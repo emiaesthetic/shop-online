@@ -50,7 +50,7 @@
     }
   }
 
-  &__discounted-price {
+  &__current-price {
     font-weight: 700;
     font-size: 36px;
     color: var(--text-accent-secondary-color);
@@ -64,7 +64,7 @@
     }
   }
 
-  &__non-discounted-price {
+  &__original-price {
     font-size: 22px;
 
     @include laptop {
@@ -76,7 +76,7 @@
     }
   }
 
-  &__credit {
+  &__credit-price {
     display: inline-block;
     font-weight: 700;
     font-size: 16px;
@@ -172,6 +172,21 @@
       @include mobile {
         transform: scale(0.6);
       }
+    }
+  }
+}
+
+.product-card-skeleton {
+  &__price {
+    width: 85%;
+    height: 72px;
+
+    @include laptop {
+      height: 68px;
+    }
+
+    @include mobile {
+      height: 52px;
     }
   }
 }

@@ -1,21 +1,24 @@
+import { createImage } from '../components/image.js';
 import { renderBreadcrumbs } from '../components/breadcrumbs.js';
-import { createContainer } from '../layout/container.js';
-import { createProductCard } from '../layout/product-card.js';
 import { renderRecommendGoods } from '../layout/goods.js';
-import { serverURL } from '../helpers/constants.js';
+import { updateCartCounter } from '../pages/cart.js';
+import {
+  serverURL,
+  CART_ITEMS_KEY,
+  FAVORITE_ITEMS_KEY,
+} from '../helpers/constants.js';
+import {
+  formatPrice,
+  calculateDiscountPrice,
+  calculateMonthlyPayment,
+} from '../helpers/productUtils.js';
 import { loadData } from '../services/api.js';
-
-const createHeader = title => {
-  const header = document.createElement('header');
-  header.classList.add('product__header');
-
-  const h1 = document.createElement('h1');
-  h1.classList.add('product__title', 'title', 'title--sm');
-  h1.textContent = title;
-
-  header.append(h1);
-  return header;
-};
+import {
+  getStorage,
+  addProductToFavorite,
+  removeProductFromFavorite,
+  addProductToCart,
+} from '../services/storage.js';
 
 const createDiscount = discount => {
   const span = document.createElement('span');
@@ -24,67 +27,112 @@ const createDiscount = discount => {
   return span;
 };
 
-const createImage = (imageURL, title) => {
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('product__image-wrapper');
-
-  const picture = document.createElement('picture');
-  picture.classList.add('product__image');
-
-  const image = document.createElement('img');
-  image.src = `${serverURL}${imageURL}`;
-  image.width = 757;
-  image.height = 427;
-  image.alt = title;
-
-  picture.append(image);
-  wrapper.append(picture);
-
-  return wrapper;
+const createPriceElement = (tag, className, content) => {
+  const element = document.createElement(tag);
+  element.className = className;
+  element.textContent = content;
+  return element;
 };
 
-const createDetails = ({ id, title, image, price, discount }) => {
-  const details = document.createElement('div');
-  details.classList.add('product__details');
+const renderProductTitle = title => {
+  const h1 = document.createElement('h1');
+  h1.className = 'product__title title title--sm';
+  h1.textContent = title;
 
-  const imgWrapper = createImage(image, title);
-  if (discount) imgWrapper.append(createDiscount(discount));
-
-  const productCard = createProductCard(id, price, discount);
-
-  details.append(imgWrapper, productCard);
-  return details;
+  const skeleton = document.querySelector('.product-skeleton__title');
+  skeleton.replaceWith(h1);
 };
 
-const createDescription = text => {
-  const description = document.createElement('div');
-  description.classList.add('product__description');
+const renderProductImage = (title, image, discount) => {
+  const { imageWrapper } = createImage({
+    tag: 'picture',
+    className: 'product__image',
+    src: `${serverURL}${image}`,
+    width: '',
+    height: '',
+    alt: title,
+  });
 
-  const title = document.createElement('p');
-  title.classList.add('product__description-title');
-  title.textContent = 'Описание:';
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'product__image-wrapper';
+  imageContainer.append(imageWrapper);
+  if (discount) imageContainer.append(createDiscount(discount));
 
-  const content = document.createElement('div');
-  content.classList.add('product__description-content');
-
-  const p = document.createElement('p');
-  p.textContent = text;
-  content.append(p);
-
-  description.append(title, content);
-  return description;
+  const skeleton = document.querySelector('.product-skeleton__image-wrapper');
+  skeleton.replaceWith(imageContainer);
 };
 
-const renderArticleContent = data => {
-  const container = createContainer();
-  const header = createHeader(data.title);
-  const details = createDetails(data);
-  const description = createDescription(data.description);
+const renderPriceProduct = (price, discount) => {
+  const priceContainer = document.createElement('div');
+  priceContainer.className = 'product-card__price';
 
-  const article = document.querySelector('.product');
-  article.innerHTML = '';
-  container.append(header, details, description);
-  article.append(container);
+  if (discount) {
+    const currentPriceElement = createPriceElement(
+      'span',
+      'product-card__current-price',
+      formatPrice(calculateDiscountPrice(price, discount)),
+    );
+    priceContainer.append(currentPriceElement);
+  }
+
+  const originalPriceElement = createPriceElement(
+    discount ? 'del' : 'span',
+    'product-card__original-price',
+    formatPrice(price),
+  );
+
+  const creditPriceElement = createPriceElement(
+    'span',
+    'product-card__credit-price',
+    `В кредит от ${formatPrice(calculateMonthlyPayment(price))}`,
+  );
+
+  priceContainer.append(originalPriceElement, creditPriceElement);
+
+  const skeleton = document.querySelector('.product-card-skeleton__price');
+  skeleton.replaceWith(priceContainer);
+};
+
+const renderProductDescription = description => {
+  const descriptionContent = document.createElement('div');
+  descriptionContent.className = 'product__description-content';
+  descriptionContent.innerHTML = `<p>${description}</p>`;
+
+  const skeleton = document.querySelector(
+    '.product-skeleton__description-content',
+  );
+  skeleton.replaceWith(descriptionContent);
+};
+
+const handleFavoriteAction = itemID => {
+  const button = document.querySelector('.product-card__add-to-favorite');
+  const cartGoods = getStorage(FAVORITE_ITEMS_KEY);
+
+  if (cartGoods.includes(itemID)) {
+    button.classList.add('is-active');
+  }
+
+  button.addEventListener('click', () => {
+    button.classList.toggle('is-active');
+
+    if (button.classList.contains('is-active')) {
+      addProductToFavorite(itemID);
+    } else {
+      removeProductFromFavorite(itemID);
+    }
+  });
+};
+
+const handleCartAction = itemID => {
+  document
+    .querySelector('.product-card__add-to-cart')
+    .addEventListener('click', () => {
+      const cartGoods = getStorage(CART_ITEMS_KEY);
+      if (!cartGoods.some(product => product.id === itemID)) {
+        addProductToCart(itemID);
+        updateCartCounter();
+      }
+    });
 };
 
 export const renderProductPage = async () => {
@@ -92,8 +140,8 @@ export const renderProductPage = async () => {
 
   const ulrParams = new URLSearchParams(window.location.search);
   const productID = ulrParams.get('id');
-
-  const productData = await loadData(serverURL, `api/goods/${productID}`);
+  const { id, title, description, category, image, price, discount } =
+    await loadData(serverURL, `api/goods/${productID}`);
 
   const breadcrumbs = [
     {
@@ -107,18 +155,27 @@ export const renderProductPage = async () => {
       ariaLabel: 'Вернуться в раздел каталог',
     },
     {
-      title: `${productData.category}`,
-      href: `/category.html?category=${productData.category}`,
-      ariaLabel: `Вернуться в раздел ${productData.category}`,
+      title: `${category}`,
+      href: `/category.html?category=${category}`,
+      ariaLabel: `Вернуться в раздел ${category}`,
     },
     {
-      title: `${productData.title}`,
+      title: `${title}`,
     },
   ];
 
-  document.title = `${productData.title} - ShopOnline`;
+  document.title = `${title} - ShopOnline`;
 
-  renderBreadcrumbs('productPage', breadcrumbs);
-  renderArticleContent(productData);
-  renderRecommendGoods(productData);
+  const article = document.querySelector('.product');
+  article.classList.remove('skeleton');
+
+  renderBreadcrumbs(breadcrumbs);
+  renderProductTitle(title);
+  renderProductImage(title, image, discount);
+  renderPriceProduct(price, discount);
+  renderProductDescription(description);
+  renderRecommendGoods({ id, category });
+
+  handleCartAction(id);
+  handleFavoriteAction(id);
 };

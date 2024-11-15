@@ -1,9 +1,13 @@
 export const createImage = ({ tag, className, src, width, height, alt }) => {
   const image = new Image(width, height);
   image.src = src;
-  image.alt = alt || 'image';
   image.loading = 'lazy';
-  image.ariaHidden = !alt;
+
+  if (alt) {
+    image.alt = alt;
+  } else {
+    image.ariaHidden = true;
+  }
 
   const imageWrapper = document.createElement(tag);
   imageWrapper.className = className;

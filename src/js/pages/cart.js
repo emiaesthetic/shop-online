@@ -1,8 +1,11 @@
-import { renderBreadcrumbs } from '../components/breadcrumbs.js';
-import { renderCartItems } from '../layout/cart-items.js';
-import { renderCartSummary } from '../layout/cart-summary.js';
-import { renderCartDelivery } from '../layout/cart-delivery.js';
-import { renderCartEmpty } from '../layout/cart-empty.js';
+import {
+  renderSkeletonCartItems,
+  renderCartItems,
+} from '../layout/cart-items.js';
+import {
+  renderSkeletonCartDelivery,
+  renderCartDelivery,
+} from '../layout/cart-delivery.js';
 import { renderDiscountGoods } from '../layout/goods.js';
 import { serverURL, CART_ITEMS_KEY } from '../helpers/constants.js';
 import {
@@ -91,17 +94,84 @@ const updateDeliveryItems = productID => {
 };
 
 const updateSummaryPrice = () => {
-  const currentPrice = document.querySelector('.cart-summary__total');
-  const currentPriceValue = getTotalCurrentPrice(goods);
-  currentPrice.textContent = formatPrice(currentPriceValue);
+  const updateElementText = (selector, value, skeletonClasses) => {
+    const element = document.querySelector(selector);
+    element.textContent = formatPrice(value);
+    skeletonClasses.forEach(className => element.classList.remove(className));
+  };
 
-  const originalPrice = document.querySelector('.cart-summary__total-price');
-  const originalPriceValue = getTotalOriginalPrice(goods);
-  originalPrice.textContent = formatPrice(originalPriceValue);
+  updateElementText('.cart-summary__total', getTotalCurrentPrice(goods), [
+    'cart-summary-skeleton__total',
+    'skeleton',
+  ]);
 
-  const discountPrice = document.querySelector('.cart-summary__discount-price');
-  const discountPriceValue = getTotalDiscountPrice(goods);
-  discountPrice.textContent = formatPrice(discountPriceValue);
+  updateElementText(
+    '.cart-summary__total-price',
+    getTotalOriginalPrice(goods),
+    ['cart-summary-skeleton__total-price', 'skeleton'],
+  );
+
+  updateElementText(
+    '.cart-summary__discount-price',
+    getTotalDiscountPrice(goods),
+    ['cart-summary-skeleton__discount-price', 'skeleton'],
+  );
+};
+
+const toggleCartContent = (action = 'showContent') => {
+  const cartContent = document.querySelector('.cart__content');
+  const cartEmpty = document.querySelector('.cart-empty');
+
+  switch (action) {
+    case 'showContent':
+      cartContent.classList.remove('hidden');
+      cartEmpty.classList.add('hidden');
+      break;
+    case 'showEmpty':
+      cartContent.classList.add('hidden');
+      cartEmpty.classList.remove('hidden');
+      break;
+    default:
+      console.error(`Unknown action: ${action}`);
+  }
+};
+
+const handleSelectAllItems = () => {
+  const overallCheckbox = document.querySelector('.cart-items__checkbox-input');
+
+  overallCheckbox.addEventListener('click', () => {
+    const goodsCheckbox = document.querySelectorAll(
+      '.cart-item__checkbox-input',
+    );
+    goodsCheckbox.forEach(
+      checkbox => (checkbox.checked = overallCheckbox.checked),
+    );
+  });
+};
+
+const handleDeleteSelectedItems = () => {
+  document
+    .querySelector('.cart-items__delete')
+    .addEventListener('click', () => {
+      document.querySelectorAll('.cart-item').forEach(cartItem => {
+        const checkbox = cartItem.querySelector('.cart-item__checkbox-input');
+        if (checkbox.checked) {
+          const itemID = cartItem.dataset.id;
+
+          cartItem.remove();
+          filteredGoods(itemID);
+
+          if (goods.length === 0) {
+            toggleCartContent('showEmpty');
+          }
+
+          removeProductFromCart(itemID);
+          updateDeliveryItems(itemID);
+          updateSummaryPrice();
+          updateCartCounter();
+        }
+      });
+    });
 };
 
 const handleQuantityChange = cartItems => {
@@ -136,7 +206,7 @@ const handleQuantityChange = cartItems => {
   });
 };
 
-export const handleDeleteItem = cartItems => {
+const handleDeleteItem = cartItems => {
   cartItems.addEventListener('click', ({ target }) => {
     if (target.closest('.cart-item__delete')) {
       const cartItem = target.closest('.cart-item');
@@ -146,8 +216,7 @@ export const handleDeleteItem = cartItems => {
       filteredGoods(itemID);
 
       if (goods.length === 0) {
-        renderCartEmpty();
-        return;
+        toggleCartContent('showEmpty');
       }
 
       removeProductFromCart(itemID);
@@ -158,64 +227,31 @@ export const handleDeleteItem = cartItems => {
   });
 };
 
-const handleDeleteSelectedItems = button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.cart-item').forEach(cartItem => {
-      const checkbox = cartItem.querySelector('.cart-item__checkbox-input');
-      if (checkbox.checked) {
-        const itemID = cartItem.dataset.id;
-
-        cartItem.remove();
-        filteredGoods(itemID);
-
-        if (goods.length === 0) {
-          renderCartEmpty();
-          return;
-        }
-
-        removeProductFromCart(itemID);
-        updateDeliveryItems(itemID);
-        updateSummaryPrice();
-        updateCartCounter();
-      }
-    });
-  });
-};
-
 export const renderCartPage = async () => {
   if (!document.querySelector('#cartPage')) return;
 
-  const cartGoods = getStorage(CART_ITEMS_KEY);
+  document.title = 'Корзина - ShopOnline';
 
+  const cartGoods = getStorage(CART_ITEMS_KEY);
   if (cartGoods.length === 0) {
-    renderCartEmpty();
+    toggleCartContent('showEmpty');
     renderDiscountGoods('discount');
     return;
   }
 
+  toggleCartContent('showContent');
+  renderSkeletonCartItems(cartGoods.length);
+  renderSkeletonCartDelivery(cartGoods.length);
+
   await loadGoods(cartGoods);
-  const totalQuantity = getTotalQuantity(cartGoods);
 
-  const breadcrumbs = [
-    {
-      title: 'Главная',
-      href: '/',
-      ariaLabel: 'Вернуться на главную',
-    },
-    {
-      title: 'Корзина',
-    },
-  ];
-
-  document.title = 'Корзина - ShopOnline';
-
-  renderBreadcrumbs('cartPage', breadcrumbs);
-  const { items, deleteBtn } = renderCartItems(goods, totalQuantity);
+  const { cartItems } = renderCartItems(goods);
   renderCartDelivery(goods);
-  renderCartSummary(goods, totalQuantity);
+  updateSummaryPrice();
   renderDiscountGoods('discount');
 
-  handleQuantityChange(items);
-  handleDeleteItem(items);
-  handleDeleteSelectedItems(deleteBtn);
+  handleSelectAllItems();
+  handleDeleteSelectedItems();
+  handleQuantityChange(cartItems);
+  handleDeleteItem(cartItems);
 };

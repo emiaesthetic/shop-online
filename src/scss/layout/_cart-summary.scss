@@ -168,3 +168,36 @@
     color: var(--text-gray-color);
   }
 }
+
+.cart-summary-skeleton {
+  &__total {
+    width: 120px;
+    height: 32px;
+
+    @include tablet {
+      width: 100px;
+      height: 24px;
+    }
+
+    @include mobile {
+      width: 74px;
+      height: 20px;
+    }
+  }
+
+  &__total-price,
+  &__discount-price {
+    width: 74px;
+    height: 20px;
+
+    @include tablet {
+      width: 55px;
+      height: 16px;
+    }
+
+    @include mobile {
+      width: 40px;
+      height: 12px;
+    }
+  }
+}

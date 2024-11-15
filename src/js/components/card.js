@@ -22,7 +22,7 @@ export const createCard = (
   card.classList.add('card');
   card.innerHTML = `
     <a class="card__image-link" href="/product.html?id=${id}">
-      ${imageWrapper.innerHTML}
+      ${imageWrapper.outerHTML}
       ${
         discount
           ? `<span class="discount discount--lb">-${discount}%</span>`
@@ -35,15 +35,15 @@ export const createCard = (
       ${
         discount
           ? `
-        <span class="card__discounted-price">
+        <span class="card__current-price">
           ${formatPrice(calculateDiscountPrice(price, discount))}
         </span>
-        <del class="card__non-discounted-price">
+        <del class="card__original-price">
           ${formatPrice(price)}
         </del>
       `
           : `
-        <span class="card__discounted-price">
+        <span class="card__current-price">
             ${formatPrice(price)}
         </span>
       `
@@ -66,20 +66,18 @@ export const createCard = (
 export const updateAllPricesVisibility = () => {
   document.querySelectorAll('.card').forEach(card => {
     const priceContainer = card.querySelector('.card__price');
-    const nonDiscountedPrice = card.querySelector(
-      '.card__non-discounted-price',
-    );
+    const originalPrice = card.querySelector('.card__original-price');
 
-    if (!nonDiscountedPrice) return;
+    if (!originalPrice) return;
 
     Object.values(mediaQueries).forEach(value => {
       if (window.innerWidth === value) {
-        nonDiscountedPrice.classList.remove('is-hidden');
+        originalPrice.classList.remove('is-hidden');
       }
     });
 
     if (priceContainer.offsetWidth >= card.offsetWidth) {
-      nonDiscountedPrice.classList.add('is-hidden');
+      originalPrice.classList.add('is-hidden');
     }
   });
 };

@@ -219,3 +219,21 @@
 .visually-hidden {
   @include visually-hidden;
 }
+
+.skeleton {
+  background-color: var(--gray-light);
+  border-radius: var(--border-radius-sm);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}

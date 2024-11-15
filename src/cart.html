@@ -152,15 +152,143 @@
   <main id="cartPage">
     <h1 class="visually-hidden">Проверка и оформление заказа</h1>
 
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <div class="container">
+        <ol class="breadcrumbs__list">
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link underline-link" href="/" aria-label="Вернуться на главную">Главная</a>
+          </li>
+          <li class="breadcrumbs__item" aria-current="page">Корзина</li>
+        </ol>
+      </div>
+    </nav>
+
     <div class="cart p-t-sm p-b-smx">
-      <div class="cart__container container">
-        <section class="cart-items cart-section">
-        </section>
+      <div class="container">
+        <div class="cart__content">
+          <section class="cart-items cart-section">
+            <header class="cart-items__header">
+              <h2 class="cart-items__title title title--sm">
+                Корзина<sup class="cart-items__sup-title">1</sup>
+              </h2>
+              <div class="cart-items__controls">
+                <label class="cart-items__label">
+                  <input class="cart-items__checkbox-input checkbox-input" type="checkbox" name="allProducts">
+                  <span class="cart-items__checkbox checkbox" aria-hidden="true"></span>
+                  <span>Выбрать все</span>
+                </label>
+                <button class="cart-items__delete button button--delete" aria-label="Удалить товары из корзины">
+                  <svg width="18" height="23" aria-hidden="true">
+                    <use href="./img/sprite.svg#delete"></use>
+                  </svg>
+                </button>
+              </div>
+            </header>
 
-        <section class="cart-delivery cart-section">
-        </section>
+            <ul class="cart-items__list">
+            </ul>
+          </section>
 
-        <section class="cart-summary cart-section">
+          <section class="cart-delivery cart-section">
+            <header class="cart-delivery__header">
+              <h2 class="cart-delivery__title title title--sm">Способ доставки</h2>
+              <button class="cart-delivery__button button button--transparent">
+                <span>Изменить</span><span class="visually-hidden">адрес доставки</span>
+              </button>
+            </header>
+            <div class="cart-delivery__content">
+              <div class="cart-delivery__items">
+                <div class="cart-delivery__item">
+                  <span class="cart-delivery__label">Пункт выдачи</span>
+                  <span class="cart-delivery__value">
+                    г. Москва (Московская область), улица Павлика Морозова,
+                    д. 48, (Пункт выдачи), Ежедневно 10:00-21:00
+                  </span>
+                </div>
+                <div class="cart-delivery__item">
+                  <span class="cart-delivery__label">Стоимость доставки</span>
+                  <span class="cart-delivery__value cart-delivery__value--is-gray">Бесплатно</span>
+                </div>
+                <div class="cart-delivery__item">
+                  <span class="cart-delivery__label cart-delivery__label--is-bold">10-13 февраля</span>
+                  <ul class="cart-delivery__goods">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="cart-summary cart-section">
+            <header class="cart-summary__header">
+              <h2 class="cart-summary__title">Итого:</h2>
+              <span class="cart-summary__total cart-summary-skeleton__total skeleton"></span>
+            </header>
+
+            <div class="cart-summary__price">
+              <div class="cart-summary__price-item">
+                <span class="cart-summary__total-title">Товары, 1 шт.</span>
+                <span class="cart-summary__total-price cart-summary-skeleton__total-price skeleton"></span>
+              </div>
+              <div class="cart-summary__price-item">
+                <span class="cart-summary__discount-title">Скидка</span>
+                <span class="cart-summary__discount-price cart-summary-skeleton__discount-price skeleton"></span>
+              </div>
+              <div class="cart-summary__price-item">
+                <span>Доставка</span>
+                <span>Бесплатно</span>
+              </div>
+            </div>
+
+            <div class="cart-summary__delivery">
+              <div class="cart-summary__delivery-header cart-summary__full-width">
+                <span class="cart-summary__label">Доставка:</span>
+                <span class="cart-summary__value">Пункт выдачи</span>
+              </div>
+              <div class="cart-summary__delivery-description">
+                <p class="cart-summary__delivery-text">Ежедневно 10:00 - 21:00</p>
+                <address class="cart-summary__delivery-text">
+                  г. Москва (Московская область), улица Павлика Морозова, д. 48
+                </address>
+              </div>
+            </div>
+
+            <div class="cart-summary__date cart-summary__full-width">
+              <span class="cart-summary__label">Дата:</span>
+              <span class="cart-summary__value">10-13 февраля</span>
+            </div>
+
+            <div class="cart-summary__payment cart-summary__full-width">
+              <span class="cart-summary__label">Оплата:</span>
+              <span class="cart-summary__value">Картой</span>
+            </div>
+
+            <footer class="cart-summary__footer">
+              <button class="cart-summary__order-button button button--accent" disabled="">Заказать</button>
+              <label class="cart-summary__terms">
+                <input class="checkbox-input" type="checkbox" name="terms-agreement">
+                <span class="cart-summary__terms-checkbox checkbox" aria-hidden="true"></span>
+                <span class="cart-summary__terms-text">
+                  Согласен с условиями
+                  <a class="cart-summary__terms-link" href="#" target="_blank">
+                    правил пользования торговой площадкой и правилами возврата
+                  </a>
+                </span>
+              </label>
+            </footer>
+          </section>
+        </div>
+
+        <section class="cart-empty cart-section">
+          <h2 class="cart-empty__title title title--sm">Корзина</h2>
+          <div class="cart-empty__content">
+            <picture class="cart-empty__image">
+              <img
+                src="./img/cart/cart-empty.png" alt="Пустая корзина"
+                width="224" height="224" loading="lazy"
+              >
+            </picture>
+            <p class="cart-empty__text">Корзина пока пуста...</p>
+          </div>
         </section>
       </div>
     </div>
@@ -169,6 +297,78 @@
       <div class="container">
         <h2 class="goods__title title">Это выгодно!</h2>
         <ul class="goods__list grid">
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
+          <li class="goods__item">
+            <article class="card">
+              <div class="card__image-link card-skeleton__image-link skeleton"></div>
+              <div class="card__content">
+                <div class="card__price card-skeleton__price skeleton"></div>
+                <h2 class="card__title card-skeleton__title skeleton"></h2>
+              </div>
+            </article>
+          </li>
         </ul>
       </div>
     </section>
@@ -228,10 +428,10 @@
         <h2 class="menu__title">Контакты</h2>
         <address class="footer__address">
           <p class="footer__phone">
-            Тел: <a class="underline-link" href="tel:+79378392361">+7 937 839 23-61</a>
+            Тел: <a class="footer__link underline-link" href="tel:+79378392361">+7 937 839 23-61</a>
           </p>
           <p class="footer__email">
-            Email: <a class="underline-link" href="mailto:OnlineShop@gmail.com">OnlineShop@gmail.com</a>
+            Email: <a class="footer__link underline-link" href="mailto:OnlineShop@gmail.com">OnlineShop@gmail.com</a>
           </p>
         </address>
 
@@ -280,7 +480,7 @@
         <span class="footer__author-name">Design by Anastasia Ilina</span>
         <span class="footer__author-link">
           <span aria-hidden="true">Tg:</span>
-          <a class="underline-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Перейти в телеграм">
+          <a class="footer__link underline-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Перейти в телеграм">
             @Mrshmallowww
           </a>
         </span>

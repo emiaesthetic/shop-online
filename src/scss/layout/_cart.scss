@@ -1,5 +1,5 @@
 .cart {
-  &__container {
+  &__content {
     display: grid;
     grid-template-columns: auto 420px;
     grid-template-rows: repeat(2, auto);
@@ -28,6 +28,10 @@
 
     @include mobile {
       font-size: 10px;
+    }
+
+    &.hidden {
+      display: none;
     }
   }
 }

@@ -1,6 +1,4 @@
 import { createImage } from '../components/image.js';
-import { createButton } from '../components/button.js';
-import { createCheckbox } from '../components/checkbox.js';
 import { serverURL, mediaQueries } from '../helpers/constants.js';
 import {
   formatPrice,
@@ -8,91 +6,75 @@ import {
   calculateMonthlyPayment,
 } from '../helpers/productUtils.js';
 
-const createCartHeader = quantity => {
-  const header = document.createElement('header');
-  header.className = 'cart-items__header';
+export const renderSkeletonCartItems = quantity => {
+  const cartItems = document.querySelector('.cart-items__list');
 
-  const title = document.createElement('h2');
-  title.className = 'cart-items__title title title--sm';
-  title.innerHTML = `
-    Корзина<sup class="cart-items__sup-title">${
-      quantity <= 0 ? '' : quantity
-    }</sup>
+  Array.from({ length: quantity }).forEach(() => {
+    const item = document.createElement('li');
+    item.className = 'cart-item';
+    item.innerHTML = `
+      <div class="cart-item__content cart-item-skeleton__content">
+        <div class="cart-item__image-wrapper">
+          <label class="cart-item__label">
+            <input
+              class="cart-item__checkbox-input checkbox-input"
+              type="checkbox"
+              name="product-name"
+            >
+            <span class="cart-item__checkbox checkbox" aria-hidden="true">
+            </span>
+          </label>
+          <div class="cart-item__image-link skeleton"></div>
+        </div>
+        <div class="cart-item__details">
+          <div class="
+            cart-item__main-info
+            cart-item-skeleton__main-info
+            skeleton
+          "></div>
+          <div class="
+            cart-item__quantity
+            cart-item-skeleton__quantity
+            cart-item__quantity--tablet-hidden
+            skeleton
+          "></div>
+          <div class="
+            cart-item__price
+            cart-item-skeleton__price
+            skeleton
+          "></div>
+        </div>
+      </div>
+      <div class="cart-item__controls cart-item-skeleton__controls">
+        <div class="
+          cart-item__quantity
+          cart-item-skeleton__quantity
+          skeleton
+        "></div>
+        <button
+          class="cart-item__delete button button--delete"
+          aria-label="Удалить товар из корзины"
+        >
+          <svg width="18" height="23" aria-hidden="true">
+            <use href="./img/sprite.svg#delete"></use>
+          </svg>
+        </button>
+      </div>
   `;
 
-  const controls = document.createElement('div');
-  controls.className = 'cart-items__controls';
-
-  const { label, checkbox: overallCheckbox } = createCheckbox({
-    labelClassName: 'cart-items__label',
-    inputClassName: 'checkbox-input',
-    inputName: 'allProducts',
-    spanClassName: 'cart-items__checkbox checkbox',
+    cartItems.append(item);
   });
-
-  const span = document.createElement('span');
-  span.textContent = 'Выбрать все';
-  label.append(span);
-
-  const deleteBtn = createButton({
-    className: 'cart-items__delete button button--delete',
-    ariaLabel: 'Удалить товары из корзины',
-  });
-  deleteBtn.innerHTML = `
-    <svg width="18" height="23" aria-hidden="true">
-      <use href="./img/sprite.svg#delete"></use>
-    </svg>
-  `;
-
-  overallCheckbox.addEventListener('click', () => {
-    const goodsCheckbox = document.querySelectorAll(
-      '.cart-item__checkbox-input',
-    );
-    goodsCheckbox.forEach(
-      checkbox => (checkbox.checked = overallCheckbox.checked),
-    );
-  });
-
-  controls.append(label, deleteBtn);
-  header.append(title, controls);
-
-  return {
-    header,
-    deleteBtn,
-  };
 };
 
-const createCartQuantity = quantity => {
-  const cartQuantity = document.createElement('div');
-  cartQuantity.classList.add('cart-item__quantity');
+const moveCartQuantity = item => {
+  const quantity = item.querySelector('.cart-item__quantity');
+  const price = item.querySelector('.cart-item__price');
+  const controls = item.querySelector('.cart-item__controls');
 
-  const counter = document.createElement('span');
-  counter.classList.add('cart-item__quantity-number');
-  counter.textContent = quantity;
-
-  const decrementBtn = createButton({
-    className: 'cart-item__quantity-button button button--quantity',
-    text: '\u2212',
-    ariaLabel: 'Минус один',
-  });
-  decrementBtn.disabled = Number(counter.textContent) === 1;
-
-  const incrementBtn = createButton({
-    className: 'cart-item__quantity-button button button--quantity',
-    text: '+',
-    ariaLabel: 'Плюс один',
-  });
-
-  cartQuantity.append(decrementBtn, counter, incrementBtn);
-
-  return cartQuantity;
-};
-
-const moveCartQuantity = (target, desktopContainer, tabletContainer) => {
   if (window.innerWidth <= mediaQueries.tablet) {
-    tabletContainer.prepend(target);
+    controls.prepend(quantity);
   } else {
-    desktopContainer.before(target);
+    price.before(quantity);
   }
 };
 
@@ -135,33 +117,55 @@ const createCartItem = ({
           </div>
         </div>
 
-      <div class="cart-item__price">
-        <div class="cart-item__main-price">
-          ${
-            discount
-              ? `
-            <span class="cart-item__current-price">
-              ${formatPrice(calculateDiscountPrice(price, discount, quantity))}
-            </span>
-            <del class="cart-item__original-price">
-              ${formatPrice(price * quantity)}
-            </del>
-          `
-              : `
-            <span class="cart-item__current-price">
-              ${formatPrice(price * quantity)}
-            </span>
-          `
-          }
+        <div class="cart-item__quantity">
+          <button
+            class="cart-item__quantity-button button button--quantity"
+            aria-label="Минус один"
+          >\u2212</button>
+          <span class="cart-item__quantity-number">${quantity}</span>
+          <button
+            class="cart-item__quantity-button button button--quantity"
+            aria-label="Плюс один"
+          >+</button>
         </div>
-        <span class="cart-item__credit-price">
-          ${formatPrice(calculateMonthlyPayment(price * quantity))}
-        </span>
-      </div>
+
+        <div class="cart-item__price">
+          <div class="cart-item__main-price">
+            ${
+              discount
+                ? `
+              <span class="cart-item__current-price">
+                ${formatPrice(
+                  calculateDiscountPrice(price, discount, quantity),
+                )}
+              </span>
+              <del class="cart-item__original-price">
+                ${formatPrice(price * quantity)}
+              </del>
+            `
+                : `
+              <span class="cart-item__current-price">
+                ${formatPrice(price * quantity)}
+              </span>
+            `
+            }
+          </div>
+          <span class="cart-item__credit-price">
+            ${formatPrice(calculateMonthlyPayment(price * quantity))}
+          </span>
+        </div>
       </div>
     </div>
 
     <div class="cart-item__controls">
+      <button
+        class="cart-item__delete button button--delete"
+        aria-label="Удалить товар из корзины"
+      >
+        <svg width="18" height="23" aria-hidden="true">
+          <use href="./img/sprite.svg#delete"></use>
+        </svg>
+      </button>
     </div>
   `;
 
@@ -174,33 +178,13 @@ const createCartItem = ({
     alt: title,
   });
 
-  const deleteBtn = createButton({
-    className: 'cart-item__delete button button--delete',
-    ariaLabel: 'Удалить товар из корзины',
-  });
-  deleteBtn.innerHTML = `
-  <svg width="18" height="23" aria-hidden="true">
-    <use href="./img/sprite.svg#delete"></use>
-  </svg>
-`;
-
   const imageLink = cartItem.querySelector('.cart-item__image-link');
   imageLink.append(imageWrapper);
 
-  const cartPrices = cartItem.querySelector('.cart-item__price');
-  const cartQuantity = createCartQuantity(quantity);
-
-  cartItem
-    .querySelector('.cart-item__details')
-    .append(cartQuantity, cartPrices);
-
-  const cartControls = cartItem.querySelector('.cart-item__controls');
-  cartControls.append(deleteBtn);
-
-  moveCartQuantity(cartQuantity, cartPrices, cartControls);
+  moveCartQuantity(cartItem);
 
   window.addEventListener('resize', () => {
-    moveCartQuantity(cartQuantity, cartPrices, cartControls);
+    moveCartQuantity(cartItem);
   });
 
   return {
@@ -209,23 +193,16 @@ const createCartItem = ({
   };
 };
 
-export const renderCartItems = (goods, quantity) => {
-  const { header, deleteBtn } = createCartHeader(quantity);
-
-  const items = document.createElement('ul');
-  items.className = 'cart-items__list';
+export const renderCartItems = goods => {
+  const cartItems = document.querySelector('.cart-items__list');
+  cartItems.innerHTML = '';
 
   goods.forEach(product => {
     const { cartItem } = createCartItem(product);
-    items.append(cartItem);
+    cartItems.append(cartItem);
   });
 
-  const cartItems = document.querySelector('.cart-items');
-  cartItems.innerHTML = '';
-  cartItems.append(header, items);
-
   return {
-    items,
-    deleteBtn,
+    cartItems,
   };
 };

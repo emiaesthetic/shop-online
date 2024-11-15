@@ -63,12 +63,28 @@
 
   &__image-wrapper {
     position: relative;
+    max-width: 757px;
+    width: 100%;
+    height: 427px;
+
+    @include laptop {
+      height: 303px;
+    }
+
+    @include tablet {
+      height: 213px;
+    }
+
+    @include mobile {
+      height: 157px;
+    }
   }
 
   &__image img {
-    width: 757px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: var(--border-radius-lg);
   }
 
   &__description {
@@ -117,5 +133,29 @@
         }
       }
     }
+  }
+}
+
+.product-skeleton {
+  &__title {
+    width: 70%;
+    height: 65px;
+
+    @include laptop {
+      width: 100%;
+      height: 54px;
+    }
+
+    @include tablet {
+      height: 36px;
+    }
+
+    @include mobile {
+      height: 24px;
+    }
+  }
+
+  &__description-content {
+    height: 300px;
   }
 }
