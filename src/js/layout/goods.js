@@ -1,6 +1,4 @@
 import { createCard, updateAllPricesVisibility } from '../components/card.js';
-import { preloadImages } from '../components/image.js';
-import { removeLoader } from '../components/loader.js';
 import { loadData } from '../services/api.js';
 import { serverURL } from '../helpers/constants.js';
 
@@ -23,14 +21,6 @@ const renderGoodsItem = async (goods, title = 'h3') => {
     item.append(card);
     goodsList.append(item);
   });
-
-  try {
-    await preloadImages();
-  } catch (error) {
-    console.error(error);
-  } finally {
-    removeLoader();
-  }
 
   updateAllPricesVisibility();
   window.addEventListener('resize', updateAllPricesVisibility);

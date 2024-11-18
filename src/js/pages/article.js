@@ -1,4 +1,3 @@
-import { removeLoader } from '../components/loader.js';
 import { renderBreadcrumbs } from '../components/breadcrumbs.js';
 import { loadData } from '../services/api.js';
 import { newsURL } from '../helpers/constants.js';
@@ -67,6 +66,4 @@ export const renderArticlePage = async () => {
   renderArticleTitle(title);
   renderArticleContent(body);
   renderArticleAuthor(id, name);
-
-  removeLoader();
 };

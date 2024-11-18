@@ -1,5 +1,4 @@
-import { createImage, preloadImages } from './image.js';
-import { removeLoader } from './loader.js';
+import { createImage } from './image.js';
 
 const createPost = ({ id, title }, index) => {
   const { imageWrapper, image } = createImage({
@@ -45,12 +44,4 @@ export const renderPosts = async posts => {
     postWrapper.append(post);
     postList.append(postWrapper);
   });
-
-  try {
-    await preloadImages(images);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    removeLoader();
-  }
 };
