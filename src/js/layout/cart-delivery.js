@@ -20,7 +20,7 @@ const createItem = ({ id, title, image }) => {
   item.dataset.id = id;
   item.className = 'cart-delivery__goods-item';
   item.innerHTML = `
-    <a class="cart-delivery__goods-link" href="/product.html?id=${id}">
+    <a class="cart-delivery__goods-link" href="product.html?id=${id}">
       <picture class="cart-delivery__goods-image">
         <img src="${serverURL}${image}" width="80" height="80" alt="${title}">
       </picture>

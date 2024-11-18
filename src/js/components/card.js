@@ -21,7 +21,7 @@ export const createCard = (
   const card = document.createElement('article');
   card.classList.add('card');
   card.innerHTML = `
-    <a class="card__image-link" href="/product.html?id=${id}">
+    <a class="card__image-link" href="product.html?id=${id}">
       ${imageWrapper.outerHTML}
       ${
         discount
@@ -50,7 +50,7 @@ export const createCard = (
       }
       </div>
       <${titleTag} class="card__title" title="${title}">
-        <a class="card__link" href="/product.html?id=${id}">
+        <a class="card__link" href="product.html?id=${id}">
           ${title}
         </a>
       </${titleTag}>

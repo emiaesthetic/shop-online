@@ -146,7 +146,7 @@ export const renderProductPage = async () => {
   const breadcrumbs = [
     {
       title: 'Главная',
-      href: '/',
+      href: 'index.html',
       ariaLabel: 'Вернуться на главную',
     },
     {
@@ -156,7 +156,7 @@ export const renderProductPage = async () => {
     },
     {
       title: `${category}`,
-      href: `/category.html?category=${category}`,
+      href: `category.html?category=${category}`,
       ariaLabel: `Вернуться в раздел ${category}`,
     },
     {

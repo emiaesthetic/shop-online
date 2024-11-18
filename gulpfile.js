@@ -8,6 +8,7 @@ import { deleteSync } from 'del';
 
 // html
 import htmlMin from 'gulp-htmlmin';
+import baseReplace from 'gulp-replace';
 
 // css
 import sass from 'sass';
@@ -69,11 +70,16 @@ const path = {
   },
 };
 
+const BASE_URL = '/shop-online/';
+
 // html
 
 export const html = () =>
   gulp
     .src(path.src.html)
+    .pipe(
+      gulpIf(!dev, baseReplace('<base href="/">', `<base href="${BASE_URL}">`)),
+    )
     .pipe(
       gulpIf(
         !dev,

@@ -48,13 +48,13 @@ export const renderArticlePage = async () => {
   const breadcrumbs = [
     {
       title: 'Главная',
-      href: '/',
+      href: 'index.html',
       ariaLabel: 'Вернуться на главную',
     },
     {
       title: 'Блог',
       href: 'javascript:history.back()',
-      ariaLabel: '',
+      ariaLabel: 'Вернуться в раздел Блог',
     },
     {
       title: title,

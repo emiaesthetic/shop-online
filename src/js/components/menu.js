@@ -29,7 +29,7 @@ const createMenuItem = category => {
 
   const link = document.createElement('a');
   link.classList.add('menu__sublink', 'underline-link');
-  link.href = `/category.html?category=${category}`;
+  link.href = `category.html?category=${category}`;
   link.textContent = category;
 
   item.append(link);

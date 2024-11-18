@@ -56,7 +56,7 @@ export const renderSkeletonCartItems = quantity => {
           aria-label="Удалить товар из корзины"
         >
           <svg width="18" height="23" aria-hidden="true">
-            <use href="./img/sprite.svg#delete"></use>
+            <use href="img/sprite.svg#delete"></use>
           </svg>
         </button>
       </div>
@@ -100,14 +100,14 @@ const createCartItem = ({
           >
           <span class="cart-item__checkbox checkbox" aria-hidden="true"></span>
         </label>
-        <a class="cart-item__image-link" href="/product.html?id=${id}">
+        <a class="cart-item__image-link" href="product.html?id=${id}">
         </a>
       </div>
 
       <div class="cart-item__details">
         <div class="cart-item__main-info">
           <h3 class="cart-item__title">
-            <a class="cart-item__link" href="/product.html?id=${id}">
+            <a class="cart-item__link" href="product.html?id=${id}">
               ${title}
             </a>
           </h3>
@@ -163,7 +163,7 @@ const createCartItem = ({
         aria-label="Удалить товар из корзины"
       >
         <svg width="18" height="23" aria-hidden="true">
-          <use href="./img/sprite.svg#delete"></use>
+          <use href="img/sprite.svg#delete"></use>
         </svg>
       </button>
     </div>
