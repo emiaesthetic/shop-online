@@ -1,21 +1,24 @@
 .timer {
-  min-height: 104px;
   margin: 0 auto;
   font-weight: 700;
   line-height: 1.3;
   text-align: center;
   color: var(--text-light-color);
 
-  @include laptop {
-    min-height: 83px;
-  }
+  &--skeleton {
+    min-height: 104px;
 
-  @include tablet {
-    min-height: 65px;
-  }
+    @include laptop {
+      min-height: 83px;
+    }
 
-  @include mobile {
-    min-height: 42px;
+    @include tablet {
+      min-height: 65px;
+    }
+
+    @include mobile {
+      min-height: 42px;
+    }
   }
 
   &__title {

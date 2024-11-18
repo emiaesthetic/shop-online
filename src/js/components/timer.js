@@ -58,6 +58,8 @@ export const renderTimer = () => {
   const { time, days, hours, minutes } = createTime();
 
   const container = document.querySelector('[data-timer-deadline]');
+  container.classList.remove('timer--skeleton');
+  container.innerHTML = '';
   container.append(title, time);
 
   const getTimeRemaining = () => {
